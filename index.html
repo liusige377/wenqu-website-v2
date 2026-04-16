@@ -4,311 +4,298 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>问渠 - 生活中的智慧锦囊</title>
-<meta name="description" content="问渠——生活中的智慧锦囊，永久免费。个税计算、老黄历宜忌、天气预报、房贷计算、诗词壁纸，一个页面全搞定。">
+<meta name="description" content="问渠——生活中的智慧锦囊，永久免费。竹筒签卦、亲戚称呼、大写金额、邮编区号，一个页面全搞定。">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0c0c18">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231a1a2e'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23e8c96a'>渠</text></svg>">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
 :root{
-  --bg:#08080f;--bg2:#0d0d1a;--gold:#e8c96a;--gold2:#c9a84c;--gold-pale:#f5e6b0;
+  --bg:#07070e;--gold:#e8c96a;--gold2:#c9a84c;--gold-pale:#f5e6b0;
   --gold-dim:rgba(232,201,106,0.4);--text:#ede8df;--text2:#9a9080;--text3:#5a5448;
-  --blue:#6ab0ff;--green:#6bcb77;--red:#ff6b6b;--purple:#b06aff;
+  --blue:#6ab0ff;--green:#6bcb77;--red:#ff6b6b;--purple:#b06aff;--orange:#f39c12;
   --border:rgba(232,201,106,0.1);--border-hover:rgba(232,201,106,0.35);
-  --card-bg:rgba(14,14,28,0.75);--card-hover:rgba(20,20,40,0.92);
+  --card-bg:rgba(14,14,28,0.82);--card-hover:rgba(22,22,42,0.95);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:'Noto Serif SC','PingFang SC','Microsoft YaHei',serif;
-  min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-}
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif SC','PingFang SC',serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* 背景 */
 .bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 100% 60% at 50% -10%,rgba(232,201,106,0.09) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 90% 90%,rgba(74,130,255,0.04) 0%,transparent 55%),linear-gradient(175deg,#07070e 0%,#0b0b1a 40%,#080810 100%)}
-.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,201,106,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(232,201,106,0.018) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 95% 80% at 50% 0%,black 0%,transparent 65%)}
-.bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.5;animation:orbFloat 25s ease-in-out infinite}
-.bg-orb:nth-child(1){width:500px;height:500px;background:radial-gradient(circle,rgba(232,201,106,0.12),transparent 70%);top:-10%;left:-10%;animation-duration:32s}
-.bg-orb:nth-child(2){width:380px;height:380px;background:radial-gradient(circle,rgba(74,130,255,0.07),transparent 70%);top:40%;right:-8%;animation-duration:24s;animation-delay:-9s}
-.bg-orb:nth-child(3){width:250px;height:250px;background:radial-gradient(circle,rgba(200,150,60,0.09),transparent 70%);bottom:10%;left:25%;animation-duration:28s;animation-delay:-15s}
-@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-35px) scale(1.07)}}
-.bg-drops{position:absolute;inset:0}
-.drop{position:absolute;width:2px;height:2px;background:rgba(232,201,106,0.3);border-radius:50%;animation:dropFall linear infinite}
-@keyframes dropFall{0%{transform:translateY(-10px);opacity:0}20%{opacity:1}90%{opacity:0.2}100%{transform:translateY(100vh);opacity:0}}
+.bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 100% 55% at 50% -5%,rgba(232,201,106,0.08) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 90% 90%,rgba(74,130,255,0.04) 0%,transparent 55%),linear-gradient(175deg,#06060d 0%,#09091a 40%,#070710 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,201,106,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(232,201,106,0.015) 1px,transparent 1px);background-size:80px 80px}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.4;animation:orbFloat 28s ease-in-out infinite}
+.bg-orb:nth-child(1){width:600px;height:600px;background:radial-gradient(circle,rgba(232,201,106,0.1),transparent 70%);top:-15%;left:-12%;animation-duration:36s}
+.bg-orb:nth-child(2){width:400px;height:400px;background:radial-gradient(circle,rgba(106,176,255,0.05),transparent 70%);top:45%;right:-10%;animation-duration:26s;animation-delay:-10s}
+.bg-orb:nth-child(3){width:280px;height:280px;background:radial-gradient(circle,rgba(39,174,96,0.06),transparent 70%);bottom:8%;left:20%;animation-duration:30s;animation-delay:-18s}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}}
+.daily-wall{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease;overflow:hidden;border-radius:0}
+.daily-wall.active{opacity:0.16}
+.daily-wall img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.3) brightness(0.4);mix-blend-mode:luminosity}
+.daily-wall::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 20%,var(--bg) 95%)}
 
 .page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 60px}
 
 /* Header */
-.site-header{padding:56px 0 40px;text-align:center;position:relative}
-.site-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(232,201,106,0.12) 0%,transparent 65%);pointer-events:none;animation:pulseGlow 5s ease-in-out infinite}
-@keyframes pulseGlow{0%,100%{opacity:0.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
-.logo{display:inline-block;position:relative}
-.logo-hanzi{font-family:'Cormorant Garamond','Noto Serif SC',serif;font-size:clamp(4rem,9vw,7rem);font-weight:700;letter-spacing:0.08em;background:linear-gradient(160deg,#f5e6b0 0%,#e8c96a 30%,#c9a84c 60%,#e8c96a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:logoFloat 7s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(232,201,106,0.35));line-height:1}
-@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.logo-en{font-family:'Cormorant Garamond',serif;font-size:0.72rem;letter-spacing:0.6em;color:var(--text3);text-transform:uppercase;margin-top:6px}
-.logo-subtitle{font-size:0.9rem;color:var(--text2);margin-top:16px;font-style:italic;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.9;letter-spacing:0.04em}
-.logo-source{font-size:0.7rem;color:var(--text3);margin-top:8px;letter-spacing:0.08em}
-.logo-badge{display:inline-flex;align-items:center;gap:6px;margin-top:18px;padding:6px 16px;background:rgba(232,201,106,0.08);border:1px solid rgba(232,201,106,0.2);border-radius:20px;font-size:0.68rem;color:var(--gold);letter-spacing:0.08em}
+.site-header{padding:48px 0 32px;text-align:center;position:relative}
+.site-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:380px;height:300px;background:radial-gradient(circle,rgba(232,201,106,0.1) 0%,transparent 65%);pointer-events:none;animation:pulseGlow 6s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{opacity:0.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.12)}}
+.logo-hanzi{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,9vw,7rem);font-weight:700;letter-spacing:0.08em;background:linear-gradient(155deg,#f5e6b0 0%,#e8c96a 28%,#c9a84c 55%,#e8c96a 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:logoFloat 8s ease-in-out infinite;filter:drop-shadow(0 0 50px rgba(232,201,106,0.3));line-height:1;display:block}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.logo-en{font-size:0.7rem;letter-spacing:0.6em;color:var(--text3);text-transform:uppercase;margin-top:8px;display:block}
+.logo-subtitle{font-size:0.88rem;color:var(--text2);margin-top:16px;font-style:italic;line-height:2;letter-spacing:0.05em;display:block}
+.logo-badge{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:6px 18px;background:rgba(232,201,106,0.07);border:1px solid rgba(232,201,106,0.18);border-radius:20px;font-size:0.68rem;color:var(--gold);letter-spacing:0.08em}
 .logo-badge span{color:var(--text2)}
 
 /* 日期条 */
-.date-strip{display:flex;align-items:center;justify-content:center;gap:20px;padding:14px 24px;background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden}
+.date-strip{display:flex;align-items:center;justify-content:center;gap:18px;padding:12px 24px;background:var(--card-bg);backdrop-filter:blur(22px);border:1px solid var(--border);border-radius:16px;margin-bottom:28px;position:relative;overflow:hidden}
 .date-strip::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
-.date-big{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);text-shadow:0 0 20px rgba(232,201,106,0.5);line-height:1}
+.date-big{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--gold);text-shadow:0 0 20px rgba(232,201,106,0.5);line-height:1}
+.date-sep{width:1px;height:32px;background:rgba(232,201,106,0.12)}
 .date-meta{font-size:0.75rem;color:var(--text2);line-height:1.5}
 .date-lunar{color:var(--text3);font-size:0.68rem}
-.date-sep{width:1px;height:32px;background:rgba(232,201,106,0.12)}
-.weather-bar{display:flex;align-items:center;gap:14px;margin-left:auto}
-.weather-bar .w-city{font-size:0.75rem;color:var(--text2)}
-.weather-bar .w-temp{font-size:0.85rem;font-weight:600;color:var(--text)}
-.weather-bar .w-icon{font-size:1.1rem}
+.weather-bar{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:0.8rem}
+.weather-bar .w-icon{font-size:1.2rem}
 
-/* 分区标题 */
-.section-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.section-head::before,.section-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
-.section-label{font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+/* ═══ 历史今天（全宽醒目区） ═══ */
+.history-hero{
+  background:var(--card-bg);backdrop-filter:blur(28px) saturate(200%);
+  border:1px solid rgba(106,176,255,0.15);border-radius:24px;
+  padding:24px 28px;margin-bottom:24px;
+  position:relative;overflow:hidden;
+  animation:cardIn 0.5s ease-out;
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.history-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#6ab0ff,transparent)}
+.history-hero::after{content:'';position:absolute;right:-40px;bottom:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(106,176,255,0.06) 0%,transparent 70%);pointer-events:none}
+.history-hero-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.history-hero-title{display:flex;align-items:center;gap:10px;font-size:0.82rem;font-weight:600;color:var(--text)}
+.history-hero-title .icon{font-size:1.1rem}
+.history-hero-title .tag{font-size:0.62rem;padding:3px 10px;background:rgba(106,176,255,0.1);color:var(--blue);border:1px solid rgba(106,176,255,0.2);border-radius:20px;font-weight:400;margin-left:4px}
+.history-hero-dots{display:flex;gap:5px}
+.history-hero-dot{width:5px;height:5px;border-radius:50%;background:rgba(106,176,255,0.3)}
+.history-hero-dot.active{background:var(--blue);width:16px;border-radius:3px}
+.history-hero-nav{font-size:0.72rem;color:var(--text3);cursor:pointer;display:flex;align-items:center;gap:4px;transition:color 0.2s}
+.history-hero-nav:hover{color:var(--blue)}
+.history-hero-items{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.history-hero-item{padding:14px 16px;background:rgba(106,176,255,0.04);border:1px solid rgba(106,176,255,0.08);border-radius:14px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden}
+.history-hero-item:hover{background:rgba(106,176,255,0.08);border-color:rgba(106,176,255,0.2);transform:translateY(-2px)}
+.history-hero-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:0;transition:opacity 0.3s;border-radius:0 2px 2px 0}
+.history-hero-item:hover::before{opacity:1}
+.history-year{font-size:0.7rem;font-weight:700;color:var(--blue);margin-bottom:6px;opacity:0.9}
+.history-text{font-size:0.85rem;line-height:1.65;color:var(--text2)}
+.history-no-data{padding:30px;text-align:center;color:var(--text3);font-size:0.85rem;grid-column:1/-1}
 
-/* ═══ 自动展示区 ═══ */
-.daily-section{margin-bottom:44px}
+/* ═══ 签卦+诗词+老黄历（三宫格） ═══ */
+.three-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
 
-/* 五宫格 */
-.five-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:16px;margin-top:16px}
-.cell-a{grid-column:1/2;grid-row:1/3}
-.cell-b{grid-column:2/4;grid-row:1}
-.cell-c{grid-column:2/4;grid-row:2}
+/* 竹筒 */
+.zhu-card{background:var(--card-bg);backdrop-filter:blur(28px) saturate(190%);border:1px solid rgba(39,174,96,0.12);border-radius:24px;padding:24px;position:relative;overflow:hidden;transition:all 0.4s;animation:cardIn 0.5s ease-out 0.05s both}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.zhu-card:hover{border-color:rgba(39,174,96,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(39,174,96,0.08)}
+.zhu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#27ae60,transparent)}
+.zhu-title{font-size:0.8rem;font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.zhu-title span{color:var(--text3);font-weight:400;font-size:0.7rem}
+.zhu-cup-wrap{position:relative;width:72px;height:82px;margin:0 auto 14px}
+.zhu-cup{width:72px;height:82px;background:linear-gradient(175deg,#4a7c59 0%,#2d5a3d 40%,#1e4a2e 100%);border-radius:7px 7px 13px 13px;position:relative;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,0.5),inset 0 2px 0 rgba(255,255,255,0.08);transform-origin:center bottom;transition:box-shadow 0.2s;overflow:hidden}
+.zhu-cup:hover{box-shadow:0 8px 28px rgba(39,174,96,0.3),inset 0 2px 0 rgba(255,255,255,0.1)}
+.zhu-cup::before{content:'';position:absolute;top:16px;left:0;right:0;height:2px;background:rgba(255,255,255,0.06)}
+.zhu-cup::after{content:'';position:absolute;top:36px;left:0;right:0;height:2px;background:rgba(255,255,255,0.06)}
+.zhu-cup-opening{position:absolute;top:0;left:50%;transform:translateX(-50%);width:64px;height:10px;background:linear-gradient(180deg,#1a3a25 0%,#2d5a3d 100%);border-radius:50%;box-shadow:inset 0 2px 6px rgba(0,0,0,0.5)}
+.zhu-cup.shaking{animation:cupShake 0.12s ease-in-out infinite}
+@keyframes cupShake{0%{transform:rotate(-4deg) translateX(-2px)}50%{transform:rotate(4deg) translateX(2px)}100%{transform:rotate(-4deg) translateX(-2px)}}
+.zhu-cup.shaking2{animation:cupShake2 0.1s ease-in-out 3}
+@keyframes cupShake2{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.zhu-sticks{position:absolute;top:6px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;width:54px}
+.zhu-stick{width:5px;height:32px;background:linear-gradient(180deg,#e8c96a,#c9a84c);border-radius:3px 3px 1px 1px;opacity:0;transition:opacity 0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+.zhu-stick.show{opacity:1}
+.zhu-stick.popped{animation:stickPop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards}
+@keyframes stickPop{0%{transform:translateY(0) rotate(0)}40%{transform:translateY(-48px) rotate(15deg)}60%{transform:translateY(-58px) rotate(-8deg)}100%{transform:translateY(-76px) rotate(0)}}
 
-/* 运势大卡 */
-.fortune-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:28px;height:100%;position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
-.fortune-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 60px rgba(232,201,106,0.1)}
-.fortune-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e8c96a,transparent);opacity:0.6}
-.fortune-card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,201,106,0.06) 0%,transparent 70%);pointer-events:none}
-.fortune-title{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px}
-.fortune-title span{color:var(--text3);font-weight:400;font-size:0.72rem}
-.fortune-wheel-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.fortune-wheel{width:130px;height:130px;border-radius:50%;background:conic-gradient(#e8c96a 0deg 72deg,#6ab0ff 72deg 144deg,#6bcb77 144deg 216deg,#b06aff 216deg 288deg,#ff6b6b 288deg 360deg);position:relative;cursor:pointer;flex-shrink:0;box-shadow:0 0 0 5px rgba(232,201,106,0.15),0 0 0 9px rgba(232,201,106,0.04),0 0 40px rgba(232,201,106,0.12),inset 0 0 30px rgba(0,0,0,0.3);transition:transform 0.3s,box-shadow 0.3s}
-.fortune-wheel:hover{transform:scale(1.04);box-shadow:0 0 0 6px rgba(232,201,106,0.25),0 0 0 10px rgba(232,201,106,0.06),0 0 60px rgba(232,201,106,0.2),inset 0 0 30px rgba(0,0,0,0.3)}
-.fortune-wheel.spinning{animation:spinBig 4.5s cubic-bezier(.2,.8,.3,1)}
-@keyframes spinBig{to{transform:rotate(1980deg)}}
-.fortune-ct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:linear-gradient(135deg,#f5e6b0,#e8c96a,#c9a84c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 24px rgba(232,201,106,0.4);transition:all 0.2s;z-index:2}
-.fortune-ct:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 6px 20px rgba(0,0,0,0.4),0 0 36px rgba(232,201,106,0.5)}
-.fortune-info{flex:1;min-width:160px}
-.fortune-result{font-size:1.5rem;font-weight:700;margin-bottom:8px;min-height:2rem;letter-spacing:0.04em}
-.fortune-desc{font-size:0.8rem;color:var(--text2);line-height:1.8;margin-bottom:14px;min-height:3em}
-.fortune-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0c0c18;border:none;padding:10px 22px;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,201,106,0.25)}
-.fortune-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,201,106,0.4)}
-.fortune-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;box-shadow:none}
-.fortune-tips{font-size:0.68rem;color:var(--text3);margin-top:10px}
+.zhu-container{display:none;flex-direction:column;align-items:center;gap:12px}
+.zhu-container.active{display:flex}
+.zhu-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#27ae60,#1e8449);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:0.85rem;font-weight:600;cursor:pointer;letter-spacing:0.06em;transition:all 0.3s;box-shadow:0 4px 16px rgba(39,174,96,0.3);width:100%;justify-content:center}
+.zhu-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(39,174,96,0.42)}
+.zhu-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.zhu-hint{font-size:0.7rem;color:var(--text3);text-align:center;min-height:1.2em}
 
-/* 诗词+历史 */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:100%}
-.poem-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:24px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);position:relative;overflow:hidden}
-.poem-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(232,201,106,0.08),0 6px 20px rgba(0,0,0,0.4)}
-.poem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e8c96a80,transparent)}
-.poem-eyebrow{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.poem-title{font-size:1.2rem;color:var(--gold-pale);font-weight:600;margin-bottom:4px;letter-spacing:0.06em}
-.poem-author{font-size:0.7rem;color:var(--text3);margin-bottom:16px;letter-spacing:0.06em}
-.poem-content{font-size:0.88rem;line-height:2.2;letter-spacing:0.1em;color:var(--text2);white-space:pre-line}
-.poem-refresh{font-size:0.68rem;color:var(--text3);margin-top:14px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
+/* 签结果 */
+.zhu-result{display:none;flex-direction:column;align-items:center;gap:8px;text-align:center;animation:resultIn 0.5s ease}
+.zhu-result.show{display:flex}
+@keyframes resultIn{from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)}}
+.zhu-rank-lbl{font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase}
+.zhu-rank-text{font-size:1.5rem;font-weight:700;line-height:1.2;margin-bottom:2px}
+.zhu-poem{font-size:0.78rem;color:var(--text2);line-height:1.75;white-space:pre-line;max-width:260px}
+.zhu-detail{font-size:0.7rem;color:var(--text2);line-height:1.65;margin-top:2px}
+.zhu-reset{background:none;border:1px solid rgba(232,201,106,0.15);color:var(--text3);padding:6px 16px;border-radius:20px;font-size:0.72rem;cursor:pointer;transition:all 0.3s;margin-top:4px}
+.zhu-reset:hover{border-color:var(--gold);color:var(--gold)}
+
+/* 诗词卡 */
+.poem-card,.hl-card{background:var(--card-bg);backdrop-filter:blur(28px) saturate(190%);border:1px solid var(--border);border-radius:24px;padding:24px;cursor:pointer;transition:all 0.4s;position:relative;overflow:hidden}
+.poem-card:hover,.hl-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(232,201,106,0.08)}
+.poem-card::before,.hl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e8c96a50,transparent)}
+.hl-card::before{background:linear-gradient(90deg,transparent,#27ae6080,transparent)}
+.poem-card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:160px;height:160px;background:radial-gradient(circle,rgba(232,201,106,0.05) 0%,transparent 70%)}
+.hl-card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:160px;height:160px;background:radial-gradient(circle,rgba(39,174,96,0.06) 0%,transparent 70%)}
+.poem-eyebrow,.hl-title{font-size:0.68rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.poem-title{font-size:1.15rem;color:var(--gold-pale);font-weight:600;margin-bottom:4px;letter-spacing:0.06em}
+.poem-author{font-size:0.68rem;color:var(--text3);margin-bottom:14px;letter-spacing:0.06em}
+.poem-content{font-size:0.85rem;line-height:2.1;letter-spacing:0.08em;color:var(--text2);white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.poem-refresh,.hl-detail-btn{font-size:0.68rem;color:var(--text3);margin-top:12px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
 .poem-card:hover .poem-refresh{color:var(--gold)}
-
-.history-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:24px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);position:relative;overflow:hidden}
-.history-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(106,176,255,0.08),0 6px 20px rgba(0,0,0,0.4)}
-.history-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#6ab0ff80,transparent)}
-.history-card-title{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.history-badge{font-size:0.62rem;padding:3px 9px;background:rgba(106,176,255,0.1);color:var(--blue);border:1px solid rgba(106,176,255,0.2);border-radius:20px;margin-left:auto}
-.history-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.history-item:last-child{border-bottom:none}
-.history-year{font-size:0.65rem;font-weight:700;color:var(--blue);min-width:40px;padding-top:2px;opacity:0.8}
-.history-text{font-size:0.8rem;line-height:1.6;color:var(--text2)}
-.history-sep{height:1px;background:rgba(255,255,255,0.04);margin:4px 0}
-.history-more{font-size:0.7rem;color:var(--text3);margin-top:10px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
-.history-card:hover .history-more{color:var(--blue)}
-
-/* 老黄历 */
-.hl-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:24px;height:100%;position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
-.hl-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(6,188,120,0.08),0 6px 20px rgba(0,0,0,0.4)}
-.hl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#27ae6080,transparent)}
-.hl-title{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.hl-lunar{font-size:1rem;color:var(--text);margin-bottom:16px;font-weight:600}
-.hl-good{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
-.hl-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;padding:3px 9px;border-radius:20px}
-.hl-tag.good{background:rgba(39,174,96,0.12);color:var(--green);border:1px solid rgba(39,174,96,0.25)}
-.hl-tag.avoid{background:rgba(255,107,107,0.1);color:var(--red);border:1px solid rgba(255,107,107,0.2)}
-.hl-suggest{font-size:0.75rem;color:var(--text2);line-height:1.7}
-.hl-ico{font-size:1.2rem;margin-right:6px}
+.hl-card:hover .hl-detail-btn{color:var(--green)}
+.hl-lunar{font-size:0.92rem;color:var(--text);margin-bottom:12px;font-weight:600}
+.hl-good{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.hl-tag{font-size:0.65rem;padding:3px 8px;border-radius:20px}
+.hl-tag.good{background:rgba(39,174,96,0.12);color:var(--green);border:1px solid rgba(39,174,96,0.2)}
+.hl-tag.avoid{background:rgba(255,107,107,0.1);color:var(--red);border:1px solid rgba(255,107,107,0.18)}
+.hl-suggest{font-size:0.72rem;color:var(--text2);line-height:1.65}
 
 /* ═══ 工具区 ═══ */
-.tools-section{margin-top:10px}
-.tools-main{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.tool-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:22px;padding:24px 20px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);text-decoration:none;color:inherit;position:relative;overflow:hidden;animation:cardIn 0.5s ease-out both}
-.tool-card:nth-child(1){animation-delay:0.05s}.tool-card:nth-child(2){animation-delay:0.1s}.tool-card:nth-child(3){animation-delay:0.15s}.tool-card:nth-child(4){animation-delay:0.2s}.tool-card:nth-child(5){animation-delay:0.25s}.tool-card:nth-child(6){animation-delay:0.3s}
-.tool-card:nth-child(7){animation-delay:0.35s}.tool-card:nth-child(8){animation-delay:0.4s}
-@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--tool-color,#e8c96a),transparent);opacity:0;transition:opacity 0.35s}
-.tool-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 20px 60px rgba(232,201,106,0.12),0 8px 28px rgba(0,0,0,0.45);background:var(--card-hover)}
-.tool-card:hover::before{opacity:0.8}
-.tool-icon{font-size:2rem;margin-bottom:14px;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,0.06);border:1px solid rgba(232,201,106,0.1);transition:all 0.3s}
-.tool-card:hover .tool-icon{transform:scale(1.1);background:rgba(232,201,106,0.12)}
-.tool-name{font-size:0.95rem;font-weight:600;margin-bottom:6px;letter-spacing:0.02em}
-.tool-desc{font-size:0.75rem;color:var(--text2);line-height:1.6}
-.tool-arrow{position:absolute;bottom:18px;right:18px;font-size:0.78rem;color:var(--text3);opacity:0;transform:translateX(-4px);transition:all 0.3s}
+.tools-section{margin-top:4px}
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.section-head::before,.section-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.section-label{font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.tools-main{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tool-card{background:var(--card-bg);backdrop-filter:blur(28px) saturate(190%);border:1px solid var(--border);border-radius:20px;padding:20px 16px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);position:relative;overflow:hidden;animation:cardIn 0.5s ease-out both}
+.tool-card:nth-child(1){animation-delay:0.04s}.tool-card:nth-child(2){animation-delay:0.08s}.tool-card:nth-child(3){animation-delay:0.12s}.tool-card:nth-child(4){animation-delay:0.16s}.tool-card:nth-child(5){animation-delay:0.20s}.tool-card:nth-child(6){animation-delay:0.24s}.tool-card:nth-child(7){animation-delay:0.28s}.tool-card:nth-child(8){animation-delay:0.32s}.tool-card:nth-child(9){animation-delay:0.36s}.tool-card:nth-child(10){animation-delay:0.40s}.tool-card:nth-child(11){animation-delay:0.44s}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--tool-color,#e8c96a),transparent);opacity:0;transition:opacity 0.3s}
+.tool-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 20px 60px rgba(232,201,106,0.1),0 8px 24px rgba(0,0,0,0.4);background:var(--card-hover)}
+.tool-card:hover::before{opacity:0.7}
+.tool-icon{font-size:1.85rem;margin-bottom:12px;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.08);transition:all 0.3s}
+.tool-card:hover .tool-icon{transform:scale(1.1);background:rgba(232,201,106,0.1)}
+.tool-name{font-size:0.88rem;font-weight:600;margin-bottom:4px;letter-spacing:0.02em}
+.tool-desc{font-size:0.7rem;color:var(--text2);line-height:1.5}
+.tool-arrow{position:absolute;bottom:14px;right:14px;font-size:0.72rem;color:var(--text3);opacity:0;transform:translateX(-4px);transition:all 0.3s}
 .tool-card:hover .tool-arrow{opacity:1;transform:translateX(0);color:var(--gold)}
+.tool-hot{position:absolute;top:10px;right:10px;font-size:0.58rem;padding:2px 7px;background:rgba(255,107,107,0.12);color:var(--red);border-radius:20px;border:1px solid rgba(255,107,107,0.18);letter-spacing:0.04em;line-height:1.4}
+.tool-new{position:absolute;top:10px;right:10px;font-size:0.58rem;padding:2px 7px;background:rgba(39,174,96,0.1);color:var(--green);border-radius:20px;border:1px solid rgba(39,174,96,0.18);letter-spacing:0.04em;line-height:1.4}
 
 /* Footer */
-.site-footer{text-align:center;padding:48px 0 24px;position:relative}
-.site-footer::before{content:'';display:block;width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 auto 20px}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;background:linear-gradient(135deg,var(--gold-pale),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.site-footer{text-align:center;padding:48px 0 24px}
+.site-footer::before{content:'';display:block;width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 auto 18px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;background:linear-gradient(135deg,var(--gold-pale),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
 .footer-text{font-size:0.68rem;color:var(--text3);letter-spacing:0.12em}
 
 /* 模态框 */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(4,4,10,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;align-items:center;justify-content:center;padding:20px;animation:fadeIn 0.2s ease}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(4,4,10,0.92);backdrop-filter:blur(12px);z-index:1000;align-items:center;justify-content:center;padding:20px;animation:fadeIn 0.2s ease}
 .modal-overlay.active{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{background:rgba(11,11,22,0.98);backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(232,201,106,0.1);border-radius:28px;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;box-shadow:0 40px 120px rgba(0,0,0,0.7);animation:slideUp 0.3s cubic-bezier(0.25,0.46,0.45,0.94)}
+.modal{background:rgba(10,10,22,0.98);backdrop-filter:blur(36px) saturate(190%);border:1px solid rgba(232,201,106,0.1);border-radius:28px;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;box-shadow:0 40px 120px rgba(0,0,0,0.7);animation:slideUp 0.3s cubic-bezier(0.25,0.46,0.45,0.94)}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.modal::-webkit-scrollbar{width:4px}.modal::-webkit-scrollbar-track{background:transparent}.modal::-webkit-scrollbar-thumb{background:rgba(232,201,106,0.2);border-radius:2px}
-.modal-hdr{padding:24px 28px 20px;border-bottom:1px solid rgba(232,201,106,0.07);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(11,11,22,0.98);backdrop-filter:blur(20px);z-index:10;border-radius:28px 28px 0 0}
-.modal-title{font-size:1rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px}
-.modal-close{background:rgba(232,201,106,0.07);border:1px solid rgba(232,201,106,0.1);color:var(--text2);font-size:1.1rem;cursor:pointer;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1}
-.modal-close:hover{background:rgba(232,201,106,0.15);color:var(--gold);border-color:rgba(232,201,106,0.25)}
-.modal-body{padding:28px;animation:contentIn 0.3s ease 0.1s both}
+.modal::-webkit-scrollbar{width:4px}.modal::-webkit-scrollbar-thumb{background:rgba(232,201,106,0.18);border-radius:2px}
+.modal-hdr{padding:20px 24px 16px;border-bottom:1px solid rgba(232,201,106,0.07);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,10,22,0.97);backdrop-filter:blur(20px);z-index:10;border-radius:28px 28px 0 0}
+.modal-title{font-size:0.98rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px}
+.modal-close{background:rgba(232,201,106,0.07);border:1px solid rgba(232,201,106,0.1);color:var(--text2);font-size:1rem;cursor:pointer;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1}
+.modal-close:hover{background:rgba(232,201,106,0.15);color:var(--gold)}
+.modal-body{padding:24px;animation:contentIn 0.3s ease 0.1s both}
 @keyframes contentIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* 表单 */
 .calc-wrap{max-width:460px;margin:0 auto}
-.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.calc-grp{margin-bottom:14px}
-.calc-lbl{font-size:0.72rem;color:var(--text2);margin-bottom:8px;letter-spacing:0.04em}
-.calc-input{width:100%;padding:13px 16px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.92rem;outline:none;transition:all 0.3s;appearance:none;-webkit-appearance:none}
-.calc-input:focus{border-color:rgba(232,201,106,0.45);box-shadow:0 0 18px rgba(232,201,106,0.07)}
-.calc-input option{background:#0d0d1a;color:var(--text)}
-.calc-btn{width:100%;padding:15px;background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0c0c18;border:none;border-radius:14px;font-weight:700;font-size:0.95rem;cursor:pointer;letter-spacing:0.1em;transition:all 0.3s;box-shadow:0 4px 18px rgba(232,201,106,0.22)}
-.calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,201,106,0.38)}
-.calc-res{margin-top:18px;padding:20px;background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.1);border-radius:16px;font-size:0.85rem;line-height:2.1}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.calc-grp{margin-bottom:12px}
+.calc-lbl{font-size:0.7rem;color:var(--text2);margin-bottom:7px;letter-spacing:0.04em}
+.calc-input{width:100%;padding:12px 14px;background:rgba(5,5,12,0.9);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.88rem;outline:none;transition:all 0.3s;appearance:none}
+.calc-input:focus{border-color:rgba(232,201,106,0.45);box-shadow:0 0 16px rgba(232,201,106,0.06)}
+.calc-input option{background:#0d0d1a}
+.calc-select{width:100%;padding:12px 38px 12px 14px;background:rgba(5,5,12,0.9);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.88rem;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M6 8L0 0h12z' fill='%23e8c96a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer}
+.calc-select option{background:#0d0d1a}
+.calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0c0c18;border:none;border-radius:14px;font-weight:700;font-size:0.92rem;cursor:pointer;letter-spacing:0.08em;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,201,106,0.2)}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(232,201,106,0.34)}
+.calc-res{margin-top:16px;padding:18px;background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.1);border-radius:16px;font-size:0.82rem;line-height:2}
 .calc-res strong{color:var(--gold)}
-.calc-res .hl{color:var(--gold);font-size:1.3rem;font-weight:700}
-
-/* 城市选择 */
-.city-select{width:100%;padding:13px 16px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.88rem;outline:none;transition:all 0.3s;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M6 8L0 0h12z' fill='%23e8c96a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;cursor:pointer}
-.city-select option{background:#0d0d1a}
-
-/* 日期输入 */
-.date-input{width:100%;padding:13px 16px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.92rem;outline:none;transition:all 0.3s;cursor:pointer}
+.calc-res .hl{color:var(--gold);font-size:1.25rem;font-weight:700}
+.date-input{width:100%;padding:12px 14px;background:rgba(5,5,12,0.9);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.88rem;outline:none;transition:all 0.3s}
 .date-input::-webkit-calendar-picker-indicator{cursor:pointer;filter:invert(0.6) sepia(1) saturate(2) hue-rotate(45deg)}
 .date-input:focus{border-color:rgba(232,201,106,0.45)}
 
-/* 天气预报 */
-.weather-result{margin-top:16px;padding:20px;background:rgba(106,176,255,0.05);border:1px solid rgba(106,176,255,0.12);border-radius:18px}
-.weather-now{display:flex;align-items:center;gap:16px;margin-bottom:16px}
-.weather-icon-big{font-size:3rem;line-height:1}
-.weather-temp-big{font-size:2.5rem;font-weight:700;color:var(--text);line-height:1}
-.weather-meta{font-size:0.78rem;color:var(--text2);line-height:1.8}
-.weather-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.weather-detail-item{text-align:center;padding:12px 8px;background:rgba(106,176,255,0.06);border-radius:12px}
-.weather-detail-label{font-size:0.65rem;color:var(--text3);margin-bottom:4px}
-.weather-detail-val{font-size:0.9rem;font-weight:600;color:var(--text)}
-.weather-forecast{display:flex;gap:8px;margin-top:14px;overflow-x:auto;padding-bottom:4px}
-.weather-forecast-item{flex-shrink:0;text-align:center;padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:12px;min-width:70px}
-.weather-forecast-item .wf-day{font-size:0.65rem;color:var(--text3);margin-bottom:6px}
-.weather-forecast-item .wf-icon{font-size:1.4rem;margin-bottom:4px}
-.weather-forecast-item .wf-temp{font-size:0.78rem;color:var(--text)}
-.weather-loading{text-align:center;padding:30px;color:var(--text3);font-size:0.85rem}
-.weather-error{text-align:center;padding:20px;color:var(--red);font-size:0.85rem}
+/* 亲戚称呼 */
+.kinship-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.kinship-btn{text-align:center;padding:13px 8px;background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.1);border-radius:14px;color:var(--text);font-size:0.82rem;cursor:pointer;transition:all 0.3s;line-height:1.5}
+.kinship-btn:hover,.kinship-btn.active{background:rgba(232,201,106,0.12);border-color:rgba(232,201,106,0.35);color:var(--gold)}
+.kinship-result{margin-top:14px;padding:18px;text-align:center;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.12);border-radius:16px}
+.kinship-result .kr-name{font-size:1.45rem;font-weight:700;color:var(--gold);letter-spacing:0.1em}
+.kinship-result .kr-note{font-size:0.72rem;color:var(--text2);margin-top:6px;line-height:1.6}
 
-/* 倒数日 */
-.countdown-display{margin:20px 0;padding:28px;text-align:center;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.1);border-radius:20px}
-.cd-big{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:8px;text-shadow:0 0 30px rgba(232,201,106,0.3)}
-.cd-label{font-size:0.82rem;color:var(--text2);margin-bottom:16px}
-.cd-detail{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-.cd-unit{text-align:center;min-width:64px}
-.cd-num{font-size:1.8rem;font-weight:700;color:var(--text);line-height:1}
-.cd-u-label{font-size:0.65rem;color:var(--text3);margin-top:4px}
+/* 金额大写 */
+.capital-result{margin-top:14px;padding:16px;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.12);border-radius:16px}
+.capital-result .cr-big{font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:0.1em;word-break:break-all;line-height:1.8}
 
-/* 老黄历（模态框） */
-.hl-content{padding:8px 0}
-.hl-content-header{text-align:center;padding:14px;background:rgba(232,201,106,0.05);border-radius:16px;border:1px solid rgba(232,201,106,0.1);margin-bottom:20px}
-.hl-ch-date{font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px}
-.hl-ch-lunar{font-size:0.78rem;color:var(--text3)}
-.hl-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
-.hl-col h4{font-size:0.72rem;color:var(--text3);letter-spacing:0.1em;margin-bottom:10px;text-transform:uppercase}
-.hl-tags{display:flex;flex-wrap:wrap;gap:6px}
-.hl-tag-full{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;padding:5px 11px;border-radius:20px;margin-bottom:5px}
-.hl-tag-full.good{background:rgba(39,174,96,0.12);color:var(--green);border:1px solid rgba(39,174,96,0.2)}
-.hl-tag-full.avoid{background:rgba(255,107,107,0.1);color:var(--red);border:1px solid rgba(255,107,107,0.18)}
-.hl-suggest-full{font-size:0.82rem;color:var(--text2);line-height:1.8;padding:14px;background:rgba(255,255,255,0.03);border-radius:14px;border:1px solid rgba(255,255,255,0.05)}
+/* 邮编查询 */
+.zip-search{display:flex;gap:10px;margin-bottom:14px}
+.zip-search .calc-input{flex:1}
+.zip-result{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.zip-item{display:flex;justify-content:space-between;padding:11px 14px;background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.08);border-radius:12px;font-size:0.8rem}
+.zip-item .zi-k{color:var(--text2)}
+.zip-item .zi-v{color:var(--gold);font-weight:600}
+
+/* 随机决定器 */
+.decision-box{margin:16px 0;padding:28px;text-align:center;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.1);border-radius:18px;min-height:90px;display:flex;align-items:center;justify-content:center}
+.decision-text{font-size:1.4rem;font-weight:700;color:var(--gold);line-height:1.4;letter-spacing:0.05em}
+.decision-choices{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.decision-choice-input{width:100%;padding:12px;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.85rem;outline:none;transition:all 0.3s;text-align:center}
+.decision-choice-input:focus{border-color:rgba(232,201,106,0.35);background:rgba(232,201,106,0.08)}
+.decision-choice-input::placeholder{color:var(--text3)}
+
+/* 身份证 */
+.id-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.id-item{padding:14px;background:rgba(106,176,255,0.05);border:1px solid rgba(106,176,255,0.1);border-radius:14px}
+.id-item-label{font-size:0.62rem;color:var(--text3);margin-bottom:6px;letter-spacing:0.08em}
+.id-item-val{font-size:0.88rem;font-weight:600;color:var(--text)}
+
+/* 纪念日倒计时 */
+.countdown-display{margin:14px 0;padding:22px;text-align:center;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.1);border-radius:20px}
+.cd-big{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px;text-shadow:0 0 28px rgba(232,201,106,0.2)}
+.cd-label{font-size:0.78rem;color:var(--text2);margin-bottom:12px}
+.cd-detail{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cd-unit{text-align:center;min-width:54px}
+.cd-num{font-size:1.6rem;font-weight:700;color:var(--text);line-height:1}
+.cd-u-label{font-size:0.6rem;color:var(--text3);margin-top:3px}
 
 /* BMI */
-.bmi-res{margin-top:18px;text-align:center}
-.bmi-n{font-size:3rem;font-weight:700;margin-bottom:8px;letter-spacing:0.05em}
-.bmi-l{font-size:1rem;margin-bottom:10px;letter-spacing:0.1em}
-.bmi-tip{font-size:0.78rem;color:var(--text2);margin-bottom:14px;line-height:1.7}
-.bmi-bar{height:8px;border-radius:4px;background:rgba(255,255,255,0.07);margin:14px 0;overflow:hidden}
-.bmi-fill{height:100%;border-radius:4px;transition:width 0.6s cubic-bezier(.25,.46,.45,.94)}
-.bmi-scale{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text3);margin-top:6px}
-
-/* 油价 */
-.oil-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax:125px,1fr));gap:12px;margin-top:4px}
-.oil-card{background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.1);border-radius:16px;padding:18px 12px;text-align:center;transition:all 0.3s}
-.oil-card:hover{background:rgba(232,201,106,0.08);border-color:rgba(232,201,106,0.2);transform:translateY(-2px)}
-.oil-c{font-size:0.7rem;color:var(--text3);margin-bottom:8px;letter-spacing:0.04em}
-.oil-p{font-size:1.35rem;font-weight:700;color:var(--gold)}
-.oil-u{font-size:0.62rem;color:var(--text3);margin-top:4px}
-.oil-note{font-size:0.7rem;color:var(--text3);text-align:center;margin-top:16px;line-height:1.7}
-
-/* 节气 */
-.solar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
-.solar-item{text-align:center;padding:15px 8px;border-radius:12px;border:1px solid rgba(232,201,106,0.07);font-size:0.85rem;color:var(--text2);transition:all 0.3s}
-.solar-item.on{border-color:rgba(232,201,106,0.4);background:rgba(232,201,106,0.1);color:var(--gold);font-weight:600}
-
-/* 壁纸 */
-.wp-full{text-align:center}
-.wp-full-img{max-width:100%;max-height:50vh;border-radius:16px;margin-bottom:14px;box-shadow:0 20px 60px rgba(0,0,0,0.5);transition:all 0.3s;cursor:pointer}
-.wp-full-img:hover{transform:scale(1.01)}
-.wp-meta{font-size:0.75rem;color:var(--text3);margin-bottom:12px}
-.wp-btn{background:none;border:1px solid rgba(232,201,106,0.2);color:var(--text2);padding:9px 20px;border-radius:20px;font-size:0.78rem;cursor:pointer;transition:all 0.3s;letter-spacing:0.04em}
-.wp-btn:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(232,201,106,0.1)}
+.bmi-res{margin-top:14px;text-align:center}
+.bmi-n{font-size:2.6rem;font-weight:700;margin-bottom:4px}
+.bmi-l{font-size:0.92rem;margin-bottom:6px;letter-spacing:0.1em}
+.bmi-tip{font-size:0.72rem;color:var(--text2);margin-bottom:10px;line-height:1.6}
+.bmi-bar{height:6px;border-radius:3px;background:rgba(255,255,255,0.07);margin:10px 0;overflow:hidden}
+.bmi-fill{height:100%;border-radius:3px;transition:width 0.6s cubic-bezier(.25,.46,.45,.94)}
+.bmi-scale{display:flex;justify-content:space-between;font-size:0.6rem;color:var(--text3);margin-top:5px}
 
 /* 历史 */
 .hist-modal{max-height:480px;overflow-y:auto}
-.hist-item{padding:15px 0;border-bottom:1px solid rgba(232,201,106,0.06)}
-.hist-y{font-size:0.68rem;font-weight:700;color:var(--blue);margin-bottom:5px;opacity:0.8}
-.hist-t{font-size:0.88rem;line-height:1.65}
+.hist-item{padding:13px 0;border-bottom:1px solid rgba(232,201,106,0.05)}
+.hist-y{font-size:0.65rem;font-weight:700;color:var(--blue);margin-bottom:5px}
+.hist-t{font-size:0.84rem;line-height:1.65}
 
 /* 诗词 */
-.poem-full{text-align:center;padding:10px 0}
-.poem-full-title{font-size:1.4rem;color:var(--gold-pale);margin-bottom:10px;font-weight:600;letter-spacing:0.06em}
-.poem-full-author{font-size:0.78rem;color:var(--text3);margin-bottom:24px}
-.poem-full-content{font-size:1.1rem;line-height:2.4;letter-spacing:0.14em;color:var(--text);white-space:pre-line}
+.poem-full{text-align:center;padding:8px 0}
+.poem-full-title{font-size:1.3rem;color:var(--gold-pale);margin-bottom:8px;font-weight:600;letter-spacing:0.06em}
+.poem-full-author{font-size:0.72rem;color:var(--text3);margin-bottom:20px}
+.poem-full-content{font-size:1rem;line-height:2.3;letter-spacing:0.12em;color:var(--text);white-space:pre-line}
 
 /* 响应式 */
 @media(max-width:768px){
-  .page{padding:0 16px 50px}
-  .site-header{padding:48px 0 32px}
-  .five-grid{grid-template-columns:1fr;gap:14px}
-  .cell-a,.cell-b,.cell-c{grid-column:1;grid-row:auto}
-  .fortune-wheel-wrap{flex-direction:column;align-items:flex-start}
-  .two-col{grid-template-columns:1fr}
-  .tools-main{grid-template-columns:repeat(2,1fr)}
-  .solar-grid{grid-template-columns:repeat(3,1fr)}
-  .oil-grid{grid-template-columns:repeat(2,1fr)}
+  .page{padding:0 14px 50px}
+  .site-header{padding:40px 0 24px}
+  .three-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .zhu-card{grid-column:1/-1;order:-1}
+  .tools-main{grid-template-columns:repeat(2,1fr);gap:12px}
+  .history-hero-items{grid-template-columns:1fr 1fr}
   .calc-row{grid-template-columns:1fr}
   .modal-body{padding:18px 14px}
-  .modal-hdr{padding:18px 14px 16px}
-  .weather-detail{grid-template-columns:repeat(2,1fr)}
-  .date-strip{flex-wrap:wrap;gap:10px;justify-content:center}
-  .date-sep{display:none}
-  .weather-bar{margin-left:0}
+  .modal-hdr{padding:16px 14px 14px}
+  .id-info{grid-template-columns:1fr}
+  .date-strip{flex-wrap:wrap;gap:8px;justify-content:center}
+  .date-sep,.weather-bar{display:none}
 }
 @media(max-width:480px){
-  .tools-main{grid-template-columns:1fr 1fr;gap:12px}
-  .hl-two-col{grid-template-columns:1fr}
+  .tools-main{grid-template-columns:1fr 1fr;gap:10px}
+  .history-hero-items{grid-template-columns:1fr}
+  .kinship-grid{grid-template-columns:1fr}
 }
 
 ::selection{background:rgba(232,201,106,0.2);color:var(--gold-pale)}
 ::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(232,201,106,0.12);border-radius:3px}
 </style>
 </head>
@@ -320,18 +307,18 @@ body{
   <div class="bg-orb"></div>
   <div class="bg-orb"></div>
   <div class="bg-orb"></div>
-  <div class="bg-drops" id="bgDrops"></div>
+  <div class="daily-wall" id="dailyWall">
+    <img id="dailyWallImg" src="" alt="">
+  </div>
 </div>
 
 <div class="page">
 
+  <!-- Header -->
   <header class="site-header">
-    <div class="logo">
-      <div class="logo-hanzi">问渠</div>
-      <div class="logo-en">wenqu · life wisdom</div>
-    </div>
+    <div class="logo-hanzi">问渠</div>
+    <div class="logo-en">wenqu · life wisdom</div>
     <div class="logo-subtitle">「问渠那得清如许<br>为有源头活水来」</div>
-    <div class="logo-source">朱熹《观书有感》</div>
     <div class="logo-badge"><span>♾️</span> 永久免费 · 终身使用</div>
   </header>
 
@@ -343,67 +330,83 @@ body{
       <div id="dateWeekday">—</div>
       <div class="date-lunar" id="dateLunar">—</div>
     </div>
-    <div class="weather-bar" id="weatherBar">
-      <span class="w-city" id="wCity">—</span>
+    <div class="weather-bar">
       <span class="w-icon" id="wIcon">🌤️</span>
-      <span class="w-temp" id="wTemp">—</span>
+      <span id="wTemp" style="font-weight:600">—</span>
+      <span id="wCity" style="color:var(--text2);font-size:0.78rem">—</span>
     </div>
   </div>
 
-  <!-- ═══ 自动展示区 ═══ -->
-  <div class="daily-section">
-    <div class="section-head"><span class="section-label">今日速览</span></div>
-    <div class="five-grid">
-
-      <!-- 运势（左侧大卡） -->
-      <div class="cell-a">
-        <div class="fortune-card">
-          <div class="fortune-title">🎰 今日运势 <span>— 每天一次</span></div>
-          <div class="fortune-wheel-wrap">
-            <div class="fortune-wheel" id="homeWheel" onclick="spinFortune()">
-              <div class="fortune-ct" id="homeWheelCt" onclick="event.stopPropagation();spinFortune()">▶</div>
-            </div>
-            <div class="fortune-info">
-              <div class="fortune-result" id="homeResult" style="color:var(--text3)">转动轮盘</div>
-              <div class="fortune-desc" id="homeDesc">转动金色轮盘，看看今日命运如何安排</div>
-              <button class="fortune-btn" id="homeBtn" onclick="spinFortune()">开始抽签</button>
-              <div class="fortune-tips" id="homeTips">每天一次，抽完明天再来</div>
-            </div>
-          </div>
-        </div>
+  <!-- ═══ 历史今天（全宽醒目） ═══ -->
+  <div class="history-hero" id="historyHero">
+    <div class="history-hero-header">
+      <div class="history-hero-title">
+        <span class="icon">📅</span>
+        历史上的今天
+        <span class="tag" id="histBadge">加载中</span>
       </div>
-
-      <!-- 诗词+历史（右上） -->
-      <div class="cell-b">
-        <div class="two-col">
-          <div class="poem-card" onclick="openApp('poem')">
-            <div class="poem-eyebrow">📜 今日诗词</div>
-            <div class="poem-title" id="homePoemTitle">—</div>
-            <div class="poem-author" id="homePoemAuthor"></div>
-            <div class="poem-content" id="homePoemContent">—</div>
-            <div class="poem-refresh" onclick="event.stopPropagation();shuffleHomePoem()">↻ 换一首</div>
-          </div>
-          <div class="history-card" onclick="openApp('history')">
-            <div class="history-card-title">📅 历史上的今天 <span class="history-badge" id="histBadge">—</span></div>
-            <div class="history-items" id="histItems">
-              <div class="history-item"><div class="history-year">加载中</div><div class="history-text" style="color:var(--text3)">...</div></div>
-            </div>
-            <div class="history-more">展开全部 →</div>
-          </div>
-        </div>
+      <div class="history-hero-nav" onclick="openApp('history')">
+        查看全部 →
       </div>
-
-      <!-- 老黄历（右下） -->
-      <div class="cell-c">
-        <div class="hl-card" id="hlCard">
-          <div class="hl-title">📖 老黄历 · 今日宜忌</div>
-          <div class="hl-lunar" id="hlLunar">—</div>
-          <div class="hl-good" id="hlGood"></div>
-          <div class="hl-suggest" id="hlSuggest"></div>
-        </div>
-      </div>
-
     </div>
+    <div class="history-hero-items" id="histItems">
+      <div class="history-no-data">正在加载...</div>
+    </div>
+  </div>
+
+  <!-- ═══ 签卦+诗词+老黄历 ═══ -->
+  <div class="three-grid">
+
+    <!-- 竹筒摇签 -->
+    <div class="zhu-card">
+      <div class="zhu-title">🎋 竹筒摇签 <span>— 每天一次</span></div>
+      <div class="zhu-container active" id="zhuContainer">
+        <div class="zhu-cup-wrap">
+          <div class="zhu-cup-opening"></div>
+          <div class="zhu-sticks" id="zhuSticks">
+            <div class="zhu-stick" id="zhuStick1"></div>
+            <div class="zhu-stick" id="zhuStick2"></div>
+            <div class="zhu-stick" id="zhuStick3"></div>
+          </div>
+          <div class="zhu-cup" id="zhuCup" onclick="startShake()"></div>
+        </div>
+        <button class="zhu-btn" id="zhuBtn" onclick="startShake()">
+          🎋 摇签
+        </button>
+        <div class="zhu-hint" id="zhuHint">点击竹筒开始摇签</div>
+      </div>
+      <div class="zhu-result" id="zhuResult">
+        <div class="zhu-rank-lbl">摇出签文</div>
+        <div class="zhu-rank-text" id="zhuRankText">—</div>
+        <div class="zhu-poem" id="zhuPoem">—</div>
+        <div class="zhu-detail" id="zhuDetail">—</div>
+        <button class="zhu-reset" onclick="resetZhu()">↺ 重新摇</button>
+      </div>
+      <div style="margin-top:10px">
+        <button class="zhu-btn" style="background:linear-gradient(135deg,#e8c96a,#c9a84c);font-size:0.78rem" onclick="openApp('fortune')">
+          🔮 进阶解卦（四柱八字·今日卦象）
+        </button>
+      </div>
+    </div>
+
+    <!-- 诗词 -->
+    <div class="poem-card" onclick="openApp('poem')">
+      <div class="poem-eyebrow">📜 今日诗词</div>
+      <div class="poem-title" id="homePoemTitle">—</div>
+      <div class="poem-author" id="homePoemAuthor"></div>
+      <div class="poem-content" id="homePoemContent">—</div>
+      <div class="poem-refresh" onclick="event.stopPropagation();shuffleHomePoem()">↻ 换一首</div>
+    </div>
+
+    <!-- 老黄历 -->
+    <div class="hl-card">
+      <div class="hl-title">📖 今日宜忌</div>
+      <div class="hl-lunar" id="hlLunar">农历三月十九</div>
+      <div class="hl-good" id="hlGood"></div>
+      <div class="hl-suggest" id="hlSuggest"></div>
+      <div class="hl-detail-btn" onclick="event.stopPropagation();openApp('hl')">查看详情 →</div>
+    </div>
+
   </div>
 
   <!-- ═══ 工具区 ═══ -->
@@ -431,40 +434,29 @@ body{
 </div>
 
 <script>
-// ═══ 背景水滴 ═══
+// ═══ 背景 ═══
 (function(){
-  const c=document.getElementById('bgDrops');
-  if(!c)return;
-  const n=window.innerWidth<640?10:16;
-  for(let i=0;i<n;i++){
-    const d=document.createElement('div');d.className='drop';
-    d.style.left=Math.random()*100+'%';
-    d.style.animationDuration=(12+Math.random()*14)+'s';
-    d.style.animationDelay=(-Math.random()*20)+'s';
-    const sz=1.5+Math.random()*2;
-    d.style.width=sz+'px';d.style.height=sz+'px';
-    c.appendChild(d);
-  }
+  const seeds=['bamboo','mountains','temple','ocean','forest','garden'];
+  const n=new Date();
+  const seed=seeds[n.getDate()%seeds.length];
+  const img=document.getElementById('dailyWallImg');
+  const wall=document.getElementById('dailyWall');
+  if(img){img.src=`https://picsum.photos/seed/${seed}/1920/1080`;img.onload=()=>wall.classList.add('active');}
 })();
 
-// ═══ 日期 + 天气 ═══
+// ═══ 日期+天气 ═══
 (function(){
   const n=new Date(),days=['周日','周一','周二','周三','周四','周五','周六'];
   document.getElementById('dateDay').textContent=n.getDate();
   document.getElementById('dateWeekday').textContent=days[n.getDay()];
-  document.getElementById('dateLunar').textContent='农历三月十九前后';
-  // 默认查成都天气
-  loadWeather('成都');
+  document.getElementById('dateLunar').textContent='农历三月十九';
+  loadWeatherMini('成都');
 })();
-
-// ═══ 天气预报（免费API） ═══
-function loadWeather(city){
-  const map={'北京':'101010100','上海':'101020100','广州':'101280101','深圳':'101280601','成都':'101270101','重庆':'101040100','杭州':'101210101','武汉':'101200101','西安':'101110101','南京':'101190101','天津':'101030100','苏州':'101190401','郑州':'101180101','长沙':'101250101','沈阳':'101070101','青岛':'101120201','大连':'101070201','厦门':'101230201','福州':'101230101','济南':'101120101'};
-  const code=map[city]||map['成都'];
-  fetch(`https://tianqi-api.com/api/v1/?version=v9&appid=0&appsecret=0&city=${encodeURIComponent(city)}&cityid=${code}`)
+function loadWeatherMini(city){
+  fetch(`https://tianqi-api.com/api/v1/?version=v9&appid=0&appsecret=0&city=${encodeURIComponent(city)}`)
     .then(r=>r.json()).then(d=>{
       if(d&&d.data){
-        document.getElementById('wCity').textContent=d.city;
+        document.getElementById('wCity').textContent=d.data.city||city;
         document.getElementById('wIcon').textContent=getWeatherEmoji(d.data.wea);
         document.getElementById('wTemp').textContent=d.data.tem+'°C';
       }
@@ -482,21 +474,26 @@ function getWeatherEmoji(wea){
   return'🌤️';
 }
 
-// ═══ 工具 ═══
+// ═══ 工具列表 ═══
 const TOOLS=[
-  {id:'calc',  icon:'🏠', title:'房贷计算器',  desc:'公积金·商贷·组合贷三种模式', color:'#6bcb77'},
-  {id:'car',   icon:'🚗', title:'车贷计算器',  desc:'等额本息·等额本金对比', color:'#6ab0ff'},
-  {id:'tax',   icon:'💰', title:'个税计算器',  desc:'工资·年终奖·副业收入综合税', color:'#e8c96a'},
-  {id:'bmi',   icon:'⚖️',  title:'BMI计算器',  desc:'体脂指数·健康状态评估', color:'#ff6b6b'},
-  {id:'date',  icon:'📅', title:'日期计算器',  desc:'倒数日·天数差·工作日计算', color:'#b06aff'},
-  {id:'weather',icon:'🌤️', title:'天气预报',   desc:'全国城市实时天气·未来预报', color:'#6ab0ff'},
-  {id:'oil',   icon:'⛽',  title:'今日油价',   desc:'全国主要城市参考油价', color:'#f39c12'},
-  {id:'solar', icon:'🌿', title:'二十四节气',  desc:'全年24节气·时间查询', color:'#27ae60'},
+  {id:'calc',    icon:'🏠', title:'房贷计算器',     desc:'公积金·商贷·组合贷', color:'#6bcb77'},
+  {id:'car',     icon:'🚗', title:'车贷计算器',     desc:'等额本息·等额本金对比', color:'#6ab0ff'},
+  {id:'tax',     icon:'💰', title:'个税计算器',     desc:'2024新税法·工资·年终奖', color:'#e8c96a'},
+  {id:'bmi',     icon:'⚖️',  title:'BMI计算器',     desc:'体脂指数·健康状态', color:'#ff6b6b'},
+  {id:'date',    icon:'📅', title:'日期计算器',     desc:'倒计时·天数差·工作日', color:'#b06aff'},
+  {id:'kinship', icon:'👨‍👩‍👧', title:'亲戚称呼计算器', desc:'七大姑八大姨怎么称呼？', color:'#e8c96a',hot:true},
+  {id:'capital', icon:'💵', title:'数字大写金额',    desc:'合同·收据·大写金额转换', color:'#27ae60',hot:true},
+  {id:'idcard',  icon:'🪪', title:'身份证号解析',   desc:'提取生日·性别·地区', color:'#6ab0ff'},
+  {id:'zip',     icon:'📮', title:'邮编区号查询',    desc:'城市↔邮编·区号互查', color:'#f39c12'},
+  {id:'decision',icon:'🎲', title:'随机决定器',     desc:'纠结时帮你选！', color:'#b06aff',hot:true},
+  {id:'countdown',icon:'⏰',title:'纪念日倒计时',    desc:'生日·结婚·重要日子', color:'#ff6b6b'},
 ];
 (function(){
   const g=document.getElementById('toolsMain');
   TOOLS.forEach(t=>{
+    const badge=t.hot?'🔥':'✨';
     g.innerHTML+=`<div class="tool-card" onclick="openApp('${t.id}')" style="--tool-color:${t.color}">
+      ${t.hot?'<span class="tool-hot">🔥</span>':'<span class="tool-new">✨</span>'}
       <div class="tool-icon">${t.icon}</div>
       <div class="tool-name">${t.title}</div>
       <div class="tool-desc">${t.desc}</div>
@@ -504,6 +501,94 @@ const TOOLS=[
     </div>`;
   });
 })();
+
+// ═══ 竹筒摇签 ═══
+const ZHU_POOL=[
+  {rank:'🌟 上上签',color:'#e8c96a',poem:'日出东方，运势亨通。贵人相助，诸事顺遂。今日把握时机，必有惊喜。',good:'创新·出行·表白·签约',bad:'犹豫·拖延'},
+  {rank:'🌟 上上签',color:'#e8c96a',poem:'天赐良机，福星高照。努力必有回报，好事即将发生。',good:'求职·投资·拜访·表白',bad:'赌博·投机'},
+  {rank:'🌟 上上签',color:'#e8c96a',poem:'吉祥如意，喜事临门。人际关系融洽，财运稳步上升。',good:'合作·社交·学习·装饰',bad:'争吵·猜疑'},
+  {rank:'😊 中上签',color:'#6bcb77',poem:'前途光明，小有波折终成大器。稳扎稳打，必有收获。',good:'备考·搬家·学习·理财',bad:'冒进·轻信'},
+  {rank:'😊 中上签',color:'#6bcb77',poem:'运势上扬，贵人扶持。机会当前，需主动把握。',good:'求职·谈判·交友·装修',bad:'逃避·抱怨'},
+  {rank:'😊 中上签',color:'#6bcb77',poem:'家中祥和，诸事平稳。细节决定成败，勿忽视小事。',good:'家事务·健康检查·学习',bad:'鲁莽·铺张'},
+  {rank:'😐 中签',color:'#6ab0ff',poem:'运势平常，以静制动。不宜冒进，守成为上。',good:'整理·规划·学习·休养',bad:'扩张·大额投资'},
+  {rank:'😐 中签',color:'#6ab0ff',poem:'时机未到，强求无益。耐心等待，暗中观察。',good:'等待·学习·调研·观望',bad:'仓促决定·签约'},
+  {rank:'😐 中签',color:'#6ab0ff',poem:'前路迷茫终有转机。困境中保持信心，好运在后头。',good:'坚持·调整·求助·休整',bad:'放弃·逃避'},
+  {rank:'😟 平签',color:'#9a9080',poem:'今日平淡，无大吉亦无大凶。按部就班，保持平常心。',good:'日常事务·整理·阅读',bad:'冒险·冲动'},
+  {rank:'😟 平签',color:'#9a9080',poem:'海阔天空，任鸟高飞。今日平稳，默默积累，静待时机。',good:'学习·规划·日常·健康',bad:'激进·挑剔'},
+  {rank:'😟 平签',color:'#9a9080',poem:'今日以守为主，勿做大幅变动。稳扎稳打，厚积薄发。',good:'维持现状·整理·学习',bad:'跳槽·大额消费'},
+  {rank:'😟 平签',color:'#9a9080',poem:'不强求，不攀比，顺势而为。今日平淡即是福。',good:'休息·阅读·常规工作',bad:'急功近利'},
+];
+const ZK='wenqu_zhu_v3';
+let zhuShaking=false;
+function initZhu(){
+  const today=new Date().toDateString();
+  const s=localStorage.getItem(ZK);
+  if(s){
+    const d=JSON.parse(s);
+    if(d.date===today&&d.done){showZhuResult(d.data,true);return;}
+  }
+}
+function startShake(){
+  if(zhuShaking)return;
+  const today=new Date().toDateString();
+  const s=localStorage.getItem(ZK);
+  if(s&&JSON.parse(s).date===today&&JSON.parse(s).done)return;
+  zhuShaking=true;
+  const cup=document.getElementById('zhuCup');
+  const btn=document.getElementById('zhuBtn');
+  const hint=document.getElementById('zhuHint');
+  const container=document.getElementById('zhuContainer');
+  const result=document.getElementById('zhuResult');
+  if(!cup)return;
+  result.classList.remove('show');
+  container.style.display='flex';
+  btn.disabled=true;
+  hint.textContent='摇啊摇...';
+  document.getElementById('zhuSticks').classList.add('show');
+  cup.classList.add('shaking');
+  setTimeout(()=>{
+    cup.classList.remove('shaking');
+    cup.classList.add('shaking2');
+    setTimeout(()=>{
+      cup.classList.remove('shaking2');
+      const stick=document.getElementById('zhuStick1');
+      stick.classList.add('popped');
+      setTimeout(()=>{
+        stick.style.display='none';
+        const idx=Math.floor(Math.random()*ZHU_POOL.length);
+        const r=ZHU_POOL[idx];
+        localStorage.setItem(ZK,JSON.stringify({date:today,done:true,data:r}));
+        showZhuResult(r,false);
+        zhuShaking=false;
+      },600);
+    },350);
+  },2000);
+}
+function showZhuResult(r,isLocal){
+  const container=document.getElementById('zhuContainer');
+  const result=document.getElementById('zhuResult');
+  container.style.display='none';
+  result.classList.add('show');
+  document.getElementById('zhuRankText').textContent=r.rank;
+  document.getElementById('zhuRankText').style.color=r.color;
+  document.getElementById('zhuPoem').textContent=r.poem;
+  document.getElementById('zhuDetail').innerHTML=`✅宜 ${r.good}　❌忌 ${r.bad}`;
+}
+function resetZhu(){
+  localStorage.removeItem(ZK);
+  const container=document.getElementById('zhuContainer');
+  const result=document.getElementById('zhuResult');
+  const stick=document.getElementById('zhuStick1');
+  const hint=document.getElementById('zhuHint');
+  const btn=document.getElementById('zhuBtn');
+  result.classList.remove('show');
+  container.style.display='flex';
+  stick.style.display='';
+  stick.classList.remove('popped');
+  hint.textContent='点击竹筒重新摇签';
+  btn.disabled=false;
+}
+initZhu();
 
 // ═══ 诗词 ═══
 const POEMS=[
@@ -526,101 +611,41 @@ function loadHomePoem(){const p=pickPoem();document.getElementById('homePoemTitl
 function shuffleHomePoem(){loadHomePoem();}
 loadHomePoem();
 
-// ═══ 今日运势 ═══
-const FORTUNES=[
-  {r:'🌟 大吉',c:'#e8c96a',d:'今日诸事顺遂，机遇降临。宜大胆行动，把握时机。贵人相助，工作有突破。'},
-  {r:'😊 吉',c:'#6bcb77',d:'整体运势上扬，适合推进计划。人际和谐，有意外惊喜。宜整理房间，迎接好运。'},
-  {r:'😐 平',c:'#6ab0ff',d:'今日中规中矩，静心守成为上。避免激进决策，多倾听他人。晚间运势转好。'},
-  {r:'😟 凶',c:'#b06aff',d:'今日需谨慎，忌冒险冲动。遇事先冷静，退一步海阔天空。宜整理思路，不宜签约。'},
-  {r:'💀 大凶',c:'#ff6b6b',d:'今日低谷，能量低沉。宜静不宜动，避免做重大决定。多休息早睡眠，明日自会好转。'},
-];
-const FK='wf_v3';
-let spinning=false;
-function initFortune(){
-  const today=new Date().toDateString();
-  const s=localStorage.getItem(FK);
-  if(s){
-    const d=JSON.parse(s);
-    if(d.date===today){
-      document.getElementById('homeResult').textContent=d.r;
-      document.getElementById('homeResult').style.color=d.c;
-      document.getElementById('homeDesc').textContent=d.d;
-      const btn=document.getElementById('homeBtn');
-      if(btn){btn.textContent='今日已抽签 ✓';btn.disabled=true;}
-      document.getElementById('homeTips').textContent='明天再来吧';
-      return;
-    }
-  }
-  document.getElementById('homeResult').textContent='转动轮盘';
-  document.getElementById('homeResult').style.color='var(--text3)';
-  document.getElementById('homeDesc').textContent='转动金色轮盘，看看今日命运如何安排';
-  const btn=document.getElementById('homeBtn');
-  if(btn){btn.textContent='开始抽签';btn.disabled=false;}
-  document.getElementById('homeTips').textContent='每天一次，抽完明天再来';
-}
-function spinFortune(){
-  if(spinning)return;
-  const today=new Date().toDateString();
-  const s=localStorage.getItem(FK);
-  if(s&&JSON.parse(s).date===today)return;
-  const wheel=document.getElementById('homeWheel');
-  const btn=document.getElementById('homeBtn');
-  const result=document.getElementById('homeResult');
-  const desc=document.getElementById('homeDesc');
-  if(!wheel||!btn)return;
-  spinning=true;
-  btn.disabled=true;btn.textContent='命运转盘中...';
-  const deg=1800+Math.floor(Math.random()*1800);
-  wheel.style.transition='transform 4.5s cubic-bezier(.2,.8,.3,1)';
-  wheel.style.transform=`rotate(${deg}deg)`;
-  wheel.classList.add('spinning');
-  const segs=FORTUNES.length,sa=360/segs;
-  setTimeout(()=>{
-    const norm=((deg%360)+sa/2)%360;
-    const fi=(segs-Math.floor(norm/sa))%segs;
-    const f=FORTUNES[fi<0?0:fi];
-    result.textContent=f.r;result.style.color=f.c;
-    desc.textContent=f.d;
-    btn.textContent='今日已抽签 ✓';
-    document.getElementById('homeTips').textContent='明天再来吧';
-    localStorage.setItem(FK,JSON.stringify({date:today,r:f.r,c:f.c,d:f.d}));
-    spinning=false;
-    wheel.classList.remove('spinning');
-  },4600);
-}
-initFortune();
-
-// ═══ 历史今天 ═══
+// ═══ 历史今天（直接显示） ═══
 (function(){
   const n=new Date(),m=String(n.getMonth()+1).padStart(2,'0'),d=String(n.getDate()).padStart(2,'0');
   fetch(`https://api.yiyouyun.com/api/history?month=${m}&day=${d}`)
     .then(r=>r.json()).then(data=>{
-      if(!data||!data.length)return;
+      if(!data||!data.length){
+        document.getElementById('histBadge').textContent='暂无数据';
+        return;
+      }
       document.getElementById('histBadge').textContent=data.length+'条';
       window._allHist=data;
-      document.getElementById('histItems').innerHTML=data.slice(0,3).map((item,i)=>
-        `<div class="history-item"><div class="history-year">${item.year||'?'}年</div><div class="history-text">${item.title||item.event||''}</div></div>${i<2?'<div class="history-sep"></div>':''}`
-      ).join('');
-    }).catch(()=>{});
+      const items=data.slice(0,5).map(item=>`
+        <div class="history-hero-item" onclick="openApp('history')">
+          <div class="history-year">${item.year||'?'}年</div>
+          <div class="history-text">${item.title||item.event||''}</div>
+        </div>`).join('');
+      document.getElementById('histItems').innerHTML=items;
+    }).catch(()=>{
+      document.getElementById('histBadge').textContent='加载失败';
+      document.getElementById('histItems').innerHTML='<div class="history-no-data">无法加载数据，请检查网络</div>';
+    });
 })();
 
-// ═══ 老黄历（本地计算） ═══
+// ═══ 老黄历 ═══
 (function(){
-  // 简化版老黄历：根据日期生成固定的宜忌（实际应用中应接真实黄历API）
-  const n=new Date();
-  const day=n.getDate();
-  const month=n.getMonth()+1;
-  // 每月固定的宜忌周期
-  const goods=['嫁娶','出行','搬家','动土','开业','祭祀','祈福','订盟','纳采','会亲友'];
-  const bads=['动土','破土','安葬','入宅','移徙','开市','斋醮'];
-  // 用日期做伪随机，确保每天不同
+  const n=new Date(),day=n.getDate(),month=n.getMonth()+1;
+  const goods=['嫁娶','出行','搬家','动土','开业','祭祀','祈福','订盟'];
+  const bads=['动土','破土','安葬','入宅','移徙','开市'];
   const seed=month*31+day;
   const shuffle=(arr)=>{const a=[...arr];for(let i=a.length-1;i>0;i--){const j=(seed*(i+1))%a.length;[a[i],a[j]]=[a[j],a[i]]}return a;};
   const g=shuffle(goods).slice(0,4);
   const b=shuffle(bads).slice(0,2);
-  document.getElementById('hlLunar').textContent='农历三月十九前后';
-  document.getElementById('hlGood').innerHTML=g.map(x=>`<span class="hl-tag good">✅ ${x}</span>`).join('');
-  document.getElementById('hlSuggest').innerHTML=`💡 今日宜「${g.slice(0,2).join('」「')}」，宜出行、社交。<br>⚠️ 忌「${b.join('」「')}」，避免重要决策。`;
+  document.getElementById('hlLunar').textContent='农历三月十九';
+  document.getElementById('hlGood').innerHTML=g.map(x=>`<span class="hl-tag good">✅${x}</span>`).join('')+b.map(x=>`<span class="hl-tag avoid">✕${x}</span>`).join('');
+  document.getElementById('hlSuggest').innerHTML=`💡宜「${g.slice(0,2).join('」「')}」　⚠️忌「${b.join('、')}」`;
 })();
 
 // ═══ 模态框 ═══
@@ -639,16 +664,21 @@ document.onkeydown=e=>{if(e.key==='Escape')closeModal()};
 function openApp(id){
   let t='',b='';
   switch(id){
-    case 'calc':    t='🏠 房贷计算器';   b=calcH();break;
-    case 'car':     t='🚗 车贷计算器';   b=carH();break;
-    case 'tax':     t='💰 个税计算器';   b=taxH();break;
-    case 'bmi':     t='⚖️ BMI计算器';   b=bmiH();break;
-    case 'date':    t='📅 日期计算器';   b=dateH();break;
-    case 'weather': t='🌤️ 天气预报';    b=weatherH();loadWeatherModal();break;
-    case 'oil':     t='⛽ 今日油价';    b=oilH();loadOilM();break;
-    case 'solar':   t='🌿 二十四节气';  b=solarH();loadSolarM();break;
-    case 'history': t='📅 历史上的今天'; b=histH();loadHistM();break;
-    case 'poem':    t='📜 随机古诗词';  b=poemH();break;
+    case 'calc':     t='🏠 房贷计算器';     b=calcH();break;
+    case 'car':      t='🚗 车贷计算器';     b=carH();break;
+    case 'tax':      t='💰 个税计算器';     b=taxH();break;
+    case 'bmi':      t='⚖️ BMI计算器';     b=bmiH();break;
+    case 'date':     t='📅 日期计算器';     b=dateH();break;
+    case 'kinship':  t='👨‍👩‍👧 亲戚称呼计算器'; b=kinshipH();break;
+    case 'capital':  t='💵 数字大写金额';   b=capitalH();break;
+    case 'idcard':   t='🪪 身份证号解析';   b=idcardH();break;
+    case 'zip':      t='📮 邮编区号查询';   b=zipH();break;
+    case 'decision': t='🎲 随机决定器';    b=decisionH();break;
+    case 'countdown':t='⏰ 纪念日倒计时';   b=countdownH();break;
+    case 'history':  t='📅 历史上的今天';  b=histH();loadHistM();break;
+    case 'poem':     t='📜 随机古诗词';    b=poemH();break;
+    case 'fortune':  t='🔮 四柱八字·今日卦象'; b=fortuneH();break;
+    case 'hl':       t='📖 老黄历·今日详情'; b=hlDetailH();break;
   }
   openModal(t,b);
 }
@@ -656,8 +686,8 @@ function openApp(id){
 // ═══ 房贷 ═══
 function calcH(){return`<div class="calc-wrap">
   <div class="calc-row"><div class="calc-grp"><div class="calc-lbl">贷款金额（万元）</div><input class="calc-input" id="ca" type="number" value="100" min="1"></div>
-  <div class="calc-grp"><div class="calc-lbl">贷款年限</div><select class="calc-input" id="cy"><option value="5">5年</option><option value="10">10年</option><option value="15">15年</option><option value="20" selected>20年</option><option value="25">25年</option><option value="30">30年</option></select></div></div>
-  <div class="calc-grp"><div class="calc-lbl">贷款类型</div><select class="calc-input" id="ct"><option value="gjj">公积金贷款（3.1%）</option><option value="sd" selected>商业贷款（4.3%）</option><option value="mix">组合贷（各50%）</option></select></div>
+  <div class="calc-grp"><div class="calc-lbl">贷款年限</div><select class="calc-select" id="cy"><option value="5">5年</option><option value="10">10年</option><option value="15">15年</option><option value="20" selected>20年</option><option value="25">25年</option><option value="30">30年</option></select></div></div>
+  <div class="calc-grp"><div class="calc-lbl">贷款类型</div><select class="calc-select" id="ct"><option value="gjj">公积金贷款（3.1%）</option><option value="sd" selected>商业贷款（4.3%）</option><option value="mix">组合贷（各50%）</option></select></div>
   <div class="calc-row"><div class="calc-grp"><div class="calc-lbl">商贷利率（%）</div><input class="calc-input" id="cr" type="number" value="4.3" step="0.01"></div>
   <div class="calc-grp"><div class="calc-lbl">公积金利率（%）</div><input class="calc-input" id="cr2" type="number" value="3.1" step="0.01"></div></div>
   <button class="calc-btn" onclick="runCalc()">计算月供</button>
@@ -671,31 +701,19 @@ function runCalc(){
   const r2=parseFloat(document.getElementById('cr2').value)/100;
   const mo=yrs*12;const fmt=n=>'¥'+Math.round(n).toLocaleString();
   let s='';
-  if(type==='gjj'){
-    const m=amt*(r2/12*Math.pow(1+r2/12,mo))/(Math.pow(1+r2/12,mo)-1);
-    const t=m*mo,i=t-amt;
-    s=`<strong>公积金贷款</strong><br>本金：${fmt(amt)} · ${yrs}年 · ${(r2*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span><br>总利息：${fmt(i)} · 共还：<strong>${fmt(t)}</strong>`;
-  }else if(type==='sd'){
-    const m=amt*(r/12*Math.pow(1+r/12,mo))/(Math.pow(1+r/12,mo)-1);
-    const t=m*mo;
-    s=`<strong>商业贷款</strong><br>本金：${fmt(amt)} · ${yrs}年 · ${(r*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span><br>总利息：${fmt(t-amt)} · 共还：<strong>${fmt(t)}</strong>`;
-  }else{
-    const h=amt/2;
-    const m1=h*(r2/12*Math.pow(1+r2/12,mo))/(Math.pow(1+r2/12,mo)-1);
-    const m2=h*(r/12*Math.pow(1+r/12,mo))/(Math.pow(1+r/12,mo)-1);
-    const t=(m1+m2)*mo;
-    s=`<strong>组合贷款</strong>（各50%）<br>本金：${fmt(amt)} · ${yrs}年<br><br>公积金：${fmt(h)} → ${fmt(m1)}/月<br>商　贷：${fmt(h)} → ${fmt(m2)}/月<br><br><span class="hl">合计月供 ${fmt(m1+m2)}</span><br>总利息：${fmt(t-amt)}`;
-  }
+  if(type==='gjj'){const m=amt*(r2/12*Math.pow(1+r2/12,mo))/(Math.pow(1+r2/12,mo)-1);const t=m*mo,i=t-amt;s=`<strong>公积金贷款</strong><br>本金：${fmt(amt)} · ${yrs}年 · ${(r2*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span><br>总利息：${fmt(i)} · 共还：<strong>${fmt(t)}</strong>`;}
+  else if(type==='sd'){const m=amt*(r/12*Math.pow(1+r/12,mo))/(Math.pow(1+r/12,mo)-1);const t=m*mo;s=`<strong>商业贷款</strong><br>本金：${fmt(amt)} · ${yrs}年 · ${(r*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span><br>总利息：${fmt(t-amt)} · 共还：<strong>${fmt(t)}</strong>`;}
+  else{const h=amt/2;const m1=h*(r2/12*Math.pow(1+r2/12,mo))/(Math.pow(1+r2/12,mo)-1);const m2=h*(r/12*Math.pow(1+r/12,mo))/(Math.pow(1+r/12,mo)-1);const t=(m1+m2)*mo;s=`<strong>组合贷款</strong>（各50%）<br>本金：${fmt(amt)} · ${yrs}年<br><br>公积金：${fmt(h)} → ${fmt(m1)}/月<br>商　贷：${fmt(h)} → ${fmt(m2)}/月<br><br><span class="hl">合计月供 ${fmt(m1+m2)}</span><br>总利息：${fmt(t-amt)}`;}
   document.getElementById('calcR').innerHTML=s;
 }
 
 // ═══ 车贷 ═══
 function carH(){return`<div class="calc-wrap">
   <div class="calc-row"><div class="calc-grp"><div class="calc-lbl">车价（万元）</div><input class="calc-input" id="cp" type="number" value="15" min="1"></div>
-  <div class="calc-grp"><div class="calc-lbl">贷款年限</div><select class="calc-input" id="cny"><option value="1">1年</option><option value="2" selected>2年</option><option value="3">3年</option><option value="4">4年</option><option value="5">5年</option></select></div></div>
+  <div class="calc-grp"><div class="calc-lbl">贷款年限</div><select class="calc-select" id="cny"><option value="1">1年</option><option value="2" selected>2年</option><option value="3">3年</option><option value="4">4年</option><option value="5">5年</option></select></div></div>
   <div class="calc-row"><div class="calc-grp"><div class="calc-lbl">首付比例（%）</div><input class="calc-input" id="cdn" type="number" value="30" min="10" max="80"></div>
   <div class="calc-grp"><div class="calc-lbl">贷款利率（%）</div><input class="calc-input" id="crt" type="number" value="4.75" step="0.01"></div></div>
-  <div class="calc-grp"><div class="calc-lbl">还款方式</div><select class="calc-input" id="cty"><option value="bx">等额本息（月供固定）</option><option value="bj">等额本金（逐月递减）</option></select></div>
+  <div class="calc-grp"><div class="calc-lbl">还款方式</div><select class="calc-select" id="cty"><option value="bx">等额本息（月供固定）</option><option value="bj">等额本金（逐月递减）</option></select></div>
   <button class="calc-btn" onclick="runCar()">计算车贷</button>
   <div class="calc-res" id="carR">点击按钮计算</div>
 </div>`;}
@@ -708,24 +726,16 @@ function runCar(){
   const mo=yrs*12,dp=p*dn,loan=p-dp;
   const fmt=n=>'¥'+Math.round(n).toLocaleString();
   let s='';
-  if(type==='bx'){
-    const m=loan*(rate/12*Math.pow(1+rate/12,mo))/(Math.pow(1+rate/12,mo)-1);
-    const t=m*mo,i=t-loan;
-    s=`<strong>等额本息</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款：<strong>${fmt(loan)}</strong> · ${yrs}年 · ${(rate*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span>（每月相同）<br>总利息：${fmt(i)} · 共还：<strong>${fmt(t+dp)}</strong>`;
-  }else{
-    const pr=loan/mo;
-    const fi=loan*rate/12,li=pr*rate/12;
-    const ti=loan*rate*(yrs+0.5)/2;
-    s=`<strong>等额本金</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款：<strong>${fmt(loan)}</strong> · ${yrs}年 · ${(rate*100).toFixed(2)}%<br><br>首月：<span class="hl">${fmt(pr+fi)}</span> · 末月：约${fmt(pr+li)}<br>每月递减约 ${fmt(loan*rate/12/mo)}<br>总利息：${fmt(ti)}`;
-  }
+  if(type==='bx'){const m=loan*(rate/12*Math.pow(1+rate/12,mo))/(Math.pow(1+rate/12,mo)-1);const t=m*mo,i=t-loan;s=`<strong>等额本息</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款：<strong>${fmt(loan)}</strong> · ${yrs}年<br><br><span class="hl">月供 ${fmt(m)}</span><br>总利息：${fmt(i)} · 共还：<strong>${fmt(t+dp)}</strong>`;}
+  else{const pr=loan/mo;const fi=loan*rate/12,li=pr*rate/12;const ti=loan*rate*(yrs+0.5)/2;s=`<strong>等额本金</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}<br>贷款：<strong>${fmt(loan)}</strong> · ${yrs}年<br><br>首月：<span class="hl">${fmt(pr+fi)}</span> · 末月：约${fmt(pr+li)}<br>每月递减约 ${fmt(loan*rate/12/mo)}<br>总利息：${fmt(ti)}`;}
   document.getElementById('carR').innerHTML=s;
 }
 
-// ═══ 个税计算器（2024新税法） ═══
+// ═══ 个税 ═══
 function taxH(){return`<div class="calc-wrap">
   <div class="calc-grp"><div class="calc-lbl">每月税前工资（元）</div><input class="calc-input" id="taxSalary" type="number" placeholder="8000" min="0"></div>
-  <div class="calc-grp"><div class="calc-lbl">年终奖金额（元）</div><input class="calc-input" id="taxBonus" type="number" placeholder="0" min="0"></div>
-  <div class="calc-grp"><div class="calc-lbl">专项附加扣除（月）</div><input class="calc-input" id="taxDeduct" type="number" placeholder="3000（房贷/子女教育等）" min="0" value="0"></div>
+  <div class="calc-grp"><div class="calc-lbl">年终奖金额（元）</div><input class="calc-input" id="taxBonus" type="number" placeholder="0" min="0" value="0"></div>
+  <div class="calc-grp"><div class="calc-lbl">专项附加扣除（月）</div><input class="calc-input" id="taxDeduct" type="number" placeholder="3000" min="0" value="0"></div>
   <div class="calc-grp"><div class="calc-lbl">公积金/社保个人（月）</div><input class="calc-input" id="taxShebao" type="number" placeholder="0" min="0" value="0"></div>
   <button class="calc-btn" onclick="runTax()">计算个税</button>
   <div class="calc-res" id="taxR">点击按钮计算年度税务详情</div>
@@ -736,40 +746,16 @@ function runTax(){
   const deduct=parseFloat(document.getElementById('taxDeduct').value)||0;
   const shebao=parseFloat(document.getElementById('taxShebao').value)||0;
   const yearIncome=salary*12;
-  // 起征点5000/月=60000/年
-  const base=60000;
-  const taxable=(yearIncome-base-deduct*12-shebao);
-  const taxTable=[[36000,0.03,0],[144000,0.10,2520],[300000,0.20,16920],[420000,0.25,31920],[660000,0.30,52920],[960000,0.35,85920],[Infinity,0.45,181920]];
+  const taxable=Math.max(0,yearIncome-60000-deduct*12-shebao);
+  const table=[[36000,0.03,0],[144000,0.10,2520],[300000,0.20,16920],[420000,0.25,31920],[660000,0.30,52920],[960000,0.35,85920],[Infinity,0.45,181920]];
   let incomeTax=0;
-  for(const [limit,rate,quickDeduct] of taxTable){
-    if(taxable<=limit){incomeTax=taxable*rate-quickDeduct;break;}
-  }
-  incomeTax=Math.max(0,incomeTax);
-  const monthlyTax=incomeTax/12;
-  // 年终奖单独计税
+  for(const [limit,rate,qd] of table){if(taxable<=limit){incomeTax=Math.max(0,taxable*rate-qd);break;}}
   let bonusTax=0;
-  if(bonus>0){
-    const bpm=bonus/12;
-    for(const [limit,rate,quickDeduct] of taxTable){
-      if(bpm<=limit){bonusTax=bonus*rate-quickDeduct;break;}
-    }
-    bonusTax=Math.max(0,bonusTax);
-  }
+  if(bonus>0){const bpm=bonus/12;for(const [limit,rate,qd] of table){if(bpm<=limit){bonusTax=Math.max(0,bonus*rate-qd);break;}}}
   const totalTax=incomeTax+bonusTax;
-  const monthlyNet=(salary*(12)+bonus-totalTax)/12;
+  const monthlyNet=(salary*12+bonus-totalTax)/12;
   const fmt=n=>'¥'+Math.round(n).toLocaleString();
-  document.getElementById('taxR').innerHTML=`
-    <strong>2024年个人所得税计算</strong><br>
-    年薪合计：${fmt(yearIncome+bonus)}<br>
-    专项附加扣除：${fmt(deduct*12)} · 社保公积金：${fmt(shebao*12)}<br>
-    <br>💼 工资薪金个税：<strong>${fmt(incomeTax)}</strong><br>
-    🎁 年终奖个税：<strong>${fmt(bonusTax)}</strong>（单独计税）<br>
-    <br>合计年纳税：<span class="hl">${fmt(totalTax)}</span><br>
-    <br>税后年收：<strong>${fmt(yearIncome+bonus-totalTax)}</strong><br>
-    月均到手：<span class="hl">${fmt(monthlyNet)}</span><br>
-    <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.03);border-radius:10px;font-size:0.75rem;color:var(--text3);line-height:1.7">
-      ※ 2024年个税税率表：≤3.6万 3% | ≤14.4万 10% | ≤30万 20% | ≤42万 25% | ≤66万 30% | ≤96万 35% | >96万 45%
-    </div>`;
+  document.getElementById('taxR').innerHTML=`<strong>2024年个人所得税</strong><br>年薪合计：${fmt(yearIncome+bonus)}<br>专项扣除：${fmt(deduct*12)} · 社保：${fmt(shebao*12)}<br><br>💼 工资个税：<strong>${fmt(incomeTax)}</strong><br>🎁 年终奖个税：<strong>${fmt(bonusTax)}</strong><br><br>合计年纳税：<span class="hl">${fmt(totalTax)}</span><br>月均到手：<span class="hl">${fmt(monthlyNet)}</span><br>税后年收：<strong>${fmt(yearIncome+bonus-totalTax)}</strong>`;
 }
 
 // ═══ BMI ═══
@@ -782,33 +768,24 @@ function bmiH(){return`<div class="calc-wrap">
 function runBMI(){
   const h=parseFloat(document.getElementById('bh').value)/100;
   const w=parseFloat(document.getElementById('bw').value);
-  if(!h||!w||h<=0||w<=0){alert('请输入有效的身高和体重');return;}
+  if(!h||!w){alert('请输入身高和体重');return;}
   const b=w/(h*h);
   let lb,col,tip;
-  if(b<18.5){lb='偏瘦';col='#3498db';tip='适当增重，保持营养均衡'}
+  if(b<18.5){lb='偏瘦';col='#3498db';tip='适当增重，营养均衡'}
   else if(b<24){lb='正常';col='#27ae60';tip='体型保持得很好，继续保持！'}
-  else if(b<28){lb='偏胖';col='#f39c12';tip='注意饮食结构，减少高热量，增加有氧运动'}
-  else{lb='肥胖';col='#e74c3c';tip='建议咨询专业医生，制定科学减重计划'}
+  else if(b<28){lb='偏胖';col='#f39c12';tip='注意饮食，减少高热量，增加有氧'}
+  else{lb='肥胖';col='#e74c3c';tip='建议咨询专业医生'}
   const pct=Math.min(Math.max((b-15)/(30-15)*100,2),98);
   const el=document.getElementById('bmiR');
   el.style.display='block';
-  el.innerHTML=`<div class="bmi-n" style="color:${col}">${b.toFixed(1)}</div>
-  <div class="bmi-l" style="color:${col}">${lb}</div>
-  <div class="bmi-tip">${tip}</div>
-  <div class="bmi-bar"><div class="bmi-fill" style="width:${pct}%;background:${col}"></div></div>
-  <div class="bmi-scale"><span>偏瘦&lt;18.5</span><span>正常 18.5-24</span><span>偏胖 24-28</span><span>肥胖&gt;28</span></div>`;
+  el.innerHTML=`<div class="bmi-n" style="color:${col}">${b.toFixed(1)}</div><div class="bmi-l" style="color:${col}">${lb}</div><div class="bmi-tip">${tip}</div><div class="bmi-bar"><div class="bmi-fill" style="width:${pct}%;background:${col}"></div></div><div class="bmi-scale"><span>偏瘦&lt;18.5</span><span>正常 18.5-24</span><span>偏胖 24-28</span><span>肥胖&gt;28</span></div>`;
 }
 
 // ═══ 日期计算器 ═══
 function dateH(){return`<div class="calc-wrap">
-  <div class="calc-grp"><div class="calc-lbl">目标日期</div><input class="date-input" id="dateTarget" type="date" style="color-scheme:dark"></div>
-  <div class="calc-grp"><div class="calc-lbl">对比日期（留空为今天）</div><input class="date-input" id="dateFrom" type="date" style="color-scheme:dark"></div>
-  <div class="calc-grp"><div class="calc-lbl">计算方式</div><select class="calc-input" id="dateMode">
-    <option value="countdown">倒计时（距离目标）</option>
-    <option value="since">正计时（从某天算起）</option>
-    <option value="diff">天数差</option>
-    <option value="workday">工作日（不含周末）</option>
-  </select></div>
+  <div class="calc-grp"><div class="calc-lbl">目标日期</div><input class="calc-input date-input" id="dateTarget" type="date" style="color-scheme:dark"></div>
+  <div class="calc-grp"><div class="calc-lbl">对比日期（留空为今天）</div><input class="calc-input date-input" id="dateFrom" type="date" style="color-scheme:dark"></div>
+  <div class="calc-grp"><div class="calc-lbl">计算方式</div><select class="calc-select" id="dateMode"><option value="countdown">倒计时（距离目标）</option><option value="since">正计时（从某天算起）</option><option value="diff">天数差</option><option value="workday">工作日（不含周末）</option></select></div>
   <button class="calc-btn" onclick="runDateCalc()">计算</button>
   <div class="countdown-display" id="dateResult" style="display:none">
     <div class="cd-big" id="cdBig"></div>
@@ -823,104 +800,268 @@ function runDateCalc(){
   const from=fromStr?new Date(fromStr):new Date();
   const to=new Date(target);
   const mode=document.getElementById('dateMode').value;
-  const diffMs=to-from;
-  const totalDays=Math.round(diffMs/86400000);
-  const absDays=Math.abs(totalDays);
+  const totalDays=Math.round((to-from)/86400000);
   const result=document.getElementById('dateResult');
   const big=document.getElementById('cdBig');
   const label=document.getElementById('cdLabel');
   const detail=document.getElementById('cdDetail');
   result.style.display='block';
   if(mode==='countdown'){
-    if(totalDays<0){
-      big.textContent='已过';
-      label.textContent=`距离 ${target}（过去 ${absDays} 天）`;
-    }else{
-      big.textContent=totalDays;
-      label.textContent=`天`;
-    }
-    const d=Math.floor(totalDays/30.44),mo=Math.floor(d/12),yrs=Math.floor(d/12),rm=d%12;
-    const w=Math.floor(totalDays/7);
-    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${w}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${mo}</div><div class="cd-u-label">月</div></div><div class="cd-unit"><div class="cd-num">${yrs}</div><div class="cd-u-label">年</div></div>`;
+    big.textContent=totalDays<0?'已过':totalDays;
+    label.textContent=totalDays<0?`已过去 ${Math.abs(totalDays)} 天`:`天后到达`;
+    const w=Math.floor(totalDays/7),mo=Math.floor(totalDays/30.44);
+    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${w}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${mo}</div><div class="cd-u-label">月</div></div>`;
   }else if(mode==='since'){
-    big.textContent=absDays;
-    label.textContent=`天`;
-    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${Math.floor(absDays/7)}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${Math.floor(absDays/30.44)}</div><div class="cd-u-label">月</div></div>`;
+    big.textContent=Math.abs(totalDays);
+    label.textContent='天';
+    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${Math.floor(Math.abs(totalDays)/7)}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${Math.floor(Math.abs(totalDays)/30.44)}</div><div class="cd-u-label">月</div></div>`;
   }else if(mode==='diff'){
     big.textContent=totalDays;
-    label.textContent=`天（正数=之后，负数=之前）`;
+    label.textContent=`天（正数=之后，负数=已过）`;
     detail.innerHTML='';
-  }else if(mode==='workday'){
+  }else{
     let workdays=0;
     const cur=new Date(from);
     const step=totalDays>=0?1:-1;
-    while((step>0?cur<=to:cur>=to)){const d=cur.getDay();if(d!==0&&d!==6)workdays++;cur.setDate(cur.getDate()+step);if(Math.abs(cur-from)/86400000>730)break;}
-    big.textContent=totalDays>=0?workdays:workdays;
-    label.textContent=`工作日（不含周末）`;
+    while((step>0?cur<=to:cur>=to)){const dow=cur.getDay();if(dow!==0&&dow!==6)workdays++;cur.setDate(cur.getDate()+step);if(Math.abs(cur-from)/86400000>730)break;}
+    big.textContent=workdays;
+    label.textContent=`个工作日（不含周末）`;
     detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${totalDays}</div><div class="cd-u-label">日历天</div></div><div class="cd-unit"><div class="cd-num">${totalDays-workdays}</div><div class="cd-u-label">周末</div></div>`;
   }
 }
 
-// ═══ 天气预报（模态框） ═══
-function weatherH(){
-  const cities=['北京','上海','广州','深圳','成都','重庆','杭州','武汉','西安','南京','天津','苏州','郑州','长沙','沈阳','青岛','大连','厦门','福州','济南'];
-  const opts=cities.map(c=>`<option value="${c}">${c}</option>`).join('');
-  return`<div class="calc-wrap">
-  <div class="calc-grp"><div class="calc-lbl">选择城市</div><select class="city-select" id="wCitySel" onchange="loadWeatherModal()">${opts}</select></div>
-  <div id="wResult"><div class="weather-loading">正在加载天气数据...</div></div>
-</div>`;
+// ═══ 亲戚称呼计算器 ═══
+function kinshipH(){
+  const rels=[
+    {k:'父亲的哥哥',v:'伯父',n:'比自己父亲大的男性长辈'},
+    {k:'父亲的弟弟',v:'叔叔/叔父',n:'比自己父亲小的男性长辈'},
+    {k:'父亲的姐妹',v:'姑姑',n:'父亲的姐妹'},
+    {k:'母亲的兄弟',v:'舅舅',n:'母亲的兄弟'},
+    {k:'母亲的姐妹',v:'姨妈/姨母',n:'母亲的姐妹'},
+    {k:'父亲的哥哥的儿子',v:'堂哥/堂弟',n:'父亲的侄子/侄女（同姓，叔伯所生）'},
+    {k:'父亲的姐姐的儿子',v:'表哥/表弟',n:'父亲的姐妹的孩子（异姓）'},
+    {k:'母亲的哥哥的儿子',v:'表哥/表弟',n:'母亲的兄弟的孩子'},
+    {k:'母亲的姐妹的儿子',v:'表哥/表弟',n:'母亲的姐妹的孩子'},
+    {k:'爷爷的儿子',v:'伯父/叔叔',n:'父亲和伯父叔父'},
+    {k:'奶奶的女儿',v:'姑妈/姑姑',n:'父亲的姐妹'},
+    {k:'外公的儿子',v:'舅舅',n:'母亲的兄弟'},
+    {k:'外婆的女儿',v:'姨妈/姨母',n:'母亲的姐妹'},
+    {k:'姑姑的儿子',v:'表哥/表弟',n:'姑表亲'},
+    {k:'舅舅的儿子',v:'表哥/表弟',n:'舅表亲'},
+    {k:'姨妈的儿子',v:'表哥/表弟',n:'姨表亲'},
+  ];
+  const opts=rels.map((r,i)=>`<button class="kinship-btn" onclick="selectKinship(${i})">${r.k}<br><span style="font-size:0.72rem;color:var(--text3)">→ ${r.v}</span></button>`).join('');
+  return`<div class="kinship-grid">${opts}</div>
+  <div class="kinship-result" id="kinshipResult" style="display:none">
+    <div class="kr-label">称呼结果</div>
+    <div class="kr-name" id="kinshipName">—</div>
+    <div class="kr-note" id="kinshipNote">—</div>
+  </div>`;
 }
-function loadWeatherModal(){
-  const city=document.getElementById('wCitySel')?.value||'成都';
-  const el=document.getElementById('wResult');
-  if(!el)return;
-  el.innerHTML='<div class="weather-loading">正在加载天气数据...</div>';
-  fetch(`https://tianqi-api.com/api/v1/?version=v9&appid=0&appsecret=0&city=${encodeURIComponent(city)}`)
-    .then(r=>r.json()).then(d=>{
-      if(!d||!d.data){
-        el.innerHTML='<div class="weather-error">无法获取天气数据，请检查网络后重试</div>';return;
+function selectKinship(i){
+  const rels=[{k:'父亲的哥哥',v:'伯父',n:'比自己父亲大的男性长辈'},{k:'父亲的弟弟',v:'叔叔/叔父',n:'比自己父亲小的男性长辈'},{k:'父亲的姐妹',v:'姑姑',n:'父亲的姐妹'},{k:'母亲的兄弟',v:'舅舅',n:'母亲的兄弟'},{k:'母亲的姐妹',v:'姨妈/姨母',n:'母亲的姐妹'},{k:'父亲的哥哥的儿子',v:'堂哥/堂弟',n:'父亲的侄子（同性，叔伯所生）'},{k:'父亲的姐姐的儿子',v:'表哥/表弟',n:'父亲的姐妹的孩子（异姓）'},{k:'母亲的哥哥的儿子',v:'表哥/表弟',n:'母亲的兄弟的孩子'},{k:'母亲的姐妹的儿子',v:'表哥/表弟',n:'母亲的姐妹的孩子'},{k:'爷爷的儿子',v:'伯父/叔叔',n:'父亲和伯父叔父'},{k:'奶奶的女儿',v:'姑妈/姑姑',n:'父亲的姐妹'},{k:'外公的儿子',v:'舅舅',n:'母亲的兄弟'},{k:'外婆的女儿',v:'姨妈/姨母',n:'母亲的姐妹'},{k:'姑姑的儿子',v:'表哥/表弟',n:'姑表亲'},{k:'舅舅的儿子',v:'表哥/表弟',n:'舅表亲'},{k:'姨妈的儿子',v:'表哥/表弟',n:'姨表亲'}];
+  const r=rels[i];
+  const el=document.getElementById('kinshipResult');
+  el.style.display='block';
+  document.getElementById('kinshipName').textContent=r.v;
+  document.getElementById('kinshipNote').textContent=r.n;
+}
+
+// ═══ 金额大写 ═══
+function capitalH(){return`<div class="calc-wrap">
+  <div class="calc-grp"><div class="calc-lbl">输入数字（元）</div><input class="calc-input" id="capNum" type="number" placeholder="请输入金额，如 123456.78" step="0.01" oninput="runCapital()"></div>
+  <div class="capital-result" id="capResult">
+    <div class="cr-big" id="capBig">—</div>
+  </div>
+</div>`;}
+function runCapital(){
+  const n=parseFloat(document.getElementById('capNum').value);
+  if(!n||isNaN(n)){document.getElementById('capBig').textContent='—';return;}
+  const fmt=capitalize(n);
+  document.getElementById('capBig').textContent=fmt;
+}
+function capitalize(num){
+  const units='元圆角分厘毫';
+  const digits='零壹贰叁肆伍陆柒捌玖';
+  const places=['万','亿','兆'];
+  if(num===0)return'零元整';
+  let s=String(Math.round(num*100));
+  if(s.length>14)return'金额超出范围';
+  let result='';
+  const intPart=parseInt(s.slice(0,-2))||0;
+  const dec=s.slice(-2);
+  const intStr=String(intPart);
+  const len=intStr.length;
+  if(intPart===0&&parseInt(dec)===0)return'零元整';
+  let prevZero=false;
+  for(let i=0;i<intStr.length;i++){
+    const d=intStr[i];
+    const pos=intStr.length-i-1;
+    if(d==='0'){
+      if(pos%4===0&&pos>0){
+        const unitIdx=Math.floor(pos/4);
+        if(!prevZero)result+=digits[0];
+        result+=places[Math.min(unitIdx,places.length-1)];
+        prevZero=false;
+      }else if(!prevZero){
+        result+=digits[0];
+        prevZero=true;
       }
-      const w=d.data;
-      el.innerHTML=`
-        <div class="weather-result">
-          <div class="weather-now">
-            <span class="weather-icon-big">${getWeatherEmoji(w.wea)}</span>
-            <div>
-              <div class="weather-temp-big">${w.tem}°C</div>
-              <div style="font-size:0.85rem;color:var(--text2)">${w.city} · ${w.wea} · ${w.win} ${w.win_speed}</div>
-            </div>
-          </div>
-          <div class="weather-meta">
-            <div>💧 湿度 ${w.humidity}</div>
-            <div>气压 ${w.pressure}</div>
-            <div>能见度 ${w.visibility}</div>
-            <div>日出 ${w.sunrise || '—'} · 日落 ${w.sunset || '—'}</div>
-          </div>
-          ${w.days&&w.days.length>1?`<div class="weather-forecast">${w.days.slice(1,6).map(day=>`<div class="weather-forecast-item"><div class="wf-day">${day.day||day.date||''}</div><div class="wf-icon">${getWeatherEmoji(day.wea)}</div><div class="wf-temp">${day.tem_night}~${day.tem_day}°</div></div>`).join('')}</div>`:''}
-        </div>`;
-    }).catch(()=>{el.innerHTML='<div class="weather-error">网络错误，请稍后重试</div>';});
+    }else{
+      const unit=['','拾','佰','仟'][pos%4];
+      result+=digits[parseInt(d)]+unit;
+      prevZero=false;
+    }
+  }
+  if(intPart>0)result+=digits[0];
+  if(dec[1]!=='0')result+=digits[parseInt(dec[1])]+(dec[1]==='0'?'':units[5]);
+  if(dec[0]!=='0')result+=digits[parseInt(dec[0])]+units[1];
+  else if(dec[1]!=='0')result+=digits[0];
+  if(result.endsWith(digits[0]+units[1]))result=result.slice(0,-2)+'整';
+  return result.replace(digits[0]+digits[0],digits[0]).replace(new RegExp(digits[0]+'$'),'').replace(/^零/,'')+'元';
 }
 
-// ═══ 油价 ═══
-function oilH(){return`<div class="oil-grid" id="oilM"></div><div class="oil-note">* 数据仅供参考，以当地加油站实际价格为准</div>`;}
-function loadOilM(){
-  const d=[{c:'北京',p:7.85},{c:'上海',p:7.82},{c:'广州',p:7.90},{c:'深圳',p:7.95},{c:'成都',p:7.78},{c:'重庆',p:7.88},{c:'武汉',p:7.80},{c:'西安',p:7.75}];
-  const r=d.map(x=>({...x,p:+(x.p+(Math.random()*0.12-0.06)).toFixed(2)}));
-  document.getElementById('oilM').innerHTML=r.map(x=>`<div class="oil-card"><div class="oil-c">${x.c}</div><div class="oil-p">¥${x.p.toFixed(2)}</div><div class="oil-u">元/升</div></div>`).join('');
+// ═══ 身份证解析 ═══
+function idcardH(){return`<div class="calc-wrap">
+  <div class="calc-grp"><div class="calc-lbl">输入身份证号</div><input class="calc-input" id="idInput" type="text" placeholder="18位身份证号" maxlength="18" oninput="runIdcard()"></div>
+  <div id="idResult"></div>
+</div>`;}
+function runIdcard(){
+  const id=document.getElementById('idInput').value.trim();
+  if(id.length<17){document.getElementById('idResult').innerHTML='';return;}
+  const regions={'110000':'北京市','110100':'北京市区','310000':'上海市','440100':'广州市','440300':'深圳市','510100':'成都市','500000':'重庆市','330100':'杭州市','420100':'武汉市','610100':'西安市','320100':'南京市','120000':'天津市','320500':'苏州市','410100':'郑州市','430100':'长沙市','210100':'沈阳市','370200':'青岛市','210200':'大连市','350200':'厦门市','350100':'福州市','370100':'济南市'};
+  const pre6=id.slice(0,6);
+  const region=regions[pre6]||'未知地区';
+  const birth=id.slice(6,10)+'-'+id.slice(10,12)+'-'+id.slice(12,14);
+  const gender=parseInt(id[16])%2===0?'女':'男';
+  const age=Math.floor((new Date()-new Date(birth))/365.25/86400000);
+  const genderIcon=gender==='男'?'👨':'👩';
+  document.getElementById('idResult').innerHTML=`<div class="id-info">
+    <div class="id-item"><div class="id-item-label">📍 地区</div><div class="id-item-val">${region}</div></div>
+    <div class="id-item"><div class="id-item-label">🎂 出生日期</div><div class="id-item-val">${birth}</div></div>
+    <div class="id-item"><div class="id-item-label">${genderIcon} 性别</div><div class="id-item-val" style="color:${gender==='男'?'#3498db':'#e74c3c'}">${gender}</div></div>
+    <div class="id-item"><div class="id-item-label">🎯 年龄</div><div class="id-item-val">约${age}岁</div></div>
+  </div>
+  <div style="margin-top:12px;font-size:0.72rem;color:var(--text3);text-align:center;line-height:1.8">以上信息由身份证号前6位和第7-14位推算，仅供参考</div>`;
 }
 
-// ═══ 节气 ═══
-function solarH(){return`<div class="solar-grid" id="solarM"></div>`;}
-function loadSolarM(){
-  const terms=['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
-  const n=new Date(),start=new Date(n.getFullYear(),0,1);
-  const doy=Math.floor((n-start)/86400000)+1;
-  const cur=Math.floor(doy/15.2)%24;
-  const g=document.getElementById('solarM');
-  if(g)g.innerHTML=terms.map((t,i)=>`<div class="solar-item${i===cur?' on':''}">${t}</div>`).join('');
+// ═══ 邮编查询 ═══
+function zipH(){return`<div class="calc-wrap">
+  <div class="zip-search"><input class="calc-input" id="zipInput" placeholder="输入城市名或邮编/区号，如" oninput="runZip()">
+  </div>
+  <div class="calc-lbl" style="margin-bottom:8px">常用城市邮编区号速查</div>
+  <div class="zip-result" id="zipResult">
+    <div class="zip-item"><span class="zi-k">北京</span><span class="zi-v">邮编：100000　区号：010</span></div>
+    <div class="zip-item"><span class="zi-k">上海</span><span class="zi-v">邮编：200000　区号：021</span></div>
+    <div class="zip-item"><span class="zi-k">成都</span><span class="zi-v">邮编：610000　区号：028</span></div>
+    <div class="zip-item"><span class="zi-k">重庆</span><span class="zi-v">邮编：400000　区号：023</span></div>
+    <div class="zip-item"><span class="zi-k">广州</span><span class="zi-v">邮编：510000　区号：020</span></div>
+    <div class="zip-item"><span class="zi-k">深圳</span><span class="zi-v">邮编：518000　区号：0755</span></div>
+    <div class="zip-item"><span class="zi-k">杭州</span><span class="zi-v">邮编：310000　区号：0571</span></div>
+    <div class="zip-item"><span class="zi-k">武汉</span><span class="zi-v">邮编：430000　区号：027</span></div>
+    <div class="zip-item"><span class="zi-k">西安</span><span class="zi-v">邮编：710000　区号：029</span></div>
+    <div class="zip-item"><span class="zi-k">南京</span><span class="zi-v">邮编：210000　区号：025</span></div>
+    <div class="zip-item"><span class="zi-k">天津</span><span class="zi-v">邮编：300000　区号：022</span></div>
+    <div class="zip-item"><span class="zi-k">苏州</span><span class="zi-v">邮编：215000　区号：0512</span></div>
+    <div class="zip-item"><span class="zi-k">郑州</span><span class="zi-v">邮编：450000　区号：0371</span></div>
+    <div class="zip-item"><span class="zi-k">长沙</span><span class="zi-v">邮编：410000　区号：0731</span></div>
+    <div class="zip-item"><span class="zi-k">沈阳</span><span class="zi-v">邮编：110000　区号：024</span></div>
+    <div class="zip-item"><span class="zi-k">青岛</span><span class="zi-v">邮编：266000　区号：0532</span></div>
+  </div>
+</div>`;}
+function runZip(){
+  const q=document.getElementById('zipInput').value.trim();
+  if(!q){return;}
+  // 简单搜索已有数据
 }
 
-// ═══ 历史 ═══
+// ═══ 随机决定器 ═══
+function decisionH(){return`<div class="calc-wrap">
+  <div class="decision-choices" id="decisionChoices">
+    <input class="decision-choice-input" id="d1" placeholder="选项1，如：火锅">
+    <input class="decision-choice-input" id="d2" placeholder="选项2，如：烧烤">
+    <input class="decision-choice-input" id="d3" placeholder="选项3（可选）">
+    <input class="decision-choice-input" id="d4" placeholder="选项4（可选）">
+  </div>
+  <button class="calc-btn" style="margin-top:14px" onclick="runDecision()">🎲 随机选择</button>
+  <div class="decision-box" id="decisionBox"><div class="decision-text" id="decisionText">等待选择...</div></div>
+</div>`;}
+function runDecision(){
+  const choices=[];
+  const d1=document.getElementById('d1').value.trim();
+  const d2=document.getElementById('d2').value.trim();
+  const d3=document.getElementById('d3').value.trim();
+  const d4=document.getElementById('d4').value.trim();
+  if(d1)choices.push(d1);
+  if(d2)choices.push(d2);
+  if(d3)choices.push(d3);
+  if(d4)choices.push(d4);
+  if(choices.length<2){alert('请至少输入两个选项');return;}
+  const box=document.getElementById('decisionBox');
+  const text=document.getElementById('decisionText');
+  text.textContent='🤔 思考中...';
+  // 滚动动画
+  let count=0;
+  const interval=setInterval(()=>{text.textContent=choices[count%choices.length]+'？';count++;},80);
+  setTimeout(()=>{clearInterval(interval);text.textContent=choices[Math.floor(Math.random()*choices.length)];},2000);
+}
+
+// ═══ 纪念日倒计时 ═══
+const CDK='wenqu_countdowns';
+function countdownH(){
+  const saved=JSON.parse(localStorage.getItem(CDK)||'[]');
+  const items=saved.map((item,i)=>`<span class="cd-saved-item" onclick="loadCountdown(${i})">📅 ${item.label}</span>`).join('');
+  return`<div class="calc-grp"><div class="calc-lbl">事件名称</div><input class="calc-input" id="cdLabel" type="text" placeholder="如：结婚纪念日、宝宝出生"></div>
+  <div class="calc-grp"><div class="calc-lbl">目标日期</div><input class="calc-input date-input" id="cdDate" type="date" style="color-scheme:dark"></div>
+  <button class="calc-btn" style="margin-top:4px" onclick="addCountdown()">保存并计算</button>
+  <div class="countdown-display" id="cdResult" style="display:none">
+    <div class="cd-big" id="cdBig"></div>
+    <div class="cd-label" id="cdLabel2"></div>
+    <div class="cd-detail" id="cdDetail"></div>
+  </div>
+  ${saved.length?'<div style="margin-top:14px"><div class="calc-lbl" style="margin-bottom:8px">已保存的纪念日</div><div class="cd-saved" id="cdSaved">'+items+'</div></div>':''}`;
+}
+function addCountdown(){
+  const label=document.getElementById('cdLabel').value.trim();
+  const date=document.getElementById('cdDate').value;
+  if(!label||!date){alert('请输入名称和日期');return;}
+  const saved=JSON.parse(localStorage.getItem(CDK)||'[]');
+  saved.push({label,date});
+  localStorage.setItem(CDK,JSON.stringify(saved));
+  calcCd(date,label);
+  document.getElementById('cdLabel').value='';
+  document.getElementById('cdDate').value='';
+}
+function calcCd(date,label){
+  const target=new Date(date);
+  const now=new Date();
+  const totalDays=Math.round((target-now)/86400000);
+  const result=document.getElementById('cdResult');
+  const big=document.getElementById('cdBig');
+  const label2=document.getElementById('cdLabel2');
+  const detail=document.getElementById('cdDetail');
+  result.style.display='block';
+  if(totalDays<0){
+    big.textContent=Math.abs(totalDays);
+    label2.textContent=`${label}（已过去 ${Math.abs(totalDays)} 天）`;
+    detail.innerHTML='';
+  }else if(totalDays===0){
+    big.textContent='🎉';
+    label2.textContent=`今天是 ${label} ！`;
+    detail.innerHTML='';
+  }else{
+    big.textContent=totalDays;
+    label2.textContent=`距离 ${label} 还有`;
+    const w=Math.floor(totalDays/7),mo=Math.floor(totalDays/30.44);
+    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${w}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${mo}</div><div class="cd-u-label">月</div></div>`;
+  }
+}
+function loadCountdown(i){
+  const saved=JSON.parse(localStorage.getItem(CDK)||'[]');
+  if(saved[i])calcCd(saved[i].date,saved[i].label);
+}
+
+// ═══ 历史（模态框） ═══
 function histH(){return`<div class="hist-modal" id="histM"></div>`;}
 function loadHistM(){
   const el=document.getElementById('histM');
@@ -937,17 +1078,97 @@ function poemH(){
   <div class="poem-full-title">「${p.t}」</div>
   <div class="poem-full-author">— ${p.a}</div>
   <div class="poem-full-content">${p.l}</div>
-  <button class="wp-btn" style="margin-top:20px" onclick="refreshPoemM()">↻ 换一首</button>
+  <button class="calc-btn" style="margin-top:18px;background:linear-gradient(135deg,#2d5a3d,#1e8449);font-size:0.82rem;padding:12px" onclick="refreshPoemM()">↻ 换一首</button>
 </div>`;
 }
 function refreshPoemM(){document.getElementById('modalBody').innerHTML=poemH();}
 
-// ═══ 抖动 ═══
-(function(){
-  const s=document.createElement('style');
-  s.textContent=`@keyframes shk{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}`;
-  document.head.appendChild(s);
-})();
+// ═══ 四柱八字+今日卦象（简化版） ═══
+function fortuneH(){
+  return`<div class="calc-wrap">
+    <div class="calc-grp"><div class="calc-lbl">出生日期（公历）</div><input class="calc-input date-input" id="bdate" type="date" style="color-scheme:dark"></div>
+    <div class="calc-grp"><div class="calc-lbl">出生时辰</div><select class="calc-select" id="bhour"><option value="子">子时 23:00-01:00</option><option value="丑">丑时 01:00-03:00</option><option value="寅">寅时 03:00-05:00</option><option value="卯">卯时 05:00-07:00</option><option value="辰">辰时 07:00-09:00</option><option value="巳">巳时 09:00-11:00</option><option value="午">午时 11:00-13:00</option><option value="未">未时 13:00-15:00</option><option value="申">申时 15:00-17:00</option><option value="酉">酉时 17:00-19:00</option><option value="戌">戌时 19:00-21:00</option><option value="亥">亥时 21:00-23:00</option></select></div>
+    <button class="calc-btn" onclick="runFortune()">🔮 开始解卦</button>
+    <div id="fortuneResult" style="display:none"></div>
+  </div>`;
+}
+function runFortune(){
+  const bd=document.getElementById('bdate').value;
+  const bh=document.getElementById('bhour').value;
+  if(!bd){alert('请选择出生日期');return;}
+  const gz=['甲子','乙丑','丙寅','丁卯','戊辰','己巳','庚午','辛未','壬申','癸酉','甲戌','乙亥','丙子','丁丑','戊寅','己卯','庚辰','辛巳','壬午','癸未','甲申','乙酉','丙戌','丁亥','戊子','己丑','庚寅','辛卯','壬辰','癸巳','甲午','乙未','丙申','丁酉','戊戌','己亥','庚子','辛丑','壬寅','癸卯','甲辰','乙巳','丙午','丁未','戊申','己酉','庚戌','辛亥','壬子','癸丑','甲寅','乙卯','丙辰','丁巳','戊午','己未','庚申','辛酉','壬戌','癸亥'];
+  const dz=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+  const sz=['鼠','牛','虎','兔','龙','蛇','马','羊','猴','鸡','狗','猪'];
+  const elements=['木','火','土','金','水'];
+  const d=new Date(bd);
+  const year=d.getFullYear();
+  const baseGan=year%10;
+  const baseZhi=year%12;
+  const dayOfYear=Math.floor((d-new Date(year,0,1))/86400000)+1;
+  const dayIdx=(dayOfYear%10+baseGan)%10;
+  const hourIdx=dz.indexOf(bh);
+  const animal=sz[(year+8)%12];
+  const element=elements[Math.floor((year%10)/2)];
+  const today=new Date();
+  const todayY=gz[(today.getFullYear()*10+today.getMonth()*83+today.getDate()*31)%60];
+  const todayZhi=dz[today.getDay()];
+  const fortunes=['大吉','中吉','小吉','吉','平'];
+  const todayFort=fortunes[(today.getDate()+d.getMonth())%fortunes.length];
+  const directions=['东','南','西','北','东南','东北','西南','西北'];
+  const todayDir=directions[today.getDate()%8];
+  const luckyNums=[[3,7],[1,6],[2,8],[4,9],[5,10]].reduce((a,b)=>a.concat(b),[]);
+  const todayNum=luckyNums[today.getDate()%luckyNums.length];
+  const luckyColors=[['绿','青'],['红','紫'],['黄','棕'],['白','金'],['蓝','黑']][today.getDate()%5];
+  const hexagrams=['乾','坤','屯','蒙','需','讼','师','比','小畜','履','泰','否','同人','大有','谦','豫','随','蛊','临','观','噬嗑','贲','剥','复','无妄','大畜','颐','大过','坎','离','咸','恒','遁','大壮','晋','明夷','家人','睽','蹇','解','损','益','夬','姤','萃','升','困','井','革','鼎','震','艮','渐','归妹','丰','旅','巽','兑','涣','节','中孚','小过','既济','未济'];
+  const todayHex=hexagrams[(today.getFullYear()*today.getMonth()*today.getDate())%64];
+  document.getElementById('fortuneResult').style.display='block';
+  document.getElementById('fortuneResult').innerHTML=`
+    <div style="margin-top:16px;padding:18px;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.12);border-radius:16px">
+      <div style="font-size:0.72rem;color:var(--text3);margin-bottom:10px;letter-spacing:0.1em">今日运势</div>
+      <div style="font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:8px">${todayFort}</div>
+      <div style="font-size:0.82rem;color:var(--text2);line-height:1.9">
+        📅 今日干支：${todayY}（${todayZhi}时）<br>
+        🐀 生肖：${animal}　　五行：${element}命<br>
+        🌟 八字日主：${gz[dayIdx]}年 ${gz[dayIdx]}日 ${bh}时<br>
+        📿 今日卦象：${todayHex}卦<br><br>
+        <strong>今日趋吉：</strong><br>
+        🧭 吉利方位：<strong>${todayDir}</strong>方<br>
+        🎨 幸运颜色：<strong>${luckyColors[0]}</strong>、<strong>${luckyColors[1]}</strong><br>
+        🔢 幸运数字：<strong>${todayNum}</strong>、<strong>${(todayNum+3)%10+1}</strong><br>
+        ⏰ 吉利时辰：${['卯时(5-7点)','辰时(7-9点)','午时(11-13点)','申时(15-17点)'][today.getDate()%4]}
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:0.7rem;color:var(--text3);text-align:center;line-height:1.7">以上为简化推算，仅供娱乐参考<br>详细八字分析建议咨询专业命理师</div>`;
+}
+
+// ═══ 老黄历详情 ═══
+function hlDetailH(){
+  const n=new Date(),day=n.getDate(),month=n.getMonth()+1;
+  const goods=['嫁娶','出行','搬家','动土','开业','祭祀','祈福','订盟','纳采','会亲友'];
+  const bads=['动土','破土','安葬','入宅','移徙','开市','斋醮','动土'];
+  const seed=month*31+day;
+  const shuffle=(a)=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=(seed*(i+1))%b.length;[b[i],b[j]]=[b[j],b[i]]}return b;};
+  const g=shuffle(goods).slice(0,6);
+  const b=shuffle(bads).slice(0,4);
+  return`<div>
+    <div style="text-align:center;padding:14px;background:rgba(39,174,96,0.06);border:1px solid rgba(39,174,96,0.12);border-radius:16px;margin-bottom:16px">
+      <div style="font-size:1rem;font-weight:600;color:var(--text)">农历三月十九</div>
+      <div style="font-size:0.75rem;color:var(--text3);margin-top:4px">${n.getFullYear()}年 ${n.getMonth()+1}月 ${n.getDate()}日</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div><div style="font-size:0.68rem;color:var(--text3);margin-bottom:8px;letter-spacing:0.1em">✅ 宜</div>
+        ${g.map(x=>`<span style="display:inline-block;padding:4px 10px;background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.2);color:var(--green);border-radius:20px;font-size:0.78rem;margin:3px">${x}</span>`).join('')}
+      </div>
+      <div><div style="font-size:0.68rem;color:var(--text3);margin-bottom:8px;letter-spacing:0.1em">❌ 忌</div>
+        ${b.map(x=>`<span style="display:inline-block;padding:4px 10px;background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.18);color:var(--red);border-radius:20px;font-size:0.78rem;margin:3px">${x}</span>`).join('')}
+      </div>
+    </div>
+    <div style="padding:14px;background:rgba(255,255,255,0.03);border-radius:14px;font-size:0.82rem;color:var(--text2);line-height:1.8">
+      💡 <strong style="color:var(--text)">今日建议：</strong>宜静心学习、处理文书工作。<br>
+      ⚠️ 不宜做重大决定或签约，建议多方考察后再行动。
+    </div>
+  </div>`;
+}
 </script>
 </body>
 </html>
