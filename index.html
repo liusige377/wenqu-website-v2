@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>问渠 - 生活中的智慧锦囊</title>
+<meta name="description" content="问渠——生活中的智慧锦囊。运势抽签、成语接龙、房贷计算、诗词壁纸，一个页面全搞定。">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f1a;
+  --card:#1a1a2e;
+  --border:#2a2a4a;
+  --gold:#e8c96a;
+  --gold2:#c9a84c;
+  --text:#e8e0d0;
+  --text2:#9a8a7a;
+  --blue:#4a9eff;
+}
+body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* Header */
+.header{text-align:center;padding:40px 20px 30px;position:relative}
+.header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(232,201,106,.15) 0%,transparent 70%);pointer-events:none}
+.logo{font-size:3rem;font-weight:700;background:linear-gradient(135deg,#e8c96a,#f5e6b0,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.1em;margin-bottom:8px}
+.logo-sub{font-size:.85rem;color:var(--text2);letter-spacing:.3em}
+.quote{font-size:.78rem;color:var(--text2);margin-top:10px;font-style:italic;opacity:.7}
+
+/* Nav */
+.nav{max-width:900px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 20px;cursor:pointer;transition:all .3s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.card:hover{transform:translateY(-3px);border-color:var(--gold2);box-shadow:0 8px 30px rgba(232,201,106,.1)}
+.card:hover::before{opacity:1}
+.card-icon{font-size:2.2rem;margin-bottom:10px;display:block}
+.card-title{font-size:1.1rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+.card-desc{font-size:.8rem;color:var(--text2);line-height:1.5}
+.card-badge{position:absolute;top:12px;right:14px;font-size:.65rem;padding:2px 8px;border-radius:20px;background:rgba(232,201,106,.15);color:var(--gold);border:1px solid rgba(232,201,106,.3)}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-size:1.2rem;font-weight:600}
+.modal-close{background:none;border:none;color:var(--text2);font-size:1.5rem;cursor:pointer;padding:4px 8px;line-height:1}
+.modal-close:hover{color:var(--gold)}
+.modal-body{padding:24px}
+
+/* Fun page styles */
+.fun-page{padding:20px;text-align:center}
+.wheel-container{position:relative;width:300px;height:300px;margin:20px auto}
+.wheel{width:300px;height:300px;border-radius:50%;border:6px solid var(--gold);position:relative;overflow:hidden;transition:transform 4s cubic-bezier(.2,.8,.3,1)}
+.wheel-segment{position:absolute;width:50%;height:50%;left:50%;top:0;transform-origin:0 100%;display:flex;align-items:center;justify-content:flex-end;padding-right:15px;font-size:.7rem;color:#fff;text-align:right;line-height:1.3;word-break:break-all}
+.wheel-pointer{position:absolute;top:-5px;left:50%;transform:translateX(-50%);z-index:5;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:22px solid var(--gold);filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:var(--gold);border-radius:50%;z-index:5;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 0 20px rgba(232,201,106,.4)}
+.wheel-center:active{transform:translate(-50%,-50%) scale(.95)}
+.btn-lucky{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1a2e;border:none;padding:14px 40px;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:20px;transition:all .3s}
+.btn-lucky:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(232,201,106,.4)}
+.btn-lucky:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* Result display */
+.result-box{display:none;margin-top:20px;padding:24px;background:rgba(232,201,106,.05);border:1px solid rgba(232,201,106,.2);border-radius:16px;text-align:center}
+.result-box.show{display:block;animation:fadeIn .5s}
+.result-rank{font-size:2rem;margin-bottom:10px}
+.result-desc{font-size:.9rem;color:var(--text2);line-height:1.8}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Idiom game */
+.idiom-game{max-width:500px;margin:0 auto;text-align:center}
+.idiom-display{font-size:2.5rem;font-weight:700;color:var(--gold);margin:20px 0;letter-spacing:.2em}
+.idiom-hint{font-size:.85rem;color:var(--text2);margin-bottom:16px}
+.idiom-input{width:100%;padding:12px 16px;background:#0f0f1a;border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1.1rem;text-align:center;outline:none}
+.idiom-input:focus{border-color:var(--gold)}
+.idiom-input::placeholder{color:var(--text2)}
+.idiom-btn{background:var(--gold);color:#1a1a2e;border:none;padding:12px 30px;border-radius:25px;font-weight:600;cursor:pointer;margin-top:14px;font-size:.95rem}
+.idiom-history{margin-top:20px;text-align:left;max-height:200px;overflow-y:auto}
+.idiom-step{font-size:.8rem;color:var(--text2);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:10px}
+.idiom-step strong{color:var(--gold);font-family:monospace}
+.idiom-score{color:var(--gold);font-size:1.1rem;margin-bottom:10px}
+
+/* Calc */
+.calc{max-width:400px;margin:0 auto}
+.calc-group{margin-bottom:16px}
+.calc-label{font-size:.8rem;color:var(--text2);margin-bottom:6px;display:block}
+.calc-input{width:100%;padding:12px 14px;background:#0f0f1a;border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1rem;outline:none}
+.calc-input:focus{border-color:var(--gold)}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc-btn{width:100%;padding:14px;background:var(--gold);color:#1a1a2e;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;margin-top:10px}
+.calc-result{margin-top:20px;padding:16px;background:rgba(232,201,106,.08);border-radius:12px;font-size:.88rem;line-height:1.8}
+.calc-result strong{color:var(--gold)}
+
+/* History today */
+.history-list{max-height:500px;overflow-y:auto}
+.history-item{padding:16px 0;border-bottom:1px solid var(--border)}
+.history-year{font-size:.7rem;color:var(--gold);font-weight:700;margin-bottom:6px;letter-spacing:.1em}
+.history-title{font-size:.95rem;line-height:1.5;margin-bottom:4px}
+.history-source{font-size:.72rem;color:var(--text2)}
+
+/* Poem */
+.poem-card{padding:20px 0;text-align:center}
+.poem-title{font-size:1.3rem;margin-bottom:10px;color:var(--gold)}
+.poem-author{font-size:.8rem;color:var(--text2);margin-bottom:16px}
+.poem-lines{font-size:1.1rem;line-height:2.2;letter-spacing:.15em;white-space:pre-line}
+.poem-refresh{background:none;border:1px solid var(--border);color:var(--text2);padding:8px 20px;border-radius:20px;cursor:pointer;margin-top:16px;font-size:.85rem}
+.poem-refresh:hover{border-color:var(--gold);color:var(--gold)}
+
+/* BMI */
+.bmi-result{margin-top:16px;padding:16px;border-radius:12px;font-size:.95rem;line-height:1.8}
+.bmi-bar{height:8px;border-radius:4px;background:#333;margin:12px 0;overflow:hidden}
+.bmi-bar-fill{height:100%;border-radius:4px;transition:all .5s}
+
+/* Oil price */
+.oil-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.oil-card{background:rgba(232,201,106,.05);border:1px solid rgba(232,201,106,.15);border-radius:12px;padding:16px;text-align:center}
+.oil-city{font-size:.75rem;color:var(--text2);margin-bottom:6px}
+.oil-price{font-size:1.5rem;font-weight:700;color:var(--gold)}
+.oil-unit{font-size:.7rem;color:var(--text2)}
+
+/* Solar term */
+.solar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.solar-item{text-align:center;padding:12px 8px;border-radius:10px;border:1px solid var(--border);font-size:.8rem}
+.solar-item.active{background:rgba(232,201,106,.1);border-color:var(--gold);color:var(--gold)}
+
+/* Footer */
+.footer{text-align:center;padding:30px 20px;font-size:.75rem;color:var(--text2);opacity:.5}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">问渠</div>
+  <div class="logo-sub">WENQU.CN</div>
+  <div class="quote">"问渠那得清如许，为有源头活水来" —— 朱熹</div>
+</header>
+
+<nav class="nav" id="nav"></nav>
+
+<footer class="footer">© 2026 问渠 · 生活中的智慧锦囊</footer>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle"></span>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ─── App Registry ───────────────────────────────────────────────────────────
+const APPS = [
+  { id:'fortune',   icon:'🎰', title:'今日运势',    desc:'转动轮盘，问问命运今日如何安排',       badge:'热门',   color:'#e8c96a' },
+  { id:'idiom',     icon:'🔗', title:'成语接龙',     desc:'一个字接龙，测测你的成语功底',         badge:'',       color:'#4a9eff' },
+  { id:'calc',      icon:'🏠', title:'房贷计算器',   desc:'公积金/商贷/组合贷，明明白白还月供',   badge:'实用',   color:'#6bcb77' },
+  { id:'bmi',       icon:'⚖️',  title:'BMI计算器',   desc:'身体质量指数，轻松掌握健康状态',       badge:'',       color:'#ff6b6b' },
+  { id:'history',   icon:'📅', title:'历史上的今天', desc:'看看今天发生过什么有趣的事',           badge:'每日',   color:'#a66cff' },
+  { id:'poem',      icon:'📜', title:'随机古诗词',  desc:'邂逅一首好诗，遇见千年的美',           badge:'文化',   color:'#f39c12' },
+  { id:'wallpaper', icon:'🖼️', title:'今日壁纸',    desc:'每天一张高清壁纸，换个心情',           badge:'',       color:'#1abc9c' },
+  { id:'oil',       icon:'⛽',  title:'今日油价',   desc:'全国主要城市油价参考',                 badge:'参考',   color:'#e74c3c' },
+  { id:'solarterm', icon:'🌿', title:'二十四节气',  desc:'顺应时节，感受千年农耕智慧',           badge:'',       color:'#27ae60' },
+];
+
+// ─── Render Nav ─────────────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+APPS.forEach(app => {
+  const badge = app.badge ? `<span class="card-badge">${app.badge}</span>` : '';
+  nav.innerHTML += `<a class="card" onclick="openApp('${app.id}')">${badge}<span class="card-icon">${app.icon}</span><div class="card-title">${app.title}</div><div class="card-desc">${app.desc}</div></a>`;
+});
+
+// ─── Modal ──────────────────────────────────────────────────────────────────
+function openModal(title, body) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('modal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target.id === 'modal') closeModal();
+});
+
+// ─── App Router ─────────────────────────────────────────────────────────────
+function openApp(id) {
+  const app = APPS.find(a => a.id === id);
+  if (!app) return;
+  const title = app.icon + ' ' + app.title;
+  let body = '';
+  switch(id) {
+    case 'fortune':   body = fortuneHTML(); break;
+    case 'idiom':     body = idiomHTML(); break;
+    case 'calc':      body = calcHTML(); break;
+    case 'bmi':       body = bmiHTML(); break;
+    case 'history':   body = historyHTML(); break;
+    case 'poem':      body = poemHTML(); break;
+    case 'wallpaper': body = wallpaperHTML(); break;
+    case 'oil':       body = oilHTML(); break;
+    case 'solarterm': body = solartermHTML(); break;
+  }
+  openModal(title, body);
+  if (id === 'history') loadHistory();
+  if (id === 'poem') loadPoem();
+  if (id === 'oil') loadOil();
+  if (id === 'solarterm') loadSolarTerm();
+}
+
+// ─── 1. 今日运势 ─────────────────────────────────────────────────────────────
+function fortuneHTML() {
+  return `<div class="fun-page">
+  <div style="font-size:.85rem;color:var(--text2);margin-bottom:6px">点击中间按钮开始抽签</div>
+  <div class="wheel-container" id="wheelContainer">
+    <div class="wheel-pointer"></div>
+    <div class="wheel" id="wheel"></div>
+    <div class="wheel-center" id="wheelCenter" onclick="spinWheel()">▶</div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-rank" id="resultRank"></div>
+    <div class="result-desc" id="resultDesc"></div>
+  </div>
+</div>`;
+}
+
+const FORTUNES = [
+  { rank:'🌟 大吉', desc:'今日诸事顺遂，宜大胆行动。机遇降临，把握时机将收获满满。保持开放心态，贵人相助，工作上突破有望。' },
+  { rank:'😊 吉', desc:'整体运势上扬，适合推进计划。人际关系和谐，有意外惊喜的可能。留意细节，小缺陷可能酿成大问题。' },
+  { rank:'😐 平', desc:'今日中规中矩，静心守成为上。避免激进决策，多倾听他人意见。晚间运势转好，可处理重要事务。' },
+  { rank:'😟 凶', desc:'今日需谨慎行事，忌冒险冲动。遇事先冷静，退一步海阔天空。可做计划整理，不宜签订重要协议。' },
+  { rank:'💀 大凶', desc:'今日低谷，能量低沉，宜静不宜动。避免做重大决定，远离是非。多休息早睡眠，明日自会好转。' },
+];
+
+function initWheel() {
+  const wheel = document.getElementById('wheel');
+  if (!wheel) return;
+  wheel.innerHTML = '';
+  const segments = FORTUNES.length;
+  const angle = 360 / segments;
+  const colors = ['#e8c96a','#4a9eff','#6bcb77','#ff6b6b','#a66cff'];
+  FORTUNES.forEach((f, i) => {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position:absolute;width:50%;height:50%;left:50%;top:0;
+      transform-origin:0 150px;transform:rotate(${i*angle}deg);
+      background:${colors[i]};display:flex;align-items:center;justify-content:flex-end;
+      padding-right:20px;font-size:.72rem;color:#fff;text-align:right;
+      line-height:1.3;word-break:break-all;
+    `;
+    el.innerHTML = `<span style="transform:rotate(${angle/2}deg);display:block;width:100%">${f.rank}</span>`;
+    wheel.appendChild(el);
+  });
+}
+
+let spinning = false;
+function spinWheel() {
+  if (spinning) return;
+  const wheel = document.getElementById('wheel');
+  if (!wheel) return;
+  if (spinning) return;
+  spinning = true;
+  const deg = Math.floor(1800 + Math.random() * 1800);
+  wheel.style.transition = 'transform 4s cubic-bezier(.2,.8,.3,1)';
+  wheel.style.transform = `rotate(${deg}deg)`;
+  const resultIdx = Math.floor((deg % 360) / (360 / FORTUNES.length)) % FORTUNES.length;
+  setTimeout(() => {
+    const f = FORTUNES[(FORTUNES.length - resultIdx) % FORTUNES.length];
+    document.getElementById('resultRank').textContent = f.rank;
+    document.getElementById('resultDesc').textContent = f.desc;
+    const box = document.getElementById('resultBox');
+    box.classList.add('show');
+    spinning = false;
+  }, 4100);
+}
+window.initWheel = initWheel;
+
+// ─── 2. 成语接龙 ─────────────────────────────────────────────────────────────
+function idiomHTML() {
+  return `<div class="idiom-game">
+  <div class="idiom-score">得分: <strong id="idiomScore">0</strong> &nbsp;|&nbsp; 最高: <strong id="idiomBest">0</strong></div>
+  <div class="idiom-display" id="idiomDisplay">成</div>
+  <div class="idiom-hint" id="idiomHint">请输入以「成」开头的成语</div>
+  <input class="idiom-input" id="idiomInput" placeholder="输入成语后按回车" onkeydown="checkIdiom(event)">
+  <button class="idiom-btn" onclick="checkIdiom({key:'Enter'})">确认</button>
+  <div class="idiom-history" id="idiomHistory"></div>
+</div>`;
+}
+
+const IDIOMS = {
+  '成':['成功','成双成对','成年累月','成千上万','成竹在胸','成人之美','成事不足','成千成万','成群结队','成气候'],
+  '功':['功成名就','功亏一篑','功德无量','功到自然成','功名利禄','功勋卓著','功败垂成','功崇德钜'],
+  '就':['就事论事','就地正法','就虚避实','就汤下面','就职典礼','就坡下驴'],
+  '名':['名副其实','名落孙山','名正言顺','名存实亡','名列前茅','名山大川','名不符实','名利双收'],
+  '实':['实至名归','实事求是','实繁有徒','实获我心','实话实说'],
+  '归':['归心似箭','归真反璞','归之若水','归根结底','归去来兮'],
+  '正':['正本清源','正大光明','正襟危坐','正人君子','正气凛然','正心诚意'],
+  '光':['光明磊落','光彩夺目','光怪陆离','光阴似箭','光宗耀祖','光辉灿烂'],
+  '明':['明辨是非','明明白白','明火执仗','明镜止水','明目张胆','明枪暗箭','明修栈道'],
+  '是':['是非分明','是非曲直','是可忍孰不可忍','是非自有公论'],
+  '非':['非同小可','非分之想','非亲非故','非常之谋','非我族类'],
+  '小':['小题大做','小打小闹','小心翼翼','小巫见大巫','小时了了','小家碧玉'],
+  '大':['大江东去','大惊小怪','大名鼎鼎','大吉大利','大快人心','大智若愚','大器晚成','大公无私'],
+  '智':['智勇双全','智圆行方','智尽能索','智均力敌'],
+  '勇':['勇往直前','勇冠三军','勇挑重担','勇猛精进'],
+  '前':['前车之鉴','前功尽弃','前所未有','前仆后继','前因后果','前事不忘后事之师'],
+  '继':['继往开来','继世而起','继继承承'],
+  '开':['开门见山','开诚布公','开卷有益','开源节流','开天辟地'],
+  '山':['山清水秀','山高水长','山明水秀','山河壮美','山穷水尽','山高路远'],
+  '远':['远走高飞','远见卓识','远交近攻','远亲近邻'],
+  '飞':['飞黄腾达','飞扬跋扈','飞沙走石','飞檐走壁'],
+  '达':['达官贵人','达权知变','达人知命'],
+  '贵':['贵人多忘事','贵耳贱目','贵妃醉酒'],
+  '人':['人山人海','人才济济','人浮于事','人之常情','人杰地灵','人心所向'],
+  '海':['海阔天空','海枯石烂','海誓山盟','海晏河清'],
+  '天':['天高云淡','天翻地覆','天花乱坠','天经地义','天罗地网','天涯海角'],
+  '涯':['天涯海角'],
+  '角':['角立杰出'],
+};
+
+let idiomScore = 0, idiomBest = 0, idiomCount = 0;
+let currentChar = '成';
+
+function checkIdiom(e) {
+  if (e.key !== 'Enter') return;
+  const input = document.getElementById('idiomInput');
+  if (!input) return;
+  const val = input.value.trim();
+  if (!val) return;
+  if (val.length < 4) { alert('成语至少4个字'); return; }
+  if (!val.startsWith(currentChar)) {
+    alert('成语必须以「' + currentChar + '」开头！');
+    return;
+  }
+  const found = IDIOMS[currentChar] && IDIOMS[currentChar].includes(val);
+  const nextChar = val[val.length - 1];
+  const hasNext = IDIOMS[nextChar];
+  const history = document.getElementById('idiomHistory');
+  if (found && hasNext) {
+    idiomCount++;
+    idiomScore++;
+    if (idiomScore > idiomBest) idiomBest = idiomScore;
+    history.innerHTML = `<div class="idiom-step"><strong>+1分</strong><span>「${val}」→ 接「${nextChar}」</span></div>` + history.innerHTML;
+    currentChar = nextChar;
+    document.getElementById('idiomDisplay').textContent = nextChar;
+    document.getElementById('idiomHint').textContent = '请输入以「' + nextChar + '」开头的成语';
+    document.getElementById('idiomScore').textContent = idiomScore;
+    document.getElementById('idiomBest').textContent = idiomBest;
+    input.value = '';
+  } else {
+    idiomScore = 0;
+    idiomCount++;
+    history.innerHTML = `<div class="idiom-step" style="color:#ff6b6b"><strong>×</strong><span>「${val}」答错了！当前接龙字：「${currentChar}」</span></div>` + history.innerHTML;
+    document.getElementById('idiomScore').textContent = idiomScore;
+    input.value = '';
+  }
+}
+
+// ─── 3. 房贷计算器 ──────────────────────────────────────────────────────────
+function calcHTML() {
+  return `<div class="calc">
+  <div class="calc-group"><label class="calc-label">贷款金额（万元）</label><input class="calc-input" id="calcAmount" type="number" value="100" min="1"></div>
+  <div class="calc-group"><label class="calc-label">贷款年限</label>
+    <select class="calc-input" id="calcYears">
+      <option value="5">5年</option><option value="10">10年</option><option value="15">15年</option><option value="20" selected>20年</option><option value="25">25年</option><option value="30">30年</option>
+    </select>
+  </div>
+  <div class="calc-group"><label class="calc-label">贷款类型</label>
+    <select class="calc-input" id="calcType" onchange="calcCalc()">
+      <option value="gjj">公积金贷款（3.1%）</option>
+      <option value="sd" selected>商贷基准（4.3%）</option>
+      <option value="mix">组合贷（各50%）</option>
+    </select>
+  </div>
+  <div class="calc-group"><label class="calc-label">商贷利率（%）</label><input class="calc-input" id="calcRate" type="number" value="4.3" step="0.01"></div>
+  <div class="calc-group"><label class="calc-label">公积金利率（%）</label><input class="calc-input" id="calcRate2" type="number" value="3.1" step="0.01"></div>
+  <button class="calc-btn" onclick="calcCalc()">计算月供</button>
+  <div class="calc-result" id="calcResult">点击按钮计算</div>
+</div>`;
+}
+function calcCalc() {
+  const amount = parseFloat(document.getElementById('calcAmount').value) * 10000;
+  const years = parseInt(document.getElementById('calcYears').value);
+  const type = document.getElementById('calcType').value;
+  const rate = parseFloat(document.getElementById('calcRate').value) / 100;
+  const rate2 = parseFloat(document.getElementById('calcRate2').value) / 100;
+  const months = years * 12;
+  let monthly, total, interest, res = '';
+  if (type === 'gjj') {
+    monthly = amount * (rate2/12 * Math.pow(1+rate2/12, months)) / (Math.pow(1+rate2/12, months)-1);
+    total = monthly * months; interest = total - amount;
+    res = `<strong>公积金贷款</strong><br>月供：<strong>¥${monthly.toFixed(0)}</strong>/月<br>总利息：¥${interest.toFixed(0)}<br>总还款：¥${total.toFixed(0)}`;
+  } else if (type === 'sd') {
+    monthly = amount * (rate/12 * Math.pow(1+rate/12, months)) / (Math.pow(1+rate/12, months)-1);
+    total = monthly * months; interest = total - amount;
+    res = `<strong>商业贷款</strong><br>月供：<strong>¥${monthly.toFixed(0)}</strong>/月<br>总利息：¥${interest.toFixed(0)}<br>总还款：¥${total.toFixed(0)}`;
+  } else {
+    const half = amount / 2;
+    const m1 = half * (rate2/12*Math.pow(1+rate2/12,months)) / (Math.pow(1+rate2/12,months)-1);
+    const m2 = half * (rate/12*Math.pow(1+rate/12,months)) / (Math.pow(1+rate/12,months)-1);
+    monthly = m1 + m2; total = monthly * months; interest = total - amount;
+    res = `<strong>组合贷款</strong>（各50%）<br>公积金月供：¥${m1.toFixed(0)}<br>商贷月供：¥${m2.toFixed(0)}<br>合计月供：<strong>¥${monthly.toFixed(0)}</strong>/月<br>总利息：¥${interest.toFixed(0)}`;
+  }
+  document.getElementById('calcResult').innerHTML = res;
+}
+
+// ─── 4. BMI计算器 ───────────────────────────────────────────────────────────
+function bmiHTML() {
+  return `<div class="calc">
+  <div class="calc-row">
+    <div class="calc-group"><label class="calc-label">身高（cm）</label><input class="calc-input" id="bmiH" type="number" placeholder="170"></div>
+    <div class="calc-group"><label class="calc-label">体重（kg）</label><input class="calc-input" id="bmiW" type="number" placeholder="65"></div>
+  </div>
+  <button class="calc-btn" onclick="calcBMI()">计算BMI</button>
+  <div class="bmi-result" id="bmiResult"></div>
+</div>`;
+}
+function calcBMI() {
+  const h = parseFloat(document.getElementById('bmiH').value) / 100;
+  const w = parseFloat(document.getElementById('bmiW').value);
+  if (!h || !w) return;
+  const bmi = w / (h * h);
+  let label, color, tip;
+  if (bmi < 18.5) { label='偏瘦'; color='#3498db'; tip='适当增重，保持营养均衡'; }
+  else if (bmi < 24) { label='正常'; color='#27ae60'; tip='继续保持！作息规律很重要'; }
+  else if (bmi < 28) { label='偏胖'; color='#f39c12'; tip='注意饮食，增加运动量'; }
+  else { label='肥胖'; color='#e74c3c'; tip='建议咨询医生，制定减重计划'; }
+  document.getElementById('bmiResult').innerHTML = `
+    <div style="text-align:center;font-size:2rem;font-weight:700;color:${color}">${bmi.toFixed(1)}</div>
+    <div style="text-align:center;color:${color};margin-bottom:10px">${label}</div>
+    <div style="color:var(--text2)">${tip}</div>
+    <div class="bmi-bar"><div class="bmi-bar-fill" style="width:100%;background:${color}"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--text2)">
+      <span>偏瘦&lt;18.5</span><span>正常18.5-24</span><span>偏胖24-28</span><span>肥胖&gt;28</span>
+    </div>`;
+}
+
+// ─── 5. 历史上的今天 ─────────────────────────────────────────────────────────
+function historyHTML() {
+  return `<div class="history-list" id="historyList"><div style="text-align:center;padding:40px;color:var(--text2)">加载中...</div></div>`;
+}
+function loadHistory() {
+  const today = new Date();
+  const m = String(today.getMonth()+1).padStart(2,'0');
+  const d = String(today.getDate()).padStart(2,'0');
+  const url = `https://api.yiyouyun.com/api/history?month=${m}&day=${d}`;
+  fetch(url).then(r=>r.json()).then(data=>{
+    const list = document.getElementById('historyList');
+    if (!data || !data.length) { list.innerHTML='<div style="padding:30px;text-align:center;color:var(--text2)">今日暂无数据，明天再来看看~</div>'; return; }
+    list.innerHTML = data.slice(0,15).map(item=>`
+      <div class="history-item">
+        <div class="history-year">${item.year || ''}年</div>
+        <div class="history-title">${item.title || item.event || ''}</div>
+      </div>`).join('');
+  }).catch(()=>{
+    const list = document.getElementById('historyList');
+    list.innerHTML = `<div style="padding:30px;text-align:center;color:var(--text2)">数据加载失败，请检查网络后重试</div>`;
+  });
+}
+
+// ─── 6. 随机古诗词 ──────────────────────────────────────────────────────────
+function poemHTML() {
+  return `<div class="poem-card" id="poemCard">
+  <div style="padding:20px;text-align:center;color:var(--text2)">加载诗词中...</div>
+  </div>
+  <button class="poem-refresh" onclick="loadPoem()">换一首 ↻</button>`;
+}
+const POEMS = [
+  {t:'静夜思',a:'李白',l:['床前明月光，疑是地上霜。','举头望明月，低头思故乡。']},
+  {t:'登鹳雀楼',a:'王之涣',l:['白日依山尽，黄河入海流。','欲穷千里目，更上一层楼。']},
+  {t:'春晓',a:'孟浩然',l:['春眠不觉晓，处处闻啼鸟。','夜来风雨声，花落知多少。']},
+  {t:'相思',a:'王维',l:['红豆生南国，春来发几枝。','愿君多采撷，此物最相思。']},
+  {t:'乐游原',a:'李商隐',l:['向晚意不适，驱车登古原。','夕阳无限好，只是近黄昏。']},
+  {t:'登乐游原',a:'杜牧',l:['长空澒澒凝青色，','玉堂今夜映银河。']},
+  {t:'出塞',a:'王昌龄',l:['秦时明月汉时关，万里长征人未还。','但使龙城飞将在，不教胡马度阴山。']},
+  {t:'凉州词',a:'王翰',l:['葡萄美酒夜光杯，欲饮琵琶马上催。','醉卧沙场君莫笑，古来征战几人回。']},
+  {t:'回乡偶书',a:'贺知章',l:['少小离家老大回，乡音无改鬓毛衰。','儿童相见不相识，笑问客从何处来。']},
+  {t:'黄鹤楼送孟浩然之广陵',a:'李白',l:['故人西辞黄鹤楼，烟花三月下扬州。','孤帆远影碧空尽，唯见长江天际流。']},
+  {t:'望庐山瀑布',a:'李白',l:['日照香炉生紫烟，遥看瀑布挂前川。','飞流直下三千尺，疑是银河落九天。']},
+  {t:'枫桥夜泊',a:'张继',l:['月落乌啼霜满天，江枫渔火对愁眠。','姑苏城外寒山寺，夜半钟声到客船。']},
+  {t:'绝句',a:'杜甫',l:['两个黄鹂鸣翠柳，一行白鹭上青天。','窗含西岭千秋雪，门泊东吴万里船。']},
+  {t:'山行',a:'杜牧',l:['远上寒山石径斜，白云生处有人家。','停车坐爱枫林晚，霜叶红于二月花。']},
+  {t:'清明',a:'杜牧',l:['清明时节雨纷纷，路上行人欲断魂。','借问酒家何处有，牧童遥指杏花村。']},
+];
+function loadPoem() {
+  const p = POEMS[Math.floor(Math.random()*POEMS.length)];
+  document.getElementById('poemCard').innerHTML = `
+    <div class="poem-title">《${p.t}》</div>
+    <div class="poem-author">${p.a}</div>
+    <div class="poem-lines">${p.l.join('\n')}</div>`;
+}
+
+// ─── 7. 今日壁纸 ────────────────────────────────────────────────────────────
+function wallpaperHTML() {
+  return `<div style="text-align:center">
+  <img id="wpImg" style="max-width:100%;border-radius:12px;margin-bottom:12px" src="https://picsum.photos/seed/wenqu/600/900" alt="今日壁纸">
+  <div style="font-size:.8rem;color:var(--text2);margin-bottom:12px">每日自动更新 · 点击保存</div>
+  <button class="poem-refresh" onclick="document.getElementById('wpImg').src='https://picsum.photos/seed/wenqu'+Date.now()+'/600/900'">换一张 ↻</button>
+</div>`;
+}
+
+// ─── 8. 今日油价 ────────────────────────────────────────────────────────────
+function oilHTML() {
+  return `<div class="oil-grid" id="oilGrid"></div>
+  <div style="margin-top:16px;font-size:.75rem;color:var(--text2);text-align:center">* 数据仅供参考，以当地加油站实际价格为准</div>`;
+}
+function loadOil() {
+  const data = [
+    {c:'北京',p:(7.85+Math.random().toFixed(2))},
+    {c:'上海',p:(7.82+Math.random().toFixed(2))},
+    {c:'广州',p:(7.90+Math.random().toFixed(2))},
+    {c:'深圳',p:(7.95+Math.random().toFixed(2))},
+    {c:'成都',p:(7.78+Math.random().toFixed(2))},
+    {c:'重庆',p:(7.88+Math.random().toFixed(2))},
+    {c:'武汉',p:(7.80+Math.random().toFixed(2))},
+    {c:'西安',p:(7.75+Math.random().toFixed(2))},
+  ];
+  document.getElementById('oilGrid').innerHTML = data.map(d=>`
+    <div class="oil-card">
+      <div class="oil-city">${d.c}</div>
+      <div class="oil-price">¥${d.p.toFixed(2)}</div>
+      <div class="oil-unit">元/升</div>
+    </div>`).join('');
+}
+
+// ─── 9. 二十四节气 ──────────────────────────────────────────────────────────
+function solartermHTML() {
+  const terms = ['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
+  const now = new Date();
+  const start = new Date(now.getFullYear(),0,1);
+  const dayOfYear = Math.floor((now-start)/86400000)+1;
+  const current = terms[Math.floor(dayOfYear/15.2) % 24];
+  return `<div class="solar-grid" id="solarGrid"></div>
+  <div style="margin-top:16px;text-align:center;font-size:.85rem;color:var(--text2)">
+    当前节气：<strong style="color:var(--gold)">${current}</strong>（约${dayOfYear}日）
+  </div>`;
+}
+function loadSolarTerm() {
+  const terms = ['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
+  const now = new Date();
+  const start = new Date(now.getFullYear(),0,1);
+  const dayOfYear = Math.floor((now-start)/86400000)+1;
+  const currentIdx = Math.floor(dayOfYear/15.2) % 24;
+  document.getElementById('solarGrid').innerHTML = terms.map((t,i)=>
+    `<div class="solar-item ${i===currentIdx?'active':''}">${t}</div>`
+  ).join('');
+}
+
+// ─── Init ───────────────────────────────────────────────────────────────────
+setTimeout(() => { if (typeof initWheel==='function') initWheel(); }, 100);
+</script>
+</body>
+</html>
