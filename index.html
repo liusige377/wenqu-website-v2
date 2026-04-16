@@ -4,440 +4,242 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>问渠 - 生活中的智慧锦囊</title>
-<meta name="description" content="问渠——生活中的智慧锦囊，永久免费。运势抽签、成语接龙、房贷计算、诗词壁纸，一个页面全搞定。">
+<meta name="description" content="问渠——生活中的智慧锦囊，永久免费。个税计算、老黄历宜忌、天气预报、房贷计算、诗词壁纸，一个页面全搞定。">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0c0c18">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231a1a2e'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23e8c96a'>渠</text></svg>">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
-
-:root {
-  --bg: #08080f;
-  --bg2: #0d0d1a;
-  --gold: #e8c96a;
-  --gold2: #c9a84c;
-  --gold-pale: #f5e6b0;
-  --gold-dim: rgba(232,201,106,0.4);
-  --text: #ede8df;
-  --text2: #9a9080;
-  --text3: #5a5448;
-  --blue: #6ab0ff;
-  --border: rgba(232,201,106,0.1);
-  --border-hover: rgba(232,201,106,0.35);
-  --card-bg: rgba(14,14,28,0.75);
-  --card-hover: rgba(20,20,40,0.92);
+:root{
+  --bg:#08080f;--bg2:#0d0d1a;--gold:#e8c96a;--gold2:#c9a84c;--gold-pale:#f5e6b0;
+  --gold-dim:rgba(232,201,106,0.4);--text:#ede8df;--text2:#9a9080;--text3:#5a5448;
+  --blue:#6ab0ff;--green:#6bcb77;--red:#ff6b6b;--purple:#b06aff;
+  --border:rgba(232,201,106,0.1);--border-hover:rgba(232,201,106,0.35);
+  --card-bg:rgba(14,14,28,0.75);--card-hover:rgba(20,20,40,0.92);
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg);
-  color:var(--text);
+  background:var(--bg);color:var(--text);
   font-family:'Noto Serif SC','PingFang SC','Microsoft YaHei',serif;
-  min-height:100vh;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+  min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 
-/* ═══ 动态背景 ═══ */
+/* 背景 */
 .bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.bg-grad{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(232,201,106,0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 90% 90%, rgba(74,130,255,0.04) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 50% at 5% 70%, rgba(200,150,60,0.05) 0%, transparent 50%),
-    linear-gradient(175deg, #07070e 0%, #0b0b1a 40%, #080810 100%);
-}
-.bg-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(232,201,106,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232,201,106,0.018) 1px, transparent 1px);
-  background-size:72px 72px;
-  mask-image:radial-gradient(ellipse 95% 80% at 50% 0%, black 0%, transparent 65%);
-}
-.bg-orb{
-  position:absolute;border-radius:50%;
-  filter:blur(80px);opacity:0.5;
-  animation:orbFloat 25s ease-in-out infinite;
-}
+.bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 100% 60% at 50% -10%,rgba(232,201,106,0.09) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 90% 90%,rgba(74,130,255,0.04) 0%,transparent 55%),linear-gradient(175deg,#07070e 0%,#0b0b1a 40%,#080810 100%)}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,201,106,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(232,201,106,0.018) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 95% 80% at 50% 0%,black 0%,transparent 65%)}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.5;animation:orbFloat 25s ease-in-out infinite}
 .bg-orb:nth-child(1){width:500px;height:500px;background:radial-gradient(circle,rgba(232,201,106,0.12),transparent 70%);top:-10%;left:-10%;animation-duration:32s}
 .bg-orb:nth-child(2){width:380px;height:380px;background:radial-gradient(circle,rgba(74,130,255,0.07),transparent 70%);top:40%;right:-8%;animation-duration:24s;animation-delay:-9s}
-.bg-orb:nth-child(3){width:250px;height:250px;background:radial-gradient(circle,rgba(220,170,80,0.09),transparent 70%);bottom:10%;left:25%;animation-duration:28s;animation-delay:-15s}
+.bg-orb:nth-child(3){width:250px;height:250px;background:radial-gradient(circle,rgba(200,150,60,0.09),transparent 70%);bottom:10%;left:25%;animation-duration:28s;animation-delay:-15s}
 @keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-35px) scale(1.07)}}
 .bg-drops{position:absolute;inset:0}
 .drop{position:absolute;width:2px;height:2px;background:rgba(232,201,106,0.3);border-radius:50%;animation:dropFall linear infinite}
 @keyframes dropFall{0%{transform:translateY(-10px);opacity:0}20%{opacity:1}90%{opacity:0.2}100%{transform:translateY(100vh);opacity:0}}
 
-/* ═══ 页面布局 ═══ */
 .page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 60px}
 
-/* ── Header ── */
-.site-header{
-  padding:56px 0 40px;text-align:center;position:relative;
-}
-.site-header::before{
-  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:320px;height:320px;
-  background:radial-gradient(circle,rgba(232,201,106,0.12) 0%, transparent 65%);
-  pointer-events:none;
-  animation:pulseGlow 5s ease-in-out infinite;
-}
+/* Header */
+.site-header{padding:56px 0 40px;text-align:center;position:relative}
+.site-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(232,201,106,0.12) 0%,transparent 65%);pointer-events:none;animation:pulseGlow 5s ease-in-out infinite}
 @keyframes pulseGlow{0%,100%{opacity:0.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
-
-/* Logo */
 .logo{display:inline-block;position:relative}
-.logo-hanzi{
-  font-family:'Cormorant Garamond','Noto Serif SC',serif;
-  font-size:clamp(4rem,9vw,7rem);
-  font-weight:700;letter-spacing:0.08em;
-  background:linear-gradient(160deg,#f5e6b0 0%,#e8c96a 30%,#c9a84c 60%,#e8c96a 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:logoFloat 7s ease-in-out infinite;
-  filter:drop-shadow(0 0 40px rgba(232,201,106,0.35));
-  line-height:1;
-}
+.logo-hanzi{font-family:'Cormorant Garamond','Noto Serif SC',serif;font-size:clamp(4rem,9vw,7rem);font-weight:700;letter-spacing:0.08em;background:linear-gradient(160deg,#f5e6b0 0%,#e8c96a 30%,#c9a84c 60%,#e8c96a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:logoFloat 7s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(232,201,106,0.35));line-height:1}
 @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.logo-en{
-  font-family:'Cormorant Garamond',serif;
-  font-size:0.72rem;letter-spacing:0.6em;color:var(--text3);text-transform:uppercase;
-  margin-top:6px;
-}
-.logo-subtitle{
-  font-size:0.9rem;color:var(--text2);margin-top:16px;
-  font-style:italic;max-width:420px;margin-left:auto;margin-right:auto;
-  line-height:1.9;letter-spacing:0.04em;
-}
-.logo-source{
-  font-size:0.7rem;color:var(--text3);margin-top:8px;letter-spacing:0.08em;
-}
-.logo-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  margin-top:18px;padding:6px 16px;
-  background:rgba(232,201,106,0.08);
-  border:1px solid rgba(232,201,106,0.2);
-  border-radius:20px;font-size:0.68rem;color:var(--gold);
-  letter-spacing:0.08em;
-}
+.logo-en{font-family:'Cormorant Garamond',serif;font-size:0.72rem;letter-spacing:0.6em;color:var(--text3);text-transform:uppercase;margin-top:6px}
+.logo-subtitle{font-size:0.9rem;color:var(--text2);margin-top:16px;font-style:italic;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.9;letter-spacing:0.04em}
+.logo-source{font-size:0.7rem;color:var(--text3);margin-top:8px;letter-spacing:0.08em}
+.logo-badge{display:inline-flex;align-items:center;gap:6px;margin-top:18px;padding:6px 16px;background:rgba(232,201,106,0.08);border:1px solid rgba(232,201,106,0.2);border-radius:20px;font-size:0.68rem;color:var(--gold);letter-spacing:0.08em}
 .logo-badge span{color:var(--text2)}
 
-/* ── 今日日期条 ── */
-.date-strip{
-  display:flex;align-items:center;justify-content:center;gap:20px;
-  padding:14px 24px;
-  background:var(--card-bg);backdrop-filter:blur(20px);
-  border:1px solid var(--border);border-radius:16px;
-  margin-bottom:36px;
-  position:relative;overflow:hidden;
-}
-.date-strip::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);
-}
-.date-big{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.8rem;font-weight:700;color:var(--gold);
-  text-shadow:0 0 20px rgba(232,201,106,0.5);line-height:1;
-}
+/* 日期条 */
+.date-strip{display:flex;align-items:center;justify-content:center;gap:20px;padding:14px 24px;background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden}
+.date-strip::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
+.date-big{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);text-shadow:0 0 20px rgba(232,201,106,0.5);line-height:1}
 .date-meta{font-size:0.75rem;color:var(--text2);line-height:1.5}
 .date-lunar{color:var(--text3);font-size:0.68rem}
 .date-sep{width:1px;height:32px;background:rgba(232,201,106,0.12)}
+.weather-bar{display:flex;align-items:center;gap:14px;margin-left:auto}
+.weather-bar .w-city{font-size:0.75rem;color:var(--text2)}
+.weather-bar .w-temp{font-size:0.85rem;font-weight:600;color:var(--text)}
+.weather-bar .w-icon{font-size:1.1rem}
 
-/* ── 分区标题 ── */
-.section-head{
-  display:flex;align-items:center;gap:16px;margin-bottom:20px;
-}
-.section-head::before,.section-head::after{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,transparent,var(--border),transparent);
-}
-.section-label{
-  font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;
-  color:var(--text3);white-space:nowrap;
-}
+/* 分区标题 */
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.section-head::before,.section-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.section-label{font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
 
-/* ═══ ═══ 自动展示区（五宫格） ═══ ═══ */
+/* ═══ 自动展示区 ═══ */
 .daily-section{margin-bottom:44px}
 
-/* 今日运势大卡（占2格） */
-.fortune-featured{
-  background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);border-radius:24px;
-  padding:28px 30px;position:relative;overflow:hidden;
-  cursor:default;
-  transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-.fortune-featured:hover{
-  border-color:var(--border-hover);
-  box-shadow:0 20px 60px rgba(232,201,106,0.1),0 8px 24px rgba(0,0,0,0.4);
-  transform:translateY(-4px);
-}
-.fortune-featured::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,#e8c96a,transparent);
-  opacity:0.6;
-}
-.fortune-bg-art{
-  position:absolute;right:-20px;top:-20px;
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(232,201,106,0.06) 0%,transparent 70%);
-  pointer-events:none;
-}
+/* 五宫格 */
+.five-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:16px;margin-top:16px}
+.cell-a{grid-column:1/2;grid-row:1/3}
+.cell-b{grid-column:2/4;grid-row:1}
+.cell-c{grid-column:2/4;grid-row:2}
+
+/* 运势大卡 */
+.fortune-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:28px;height:100%;position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.fortune-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 60px rgba(232,201,106,0.1)}
+.fortune-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e8c96a,transparent);opacity:0.6}
+.fortune-card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,201,106,0.06) 0%,transparent 70%);pointer-events:none}
 .fortune-title{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .fortune-title span{color:var(--text3);font-weight:400;font-size:0.72rem}
-.fortune-wheel-wrap{
-  display:flex;align-items:center;gap:28px;
-}
-.fortune-wheel{
-  width:130px;height:130px;border-radius:50%;
-  background:conic-gradient(
-    #e8c96a 0deg 72deg,
-    #6ab0ff 72deg 144deg,
-    #6bcb77 144deg 216deg,
-    #b06aff 216deg 288deg,
-    #ff6b6b 288deg 360deg
-  );
-  position:relative;cursor:pointer;flex-shrink:0;
-  box-shadow:
-    0 0 0 5px rgba(232,201,106,0.15),
-    0 0 0 9px rgba(232,201,106,0.04),
-    0 0 40px rgba(232,201,106,0.12),
-    inset 0 0 30px rgba(0,0,0,0.3);
-  transition:transform 0.3s, box-shadow 0.3s;
-}
-.fortune-wheel:hover{
-  transform:scale(1.04);
-  box-shadow:
-    0 0 0 6px rgba(232,201,106,0.25),
-    0 0 0 10px rgba(232,201,106,0.06),
-    0 0 60px rgba(232,201,106,0.2),
-    inset 0 0 30px rgba(0,0,0,0.3);
-}
+.fortune-wheel-wrap{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.fortune-wheel{width:130px;height:130px;border-radius:50%;background:conic-gradient(#e8c96a 0deg 72deg,#6ab0ff 72deg 144deg,#6bcb77 144deg 216deg,#b06aff 216deg 288deg,#ff6b6b 288deg 360deg);position:relative;cursor:pointer;flex-shrink:0;box-shadow:0 0 0 5px rgba(232,201,106,0.15),0 0 0 9px rgba(232,201,106,0.04),0 0 40px rgba(232,201,106,0.12),inset 0 0 30px rgba(0,0,0,0.3);transition:transform 0.3s,box-shadow 0.3s}
+.fortune-wheel:hover{transform:scale(1.04);box-shadow:0 0 0 6px rgba(232,201,106,0.25),0 0 0 10px rgba(232,201,106,0.06),0 0 60px rgba(232,201,106,0.2),inset 0 0 30px rgba(0,0,0,0.3)}
 .fortune-wheel.spinning{animation:spinBig 4.5s cubic-bezier(.2,.8,.3,1)}
 @keyframes spinBig{to{transform:rotate(1980deg)}}
-.fortune-ct{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:44px;height:44px;
-  background:linear-gradient(135deg,#f5e6b0,#e8c96a,#c9a84c);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:1rem;cursor:pointer;
-  box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 24px rgba(232,201,106,0.4);
-  transition:all 0.2s;
-  z-index:2;
-}
+.fortune-ct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:linear-gradient(135deg,#f5e6b0,#e8c96a,#c9a84c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 24px rgba(232,201,106,0.4);transition:all 0.2s;z-index:2}
 .fortune-ct:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 6px 20px rgba(0,0,0,0.4),0 0 36px rgba(232,201,106,0.5)}
-.fortune-info{flex:1}
-.fortune-result{
-  font-size:1.5rem;font-weight:700;margin-bottom:8px;
-  min-height:2rem;letter-spacing:0.04em;
-}
+.fortune-info{flex:1;min-width:160px}
+.fortune-result{font-size:1.5rem;font-weight:700;margin-bottom:8px;min-height:2rem;letter-spacing:0.04em}
 .fortune-desc{font-size:0.8rem;color:var(--text2);line-height:1.8;margin-bottom:14px;min-height:3em}
-.fortune-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,#e8c96a,#c9a84c);
-  color:#0c0c18;border:none;padding:10px 22px;
-  border-radius:50px;font-size:0.82rem;font-weight:700;
-  cursor:pointer;letter-spacing:0.06em;
-  transition:all 0.3s;box-shadow:0 4px 16px rgba(232,201,106,0.25);
-}
+.fortune-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0c0c18;border:none;padding:10px 22px;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,201,106,0.25)}
 .fortune-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,201,106,0.4)}
 .fortune-btn:disabled{opacity:0.45;cursor:not-allowed;transform:none;box-shadow:none}
 .fortune-tips{font-size:0.68rem;color:var(--text3);margin-top:10px}
 
-/* 五宫格布局 */
-.five-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-template-rows:auto auto;
-  gap:16px;
-  margin-top:16px;
-}
-.cell-a{grid-column:1/2}
-.cell-b{grid-column:2/4}
-
-/* 诗词大卡 */
-.poem-card{
-  background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);border-radius:24px;
-  padding:26px;height:100%;
-  cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-  position:relative;overflow:hidden;
-}
-.poem-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-4px);
-  box-shadow:0 16px 50px rgba(232,201,106,0.08),0 6px 20px rgba(0,0,0,0.4);
-}
-.poem-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,#e8c96a80,transparent);
-}
-.poem-card::after{
-  content:'';position:absolute;right:-20px;bottom:-20px;
-  width:160px;height:160px;
-  background:radial-gradient(circle,rgba(232,201,106,0.04) 0%,transparent 70%);
-  pointer-events:none;
-}
-.poem-eyebrow{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.poem-title{font-size:1.3rem;color:var(--gold-pale);font-weight:600;margin-bottom:6px;letter-spacing:0.06em}
-.poem-author{font-size:0.72rem;color:var(--text3);margin-bottom:20px;letter-spacing:0.06em}
-.poem-content{font-size:0.95rem;line-height:2.3;letter-spacing:0.12em;color:var(--text);white-space:pre-line}
-.poem-refresh{font-size:0.68rem;color:var(--text3);margin-top:16px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
+/* 诗词+历史 */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:100%}
+.poem-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:24px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);position:relative;overflow:hidden}
+.poem-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(232,201,106,0.08),0 6px 20px rgba(0,0,0,0.4)}
+.poem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e8c96a80,transparent)}
+.poem-eyebrow{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.poem-title{font-size:1.2rem;color:var(--gold-pale);font-weight:600;margin-bottom:4px;letter-spacing:0.06em}
+.poem-author{font-size:0.7rem;color:var(--text3);margin-bottom:16px;letter-spacing:0.06em}
+.poem-content{font-size:0.88rem;line-height:2.2;letter-spacing:0.1em;color:var(--text2);white-space:pre-line}
+.poem-refresh{font-size:0.68rem;color:var(--text3);margin-top:14px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
 .poem-card:hover .poem-refresh{color:var(--gold)}
 
-/* 历史今天大卡 */
-.history-card{
-  background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);border-radius:24px;
-  padding:26px;height:100%;
-  cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-  position:relative;overflow:hidden;
-}
-.history-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-4px);
-  box-shadow:0 16px 50px rgba(232,201,106,0.08),0 6px 20px rgba(0,0,0,0.4);
-}
-.history-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,#6ab0ff80,transparent);
-}
-.history-card-title{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.history-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:24px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);position:relative;overflow:hidden}
+.history-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(106,176,255,0.08),0 6px 20px rgba(0,0,0,0.4)}
+.history-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#6ab0ff80,transparent)}
+.history-card-title{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .history-badge{font-size:0.62rem;padding:3px 9px;background:rgba(106,176,255,0.1);color:var(--blue);border:1px solid rgba(106,176,255,0.2);border-radius:20px;margin-left:auto}
-.history-items{padding:0}
-.history-item{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.history-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 .history-item:last-child{border-bottom:none}
 .history-year{font-size:0.65rem;font-weight:700;color:var(--blue);min-width:40px;padding-top:2px;opacity:0.8}
-.history-text{font-size:0.83rem;line-height:1.6;color:var(--text2)}
+.history-text{font-size:0.8rem;line-height:1.6;color:var(--text2)}
 .history-sep{height:1px;background:rgba(255,255,255,0.04);margin:4px 0}
-.history-more{font-size:0.7rem;color:var(--text3);margin-top:12px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
+.history-more{font-size:0.7rem;color:var(--text3);margin-top:10px;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s}
 .history-card:hover .history-more{color:var(--blue)}
 
-/* 壁纸预览卡 */
-.wallpaper-card{
-  background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);border-radius:24px;
-  padding:22px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-  position:relative;overflow:hidden;
-}
-.wallpaper-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(232,201,106,0.08)}
-.wallpaper-img{width:100%;height:100px;object-fit:cover;border-radius:14px;margin-bottom:14px;box-shadow:0 4px 16px rgba(0,0,0,0.4);transition:transform 0.3s}
-.wallpaper-card:hover .wallpaper-img{transform:scale(1.02)}
-.wallpaper-label{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:4px}
-.wallpaper-desc{font-size:0.72rem;color:var(--text2)}
+/* 老黄历 */
+.hl-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:24px;height:100%;position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+.hl-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 16px 50px rgba(6,188,120,0.08),0 6px 20px rgba(0,0,0,0.4)}
+.hl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#27ae6080,transparent)}
+.hl-title{font-size:0.7rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.hl-lunar{font-size:1rem;color:var(--text);margin-bottom:16px;font-weight:600}
+.hl-good{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.hl-tag{display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;padding:3px 9px;border-radius:20px}
+.hl-tag.good{background:rgba(39,174,96,0.12);color:var(--green);border:1px solid rgba(39,174,96,0.25)}
+.hl-tag.avoid{background:rgba(255,107,107,0.1);color:var(--red);border:1px solid rgba(255,107,107,0.2)}
+.hl-suggest{font-size:0.75rem;color:var(--text2);line-height:1.7}
+.hl-ico{font-size:1.2rem;margin-right:6px}
 
-/* 油价节气卡 */
-.mini-card{
-  background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);border-radius:24px;
-  padding:20px 22px;cursor:pointer;transition:all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-.mini-card:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.35)}
-.mini-card-title{font-size:0.68rem;color:var(--text3);letter-spacing:0.12em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.oil-prices{display:flex;flex-direction:column;gap:8px}
-.oil-row{display:flex;justify-content:space-between;align-items:center;font-size:0.8rem}
-.oil-city{color:var(--text2)}
-.oil-p{color:var(--gold);font-weight:600}
-.oil-foot{font-size:0.62rem;color:var(--text3);margin-top:10px}
-.solar-cur{text-align:center;padding:14px;background:rgba(232,201,106,0.07);border-radius:14px;border:1px solid rgba(232,201,106,0.12);margin-bottom:10px}
-.solar-cur-name{font-size:1.6rem;color:var(--gold);font-weight:700;margin-bottom:4px}
-.solar-cur-day{font-size:0.65rem;color:var(--text2)}
-.solar-pills{display:flex;flex-wrap:wrap;gap:5px}
-.solar-p{font-size:0.62rem;padding:3px 8px;border-radius:20px;background:rgba(255,255,255,0.04);color:var(--text3);border:1px solid rgba(255,255,255,0.06)}
-.solar-p.on{background:rgba(232,201,106,0.12);color:var(--gold);border-color:rgba(232,201,106,0.25)}
-
-/* ═══ ═══ 工具区 ═══ ═══ */
+/* ═══ 工具区 ═══ */
 .tools-section{margin-top:10px}
-.tools-label{display:none}
-.tools-main{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-.tool-card{
-  background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);border-radius:22px;
-  padding:24px 20px;cursor:pointer;
-  transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-  text-decoration:none;color:inherit;
-  position:relative;overflow:hidden;
-  animation:cardIn 0.5s ease-out both;
-}
-.tool-card:nth-child(1){animation-delay:0.06s}
-.tool-card:nth-child(2){animation-delay:0.12s}
-.tool-card:nth-child(3){animation-delay:0.18s}
-.tool-card:nth-child(4){animation-delay:0.24s}
-.tool-card:nth-child(5){animation-delay:0.30s}
-.tool-card:nth-child(6){animation-delay:0.36s}
+.tools-main{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tool-card{background:var(--card-bg);backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--border);border-radius:22px;padding:24px 20px;cursor:pointer;transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);text-decoration:none;color:inherit;position:relative;overflow:hidden;animation:cardIn 0.5s ease-out both}
+.tool-card:nth-child(1){animation-delay:0.05s}.tool-card:nth-child(2){animation-delay:0.1s}.tool-card:nth-child(3){animation-delay:0.15s}.tool-card:nth-child(4){animation-delay:0.2s}.tool-card:nth-child(5){animation-delay:0.25s}.tool-card:nth-child(6){animation-delay:0.3s}
+.tool-card:nth-child(7){animation-delay:0.35s}.tool-card:nth-child(8){animation-delay:0.4s}
 @keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.tool-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--tool-color,#e8c96a),transparent);
-  opacity:0;transition:opacity 0.35s;
-}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--tool-color,#e8c96a),transparent);opacity:0;transition:opacity 0.35s}
 .tool-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 20px 60px rgba(232,201,106,0.12),0 8px 28px rgba(0,0,0,0.45);background:var(--card-hover)}
 .tool-card:hover::before{opacity:0.8}
-.tool-icon{
-  font-size:2rem;margin-bottom:14px;
-  width:52px;height:52px;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(232,201,106,0.06);
-  border:1px solid rgba(232,201,106,0.1);
-  transition:all 0.3s;
-}
+.tool-icon{font-size:2rem;margin-bottom:14px;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(232,201,106,0.06);border:1px solid rgba(232,201,106,0.1);transition:all 0.3s}
 .tool-card:hover .tool-icon{transform:scale(1.1);background:rgba(232,201,106,0.12)}
 .tool-name{font-size:0.95rem;font-weight:600;margin-bottom:6px;letter-spacing:0.02em}
 .tool-desc{font-size:0.75rem;color:var(--text2);line-height:1.6}
 .tool-arrow{position:absolute;bottom:18px;right:18px;font-size:0.78rem;color:var(--text3);opacity:0;transform:translateX(-4px);transition:all 0.3s}
 .tool-card:hover .tool-arrow{opacity:1;transform:translateX(0);color:var(--gold)}
 
-/* ── Footer ── */
+/* Footer */
 .site-footer{text-align:center;padding:48px 0 24px;position:relative}
 .site-footer::before{content:'';display:block;width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 auto 20px}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;background:linear-gradient(135deg,var(--gold-pale),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
 .footer-text{font-size:0.68rem;color:var(--text3);letter-spacing:0.12em}
 
-/* ═══ 模态框 ═══ */
+/* 模态框 */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(4,4,10,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:1000;align-items:center;justify-content:center;padding:20px;animation:fadeIn 0.2s ease}
 .modal-overlay.active{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{
-  background:rgba(11,11,22,0.98);backdrop-filter:blur(32px) saturate(180%);
-  border:1px solid rgba(232,201,106,0.1);border-radius:28px;
-  width:100%;max-width:680px;max-height:88vh;overflow-y:auto;
-  box-shadow:0 40px 120px rgba(0,0,0,0.7),0 0 0 1px rgba(232,201,106,0.04);
-  animation:slideUp 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
-}
+.modal{background:rgba(11,11,22,0.98);backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(232,201,106,0.1);border-radius:28px;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;box-shadow:0 40px 120px rgba(0,0,0,0.7);animation:slideUp 0.3s cubic-bezier(0.25,0.46,0.45,0.94)}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.modal::-webkit-scrollbar{width:4px}
-.modal::-webkit-scrollbar-track{background:transparent}
-.modal::-webkit-scrollbar-thumb{background:rgba(232,201,106,0.2);border-radius:2px}
-.modal-hdr{
-  padding:24px 28px 20px;border-bottom:1px solid rgba(232,201,106,0.07);
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;background:rgba(11,11,22,0.98);backdrop-filter:blur(20px);
-  z-index:10;border-radius:28px 28px 0 0;
-}
+.modal::-webkit-scrollbar{width:4px}.modal::-webkit-scrollbar-track{background:transparent}.modal::-webkit-scrollbar-thumb{background:rgba(232,201,106,0.2);border-radius:2px}
+.modal-hdr{padding:24px 28px 20px;border-bottom:1px solid rgba(232,201,106,0.07);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(11,11,22,0.98);backdrop-filter:blur(20px);z-index:10;border-radius:28px 28px 0 0}
 .modal-title{font-size:1rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px}
 .modal-close{background:rgba(232,201,106,0.07);border:1px solid rgba(232,201,106,0.1);color:var(--text2);font-size:1.1rem;cursor:pointer;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1}
 .modal-close:hover{background:rgba(232,201,106,0.15);color:var(--gold);border-color:rgba(232,201,106,0.25)}
 .modal-body{padding:28px;animation:contentIn 0.3s ease 0.1s both}
 @keyframes contentIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* 模态框内表单 */
+/* 表单 */
 .calc-wrap{max-width:460px;margin:0 auto}
 .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .calc-grp{margin-bottom:14px}
 .calc-lbl{font-size:0.72rem;color:var(--text2);margin-bottom:8px;letter-spacing:0.04em}
 .calc-input{width:100%;padding:13px 16px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.92rem;outline:none;transition:all 0.3s;appearance:none;-webkit-appearance:none}
-.calc-input:focus{background:rgba(8,8,18,0.95);border-color:rgba(232,201,106,0.45);box-shadow:0 0 18px rgba(232,201,106,0.07)}
+.calc-input:focus{border-color:rgba(232,201,106,0.45);box-shadow:0 0 18px rgba(232,201,106,0.07)}
 .calc-input option{background:#0d0d1a;color:var(--text)}
 .calc-btn{width:100%;padding:15px;background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0c0c18;border:none;border-radius:14px;font-weight:700;font-size:0.95rem;cursor:pointer;letter-spacing:0.1em;transition:all 0.3s;box-shadow:0 4px 18px rgba(232,201,106,0.22)}
 .calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,201,106,0.38)}
 .calc-res{margin-top:18px;padding:20px;background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.1);border-radius:16px;font-size:0.85rem;line-height:2.1}
 .calc-res strong{color:var(--gold)}
 .calc-res .hl{color:var(--gold);font-size:1.3rem;font-weight:700}
+
+/* 城市选择 */
+.city-select{width:100%;padding:13px 16px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.88rem;outline:none;transition:all 0.3s;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M6 8L0 0h12z' fill='%23e8c96a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;cursor:pointer}
+.city-select option{background:#0d0d1a}
+
+/* 日期输入 */
+.date-input{width:100%;padding:13px 16px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.1);border-radius:12px;color:var(--text);font-size:0.92rem;outline:none;transition:all 0.3s;cursor:pointer}
+.date-input::-webkit-calendar-picker-indicator{cursor:pointer;filter:invert(0.6) sepia(1) saturate(2) hue-rotate(45deg)}
+.date-input:focus{border-color:rgba(232,201,106,0.45)}
+
+/* 天气预报 */
+.weather-result{margin-top:16px;padding:20px;background:rgba(106,176,255,0.05);border:1px solid rgba(106,176,255,0.12);border-radius:18px}
+.weather-now{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.weather-icon-big{font-size:3rem;line-height:1}
+.weather-temp-big{font-size:2.5rem;font-weight:700;color:var(--text);line-height:1}
+.weather-meta{font-size:0.78rem;color:var(--text2);line-height:1.8}
+.weather-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.weather-detail-item{text-align:center;padding:12px 8px;background:rgba(106,176,255,0.06);border-radius:12px}
+.weather-detail-label{font-size:0.65rem;color:var(--text3);margin-bottom:4px}
+.weather-detail-val{font-size:0.9rem;font-weight:600;color:var(--text)}
+.weather-forecast{display:flex;gap:8px;margin-top:14px;overflow-x:auto;padding-bottom:4px}
+.weather-forecast-item{flex-shrink:0;text-align:center;padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:12px;min-width:70px}
+.weather-forecast-item .wf-day{font-size:0.65rem;color:var(--text3);margin-bottom:6px}
+.weather-forecast-item .wf-icon{font-size:1.4rem;margin-bottom:4px}
+.weather-forecast-item .wf-temp{font-size:0.78rem;color:var(--text)}
+.weather-loading{text-align:center;padding:30px;color:var(--text3);font-size:0.85rem}
+.weather-error{text-align:center;padding:20px;color:var(--red);font-size:0.85rem}
+
+/* 倒数日 */
+.countdown-display{margin:20px 0;padding:28px;text-align:center;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.1);border-radius:20px}
+.cd-big{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:8px;text-shadow:0 0 30px rgba(232,201,106,0.3)}
+.cd-label{font-size:0.82rem;color:var(--text2);margin-bottom:16px}
+.cd-detail{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.cd-unit{text-align:center;min-width:64px}
+.cd-num{font-size:1.8rem;font-weight:700;color:var(--text);line-height:1}
+.cd-u-label{font-size:0.65rem;color:var(--text3);margin-top:4px}
+
+/* 老黄历（模态框） */
+.hl-content{padding:8px 0}
+.hl-content-header{text-align:center;padding:14px;background:rgba(232,201,106,0.05);border-radius:16px;border:1px solid rgba(232,201,106,0.1);margin-bottom:20px}
+.hl-ch-date{font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.hl-ch-lunar{font-size:0.78rem;color:var(--text3)}
+.hl-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.hl-col h4{font-size:0.72rem;color:var(--text3);letter-spacing:0.1em;margin-bottom:10px;text-transform:uppercase}
+.hl-tags{display:flex;flex-wrap:wrap;gap:6px}
+.hl-tag-full{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;padding:5px 11px;border-radius:20px;margin-bottom:5px}
+.hl-tag-full.good{background:rgba(39,174,96,0.12);color:var(--green);border:1px solid rgba(39,174,96,0.2)}
+.hl-tag-full.avoid{background:rgba(255,107,107,0.1);color:var(--red);border:1px solid rgba(255,107,107,0.18)}
+.hl-suggest-full{font-size:0.82rem;color:var(--text2);line-height:1.8;padding:14px;background:rgba(255,255,255,0.03);border-radius:14px;border:1px solid rgba(255,255,255,0.05)}
+
+/* BMI */
 .bmi-res{margin-top:18px;text-align:center}
 .bmi-n{font-size:3rem;font-weight:700;margin-bottom:8px;letter-spacing:0.05em}
 .bmi-l{font-size:1rem;margin-bottom:10px;letter-spacing:0.1em}
@@ -446,25 +248,8 @@ body{
 .bmi-fill{height:100%;border-radius:4px;transition:width 0.6s cubic-bezier(.25,.46,.45,.94)}
 .bmi-scale{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text3);margin-top:6px}
 
-.idiom-game{max-width:500px;margin:0 auto;text-align:center}
-.idiom-score{display:flex;gap:28px;justify-content:center;margin-bottom:24px;padding:13px 24px;background:rgba(232,201,106,0.05);border:1px solid rgba(232,201,106,0.1);border-radius:16px;font-size:0.88rem}
-.idiom-score strong{color:var(--gold);font-size:1.15rem}
-.idiom-display{font-size:3.5rem;font-weight:700;color:var(--gold);margin:20px 0;letter-spacing:0.3em;text-shadow:0 0 30px rgba(232,201,106,0.35);animation:charPulse 2.5s ease-in-out infinite}
-@keyframes charPulse{0%,100%{text-shadow:0 0 20px rgba(232,201,106,0.2)}50%{text-shadow:0 0 50px rgba(232,201,106,0.5)}}
-.idiom-hint{font-size:0.8rem;color:var(--text2);margin-bottom:18px}
-.idiom-input{width:100%;padding:14px 18px;background:rgba(6,6,14,0.85);border:1px solid rgba(232,201,106,0.12);border-radius:14px;color:var(--text);font-size:1.05rem;text-align:center;outline:none;transition:all 0.3s;letter-spacing:0.12em}
-.idiom-input:focus{border-color:rgba(232,201,106,0.5);box-shadow:0 0 20px rgba(232,201,106,0.08)}
-.idiom-input::placeholder{color:var(--text3);letter-spacing:0.05em}
-.idiom-btn{background:linear-gradient(135deg,#e8c96a,#c9a84c);color:#0c0c18;border:none;padding:13px 36px;border-radius:50px;font-weight:600;font-size:0.9rem;cursor:pointer;margin-top:16px;transition:all 0.3s}
-.idiom-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(232,201,106,0.3)}
-.idiom-hist{margin-top:22px;text-align:left;max-height:220px;overflow-y:auto;padding:0 4px}
-.idiom-hist::-webkit-scrollbar{width:3px}
-.idiom-hist::-webkit-scrollbar-thumb{background:rgba(232,201,106,0.15);border-radius:2px}
-.idiom-step{font-size:0.78rem;color:var(--text2);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;animation:stepIn 0.3s ease}
-@keyframes stepIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
-.idiom-step strong{color:var(--gold);font-family:monospace;min-width:44px}
-
-.oil-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:12px;margin-top:4px}
+/* 油价 */
+.oil-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax:125px,1fr));gap:12px;margin-top:4px}
 .oil-card{background:rgba(232,201,106,0.04);border:1px solid rgba(232,201,106,0.1);border-radius:16px;padding:18px 12px;text-align:center;transition:all 0.3s}
 .oil-card:hover{background:rgba(232,201,106,0.08);border-color:rgba(232,201,106,0.2);transform:translateY(-2px)}
 .oil-c{font-size:0.7rem;color:var(--text3);margin-bottom:8px;letter-spacing:0.04em}
@@ -472,6 +257,12 @@ body{
 .oil-u{font-size:0.62rem;color:var(--text3);margin-top:4px}
 .oil-note{font-size:0.7rem;color:var(--text3);text-align:center;margin-top:16px;line-height:1.7}
 
+/* 节气 */
+.solar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
+.solar-item{text-align:center;padding:15px 8px;border-radius:12px;border:1px solid rgba(232,201,106,0.07);font-size:0.85rem;color:var(--text2);transition:all 0.3s}
+.solar-item.on{border-color:rgba(232,201,106,0.4);background:rgba(232,201,106,0.1);color:var(--gold);font-weight:600}
+
+/* 壁纸 */
 .wp-full{text-align:center}
 .wp-full-img{max-width:100%;max-height:50vh;border-radius:16px;margin-bottom:14px;box-shadow:0 20px 60px rgba(0,0,0,0.5);transition:all 0.3s;cursor:pointer}
 .wp-full-img:hover{transform:scale(1.01)}
@@ -479,34 +270,40 @@ body{
 .wp-btn{background:none;border:1px solid rgba(232,201,106,0.2);color:var(--text2);padding:9px 20px;border-radius:20px;font-size:0.78rem;cursor:pointer;transition:all 0.3s;letter-spacing:0.04em}
 .wp-btn:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(232,201,106,0.1)}
 
-.solar-grid-full{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
-.solar-item-full{text-align:center;padding:15px 8px;border-radius:12px;border:1px solid rgba(232,201,106,0.07);font-size:0.85rem;color:var(--text2);transition:all 0.3s}
-.solar-item-full.on{border-color:rgba(232,201,106,0.4);background:rgba(232,201,106,0.1);color:var(--gold);font-weight:600}
-
+/* 历史 */
 .hist-modal{max-height:480px;overflow-y:auto}
-.hist-modal-item{padding:15px 0;border-bottom:1px solid rgba(232,201,106,0.06)}
-.hist-modal-y{font-size:0.68rem;font-weight:700;color:var(--blue);margin-bottom:5px;opacity:0.8}
-.hist-modal-t{font-size:0.88rem;line-height:1.65}
+.hist-item{padding:15px 0;border-bottom:1px solid rgba(232,201,106,0.06)}
+.hist-y{font-size:0.68rem;font-weight:700;color:var(--blue);margin-bottom:5px;opacity:0.8}
+.hist-t{font-size:0.88rem;line-height:1.65}
+
+/* 诗词 */
+.poem-full{text-align:center;padding:10px 0}
+.poem-full-title{font-size:1.4rem;color:var(--gold-pale);margin-bottom:10px;font-weight:600;letter-spacing:0.06em}
+.poem-full-author{font-size:0.78rem;color:var(--text3);margin-bottom:24px}
+.poem-full-content{font-size:1.1rem;line-height:2.4;letter-spacing:0.14em;color:var(--text);white-space:pre-line}
 
 /* 响应式 */
 @media(max-width:768px){
   .page{padding:0 16px 50px}
   .site-header{padding:48px 0 32px}
   .five-grid{grid-template-columns:1fr;gap:14px}
-  .cell-a,.cell-b{grid-column:1}
+  .cell-a,.cell-b,.cell-c{grid-column:1;grid-row:auto}
   .fortune-wheel-wrap{flex-direction:column;align-items:flex-start}
-  .fortune-wheel{width:110px;height:110px}
+  .two-col{grid-template-columns:1fr}
   .tools-main{grid-template-columns:repeat(2,1fr)}
-  .solar-grid-full{grid-template-columns:repeat(3,1fr)}
+  .solar-grid{grid-template-columns:repeat(3,1fr)}
+  .oil-grid{grid-template-columns:repeat(2,1fr)}
   .calc-row{grid-template-columns:1fr}
   .modal-body{padding:18px 14px}
   .modal-hdr{padding:18px 14px 16px}
-  .oil-grid{grid-template-columns:repeat(2,1fr)}
+  .weather-detail{grid-template-columns:repeat(2,1fr)}
+  .date-strip{flex-wrap:wrap;gap:10px;justify-content:center}
+  .date-sep{display:none}
+  .weather-bar{margin-left:0}
 }
 @media(max-width:480px){
   .tools-main{grid-template-columns:1fr 1fr;gap:12px}
-  .date-strip{flex-wrap:wrap;gap:10px;justify-content:center}
-  .date-sep{display:none}
+  .hl-two-col{grid-template-columns:1fr}
 }
 
 ::selection{background:rgba(232,201,106,0.2);color:var(--gold-pale)}
@@ -528,7 +325,6 @@ body{
 
 <div class="page">
 
-  <!-- Header -->
   <header class="site-header">
     <div class="logo">
       <div class="logo-hanzi">问渠</div>
@@ -536,9 +332,7 @@ body{
     </div>
     <div class="logo-subtitle">「问渠那得清如许<br>为有源头活水来」</div>
     <div class="logo-source">朱熹《观书有感》</div>
-    <div class="logo-badge">
-      <span>♾️</span> 永久免费 · 终身使用
-    </div>
+    <div class="logo-badge"><span>♾️</span> 永久免费 · 终身使用</div>
   </header>
 
   <!-- 日期条 -->
@@ -549,20 +343,21 @@ body{
       <div id="dateWeekday">—</div>
       <div class="date-lunar" id="dateLunar">—</div>
     </div>
+    <div class="weather-bar" id="weatherBar">
+      <span class="w-city" id="wCity">—</span>
+      <span class="w-icon" id="wIcon">🌤️</span>
+      <span class="w-temp" id="wTemp">—</span>
+    </div>
   </div>
 
   <!-- ═══ 自动展示区 ═══ -->
   <div class="daily-section">
-
     <div class="section-head"><span class="section-label">今日速览</span></div>
-
-    <!-- 五宫格 -->
     <div class="five-grid">
 
-      <!-- A: 今日运势（占左侧1格） -->
+      <!-- 运势（左侧大卡） -->
       <div class="cell-a">
-        <div class="fortune-featured">
-          <div class="fortune-bg-art"></div>
+        <div class="fortune-card">
           <div class="fortune-title">🎰 今日运势 <span>— 每天一次</span></div>
           <div class="fortune-wheel-wrap">
             <div class="fortune-wheel" id="homeWheel" onclick="spinFortune()">
@@ -572,65 +367,42 @@ body{
               <div class="fortune-result" id="homeResult" style="color:var(--text3)">转动轮盘</div>
               <div class="fortune-desc" id="homeDesc">转动金色轮盘，看看今日命运如何安排</div>
               <button class="fortune-btn" id="homeBtn" onclick="spinFortune()">开始抽签</button>
-              <div class="fortune-tips" id="homeTips">抽完明天再来</div>
+              <div class="fortune-tips" id="homeTips">每天一次，抽完明天再来</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- B: 历史+诗词+壁纸+油价节气 -->
+      <!-- 诗词+历史（右上） -->
       <div class="cell-b">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-
-          <!-- 诗词 -->
-          <div class="poem-card" onclick="openModal('poem')">
+        <div class="two-col">
+          <div class="poem-card" onclick="openApp('poem')">
             <div class="poem-eyebrow">📜 今日诗词</div>
             <div class="poem-title" id="homePoemTitle">—</div>
             <div class="poem-author" id="homePoemAuthor"></div>
             <div class="poem-content" id="homePoemContent">—</div>
             <div class="poem-refresh" onclick="event.stopPropagation();shuffleHomePoem()">↻ 换一首</div>
           </div>
-
-          <!-- 历史今天 -->
-          <div class="history-card" onclick="openModal('history')">
+          <div class="history-card" onclick="openApp('history')">
             <div class="history-card-title">📅 历史上的今天 <span class="history-badge" id="histBadge">—</span></div>
             <div class="history-items" id="histItems">
-              <div class="history-item">
-                <div class="history-year">加载中</div>
-                <div class="history-text" style="color:var(--text3)">...</div>
-              </div>
+              <div class="history-item"><div class="history-year">加载中</div><div class="history-text" style="color:var(--text3)">...</div></div>
             </div>
             <div class="history-more">展开全部 →</div>
           </div>
-
         </div>
       </div>
 
-      <!-- 壁纸、油价、节气占满底部 -->
-      <div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
-
-        <div class="wallpaper-card" onclick="openModal('wallpaper')">
-          <img class="wallpaper-img" id="homeWpImg" src="" alt="今日壁纸">
-          <div class="wallpaper-label">🖼️ 今日壁纸</div>
-          <div class="wallpaper-desc">每日自动更新，点击查看大图</div>
+      <!-- 老黄历（右下） -->
+      <div class="cell-c">
+        <div class="hl-card" id="hlCard">
+          <div class="hl-title">📖 老黄历 · 今日宜忌</div>
+          <div class="hl-lunar" id="hlLunar">—</div>
+          <div class="hl-good" id="hlGood"></div>
+          <div class="hl-suggest" id="hlSuggest"></div>
         </div>
-
-        <div class="mini-card" onclick="openModal('oil')">
-          <div class="mini-card-title">⛽ 今日油价</div>
-          <div class="oil-prices" id="homeOil"></div>
-          <div class="oil-foot">* 参考价，以当地为准</div>
-        </div>
-
-        <div class="mini-card" onclick="openModal('solarterm')">
-          <div class="mini-card-title">🌿 二十四节气</div>
-          <div class="solar-cur">
-            <div class="solar-cur-name" id="homeSolarName">—</div>
-            <div class="solar-cur-day" id="homeSolarDay"></div>
-          </div>
-          <div class="solar-pills" id="homeSolarPills"></div>
-        </div>
-
       </div>
+
     </div>
   </div>
 
@@ -675,22 +447,51 @@ body{
   }
 })();
 
-// ═══ 日期 ═══
+// ═══ 日期 + 天气 ═══
 (function(){
   const n=new Date(),days=['周日','周一','周二','周三','周四','周五','周六'];
   document.getElementById('dateDay').textContent=n.getDate();
   document.getElementById('dateWeekday').textContent=days[n.getDay()];
   document.getElementById('dateLunar').textContent='农历三月十九前后';
+  // 默认查成都天气
+  loadWeather('成都');
 })();
+
+// ═══ 天气预报（免费API） ═══
+function loadWeather(city){
+  const map={'北京':'101010100','上海':'101020100','广州':'101280101','深圳':'101280601','成都':'101270101','重庆':'101040100','杭州':'101210101','武汉':'101200101','西安':'101110101','南京':'101190101','天津':'101030100','苏州':'101190401','郑州':'101180101','长沙':'101250101','沈阳':'101070101','青岛':'101120201','大连':'101070201','厦门':'101230201','福州':'101230101','济南':'101120101'};
+  const code=map[city]||map['成都'];
+  fetch(`https://tianqi-api.com/api/v1/?version=v9&appid=0&appsecret=0&city=${encodeURIComponent(city)}&cityid=${code}`)
+    .then(r=>r.json()).then(d=>{
+      if(d&&d.data){
+        document.getElementById('wCity').textContent=d.city;
+        document.getElementById('wIcon').textContent=getWeatherEmoji(d.data.wea);
+        document.getElementById('wTemp').textContent=d.data.tem+'°C';
+      }
+    }).catch(()=>{});
+}
+function getWeatherEmoji(wea){
+  if(!wea)return'🌤️';
+  if(wea.includes('晴'))return'☀️';
+  if(wea.includes('阴'))return'☁️';
+  if(wea.includes('雨'))return'🌧️';
+  if(wea.includes('雪'))return'❄️';
+  if(wea.includes('雾')||wea.includes('霾'))return'🌫️';
+  if(wea.includes('雷'))return'⛈️';
+  if(wea.includes('多云'))return'⛅';
+  return'🌤️';
+}
 
 // ═══ 工具 ═══
 const TOOLS=[
-  {id:'calc',  icon:'🏠', title:'房贷计算器',  desc:'公积金·商贷·组合贷', color:'#6bcb77'},
-  {id:'car',   icon:'🚗', title:'车贷计算器',  desc:'等额本息·等额本金', color:'#6ab0ff'},
-  {id:'bmi',   icon:'⚖️',  title:'BMI计算器',  desc:'体脂指数·健康状态', color:'#ff6b6b'},
-  {id:'idiom', icon:'🔗', title:'成语接龙',    desc:'一字接龙·词汇挑战', color:'#b06aff'},
-  {id:'oil',   icon:'⛽',  title:'今日油价',   desc:'全国主要城市参考价', color:'#f39c12'},
-  {id:'solar', icon:'🌿', title:'二十四节气',  desc:'顺应时节·农耕智慧', color:'#27ae60'},
+  {id:'calc',  icon:'🏠', title:'房贷计算器',  desc:'公积金·商贷·组合贷三种模式', color:'#6bcb77'},
+  {id:'car',   icon:'🚗', title:'车贷计算器',  desc:'等额本息·等额本金对比', color:'#6ab0ff'},
+  {id:'tax',   icon:'💰', title:'个税计算器',  desc:'工资·年终奖·副业收入综合税', color:'#e8c96a'},
+  {id:'bmi',   icon:'⚖️',  title:'BMI计算器',  desc:'体脂指数·健康状态评估', color:'#ff6b6b'},
+  {id:'date',  icon:'📅', title:'日期计算器',  desc:'倒数日·天数差·工作日计算', color:'#b06aff'},
+  {id:'weather',icon:'🌤️', title:'天气预报',   desc:'全国城市实时天气·未来预报', color:'#6ab0ff'},
+  {id:'oil',   icon:'⛽',  title:'今日油价',   desc:'全国主要城市参考油价', color:'#f39c12'},
+  {id:'solar', icon:'🌿', title:'二十四节气',  desc:'全年24节气·时间查询', color:'#27ae60'},
 ];
 (function(){
   const g=document.getElementById('toolsMain');
@@ -704,7 +505,7 @@ const TOOLS=[
   });
 })();
 
-// ═══ 今日诗词 ═══
+// ═══ 诗词 ═══
 const POEMS=[
   {t:'静夜思',a:'李白',l:'床前明月光，疑是地上霜。举头望明月，低头思故乡。'},
   {t:'登鹳雀楼',a:'王之涣',l:'白日依山尽，黄河入海流。欲穷千里目，更上一层楼。'},
@@ -720,37 +521,20 @@ const POEMS=[
   {t:'绝句',a:'杜甫',l:'两个黄鹂鸣翠柳，一行白鹭上青天。窗含西岭千秋雪，门泊东吴万里船。'},
 ];
 let POOL=[...POEMS];
-function pickPoem(){
-  if(POOL.length===0)POOL=[...POEMS];
-  return POOL.splice(Math.floor(Math.random()*POOL.length),1)[0];
-}
-function loadHomePoem(){
-  const p=pickPoem();
-  document.getElementById('homePoemTitle').textContent='《'+p.t+'》';
-  document.getElementById('homePoemAuthor').textContent='— '+p.a;
-  document.getElementById('homePoemContent').textContent=p.l;
-}
+function pickPoem(){if(POOL.length===0)POOL=[...POEMS];return POOL.splice(Math.floor(Math.random()*POOL.length),1)[0];}
+function loadHomePoem(){const p=pickPoem();document.getElementById('homePoemTitle').textContent='《'+p.t+'》';document.getElementById('homePoemAuthor').textContent='— '+p.a;document.getElementById('homePoemContent').textContent=p.l;}
 function shuffleHomePoem(){loadHomePoem();}
 loadHomePoem();
 
-// ═══ 今日壁纸 ═══
-(function(){
-  const seeds=['mountains','ocean','forest','sunset','sky','lake','garden'];
-  const today=new Date();
-  const seed=seeds[today.getDate()%seeds.length];
-  const img=document.getElementById('homeWpImg');
-  if(img)img.src=`https://picsum.photos/seed/${seed}/600/300?t=${today.toDateString()}`;
-})();
-
 // ═══ 今日运势 ═══
 const FORTUNES=[
-  {r:'🌟 大吉',c:'#e8c96a',d:'今日诸事顺遂，机遇降临。宜大胆行动，把握时机。工作有突破，人际遇贵人。'},
+  {r:'🌟 大吉',c:'#e8c96a',d:'今日诸事顺遂，机遇降临。宜大胆行动，把握时机。贵人相助，工作有突破。'},
   {r:'😊 吉',c:'#6bcb77',d:'整体运势上扬，适合推进计划。人际和谐，有意外惊喜。宜整理房间，迎接好运。'},
   {r:'😐 平',c:'#6ab0ff',d:'今日中规中矩，静心守成为上。避免激进决策，多倾听他人。晚间运势转好。'},
   {r:'😟 凶',c:'#b06aff',d:'今日需谨慎，忌冒险冲动。遇事先冷静，退一步海阔天空。宜整理思路，不宜签约。'},
   {r:'💀 大凶',c:'#ff6b6b',d:'今日低谷，能量低沉。宜静不宜动，避免做重大决定。多休息早睡眠，明日自会好转。'},
 ];
-const FK='wf_v2';
+const FK='wf_v3';
 let spinning=false;
 function initFortune(){
   const today=new Date().toDateString();
@@ -790,13 +574,11 @@ function spinFortune(){
   wheel.style.transition='transform 4.5s cubic-bezier(.2,.8,.3,1)';
   wheel.style.transform=`rotate(${deg}deg)`;
   wheel.classList.add('spinning');
-  const segs=FORTUNES.length;
-  const sa=360/segs;
+  const segs=FORTUNES.length,sa=360/segs;
   setTimeout(()=>{
     const norm=((deg%360)+sa/2)%360;
-    const idx=Math.floor(norm/sa);
-    const fi=(segs-idx)%segs;
-    const f=FORTUNES[fi];
+    const fi=(segs-Math.floor(norm/sa))%segs;
+    const f=FORTUNES[fi<0?0:fi];
     result.textContent=f.r;result.style.color=f.c;
     desc.textContent=f.d;
     btn.textContent='今日已抽签 ✓';
@@ -810,45 +592,35 @@ initFortune();
 
 // ═══ 历史今天 ═══
 (function(){
-  const n=new Date();
-  const m=String(n.getMonth()+1).padStart(2,'0');
-  const d=String(n.getDate()).padStart(2,'0');
+  const n=new Date(),m=String(n.getMonth()+1).padStart(2,'0'),d=String(n.getDate()).padStart(2,'0');
   fetch(`https://api.yiyouyun.com/api/history?month=${m}&day=${d}`)
-    .then(r=>r.json())
-    .then(data=>{
+    .then(r=>r.json()).then(data=>{
       if(!data||!data.length)return;
       document.getElementById('histBadge').textContent=data.length+'条';
       window._allHist=data;
       document.getElementById('histItems').innerHTML=data.slice(0,3).map((item,i)=>
-        `<div class="history-item">
-          <div class="history-year">${item.year||'?'}年</div>
-          <div class="history-text">${item.title||item.event||''}</div>
-        </div>${i<2?'<div class="history-sep"></div>':''}`
+        `<div class="history-item"><div class="history-year">${item.year||'?'}年</div><div class="history-text">${item.title||item.event||''}</div></div>${i<2?'<div class="history-sep"></div>':''}`
       ).join('');
-    })
-    .catch(()=>{});
+    }).catch(()=>{});
 })();
 
-// ═══ 油价小卡 ═══
+// ═══ 老黄历（本地计算） ═══
 (function(){
-  const ps=[{c:'北京',p:7.85},{c:'上海',p:7.82},{c:'成都',p:7.78},{c:'广州',p:7.90}];
-  const rand=ps.map(x=>({...x,p:+(x.p+(Math.random()*0.1-0.05)).toFixed(2)}));
-  document.getElementById('homeOil').innerHTML=rand.map(x=>
-    `<div class="oil-row"><span class="oil-city">${x.c}</span><span class="oil-p">¥${x.p.toFixed(2)}</span></div>`
-  ).join('');
-})();
-
-// ═══ 节气小卡 ═══
-(function(){
-  const terms=['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
+  // 简化版老黄历：根据日期生成固定的宜忌（实际应用中应接真实黄历API）
   const n=new Date();
-  const start=new Date(n.getFullYear(),0,1);
-  const doy=Math.floor((n-start)/86400000)+1;
-  const cur=Math.floor(doy/15.2)%24;
-  document.getElementById('homeSolarName').textContent=terms[cur];
-  document.getElementById('homeSolarDay').textContent='第'+doy+'天';
-  const pills=document.getElementById('homeSolarPills');
-  if(pills)pills.innerHTML=terms.map((t,i)=>`<span class="solar-p${i===cur?' on':''}">${t}</span>`).join('');
+  const day=n.getDate();
+  const month=n.getMonth()+1;
+  // 每月固定的宜忌周期
+  const goods=['嫁娶','出行','搬家','动土','开业','祭祀','祈福','订盟','纳采','会亲友'];
+  const bads=['动土','破土','安葬','入宅','移徙','开市','斋醮'];
+  // 用日期做伪随机，确保每天不同
+  const seed=month*31+day;
+  const shuffle=(arr)=>{const a=[...arr];for(let i=a.length-1;i>0;i--){const j=(seed*(i+1))%a.length;[a[i],a[j]]=[a[j],a[i]]}return a;};
+  const g=shuffle(goods).slice(0,4);
+  const b=shuffle(bads).slice(0,2);
+  document.getElementById('hlLunar').textContent='农历三月十九前后';
+  document.getElementById('hlGood').innerHTML=g.map(x=>`<span class="hl-tag good">✅ ${x}</span>`).join('');
+  document.getElementById('hlSuggest').innerHTML=`💡 今日宜「${g.slice(0,2).join('」「')}」，宜出行、社交。<br>⚠️ 忌「${b.join('」「')}」，避免重要决策。`;
 })();
 
 // ═══ 模态框 ═══
@@ -867,14 +639,15 @@ document.onkeydown=e=>{if(e.key==='Escape')closeModal()};
 function openApp(id){
   let t='',b='';
   switch(id){
-    case 'calc':   t='🏠 房贷计算器';   b=calcH();break;
-    case 'car':     t='🚗 车贷计算器';    b=carH();break;
+    case 'calc':    t='🏠 房贷计算器';   b=calcH();break;
+    case 'car':     t='🚗 车贷计算器';   b=carH();break;
+    case 'tax':     t='💰 个税计算器';   b=taxH();break;
     case 'bmi':     t='⚖️ BMI计算器';   b=bmiH();break;
-    case 'idiom':   t='🔗 成语接龙';     b=idiomH();break;
+    case 'date':    t='📅 日期计算器';   b=dateH();break;
+    case 'weather': t='🌤️ 天气预报';    b=weatherH();loadWeatherModal();break;
     case 'oil':     t='⛽ 今日油价';    b=oilH();loadOilM();break;
     case 'solar':   t='🌿 二十四节气';  b=solarH();loadSolarM();break;
-    case 'wallpaper':t='🖼️ 今日壁纸';  b=wpH();break;
-    case 'history':  t='📅 历史上的今天'; b=histH();loadHistM();break;
+    case 'history': t='📅 历史上的今天'; b=histH();loadHistM();break;
     case 'poem':    t='📜 随机古诗词';  b=poemH();break;
   }
   openModal(t,b);
@@ -932,21 +705,71 @@ function runCar(){
   const dn=parseFloat(document.getElementById('cdn').value)/100;
   const rate=parseFloat(document.getElementById('crt').value)/100;
   const type=document.getElementById('cty').value;
-  const mo=yrs*12;
-  const dp=p*dn,loan=p-dp;
+  const mo=yrs*12,dp=p*dn,loan=p-dp;
   const fmt=n=>'¥'+Math.round(n).toLocaleString();
   let s='';
   if(type==='bx'){
     const m=loan*(rate/12*Math.pow(1+rate/12,mo))/(Math.pow(1+rate/12,mo)-1);
     const t=m*mo,i=t-loan;
-    s=`<strong>等额本息</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款本金：<strong>${fmt(loan)}</strong> · ${yrs}年 · ${(rate*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span>（每月相同）<br>总利息：${fmt(i)} · 共还：<strong>${fmt(t+dp)}</strong>`;
+    s=`<strong>等额本息</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款：<strong>${fmt(loan)}</strong> · ${yrs}年 · ${(rate*100).toFixed(2)}%<br><br><span class="hl">月供 ${fmt(m)}</span>（每月相同）<br>总利息：${fmt(i)} · 共还：<strong>${fmt(t+dp)}</strong>`;
   }else{
     const pr=loan/mo;
     const fi=loan*rate/12,li=pr*rate/12;
     const ti=loan*rate*(yrs+0.5)/2;
-    s=`<strong>等额本金</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款本金：<strong>${fmt(loan)}</strong> · ${yrs}年 · ${(rate*100).toFixed(2)}%<br><br>首月：<span class="hl">${fmt(pr+fi)}</span> · 末月：约${fmt(pr+li)}<br>每月递减约 ${fmt(loan*rate/12/mo)}<br>总利息：${fmt(ti)}`;
+    s=`<strong>等额本金</strong><br>车价：${fmt(p)} · 首付：${fmt(dp)}（${(dn*100).toFixed(0)}%）<br>贷款：<strong>${fmt(loan)}</strong> · ${yrs}年 · ${(rate*100).toFixed(2)}%<br><br>首月：<span class="hl">${fmt(pr+fi)}</span> · 末月：约${fmt(pr+li)}<br>每月递减约 ${fmt(loan*rate/12/mo)}<br>总利息：${fmt(ti)}`;
   }
   document.getElementById('carR').innerHTML=s;
+}
+
+// ═══ 个税计算器（2024新税法） ═══
+function taxH(){return`<div class="calc-wrap">
+  <div class="calc-grp"><div class="calc-lbl">每月税前工资（元）</div><input class="calc-input" id="taxSalary" type="number" placeholder="8000" min="0"></div>
+  <div class="calc-grp"><div class="calc-lbl">年终奖金额（元）</div><input class="calc-input" id="taxBonus" type="number" placeholder="0" min="0"></div>
+  <div class="calc-grp"><div class="calc-lbl">专项附加扣除（月）</div><input class="calc-input" id="taxDeduct" type="number" placeholder="3000（房贷/子女教育等）" min="0" value="0"></div>
+  <div class="calc-grp"><div class="calc-lbl">公积金/社保个人（月）</div><input class="calc-input" id="taxShebao" type="number" placeholder="0" min="0" value="0"></div>
+  <button class="calc-btn" onclick="runTax()">计算个税</button>
+  <div class="calc-res" id="taxR">点击按钮计算年度税务详情</div>
+</div>`;}
+function runTax(){
+  const salary=parseFloat(document.getElementById('taxSalary').value)||0;
+  const bonus=parseFloat(document.getElementById('taxBonus').value)||0;
+  const deduct=parseFloat(document.getElementById('taxDeduct').value)||0;
+  const shebao=parseFloat(document.getElementById('taxShebao').value)||0;
+  const yearIncome=salary*12;
+  // 起征点5000/月=60000/年
+  const base=60000;
+  const taxable=(yearIncome-base-deduct*12-shebao);
+  const taxTable=[[36000,0.03,0],[144000,0.10,2520],[300000,0.20,16920],[420000,0.25,31920],[660000,0.30,52920],[960000,0.35,85920],[Infinity,0.45,181920]];
+  let incomeTax=0;
+  for(const [limit,rate,quickDeduct] of taxTable){
+    if(taxable<=limit){incomeTax=taxable*rate-quickDeduct;break;}
+  }
+  incomeTax=Math.max(0,incomeTax);
+  const monthlyTax=incomeTax/12;
+  // 年终奖单独计税
+  let bonusTax=0;
+  if(bonus>0){
+    const bpm=bonus/12;
+    for(const [limit,rate,quickDeduct] of taxTable){
+      if(bpm<=limit){bonusTax=bonus*rate-quickDeduct;break;}
+    }
+    bonusTax=Math.max(0,bonusTax);
+  }
+  const totalTax=incomeTax+bonusTax;
+  const monthlyNet=(salary*(12)+bonus-totalTax)/12;
+  const fmt=n=>'¥'+Math.round(n).toLocaleString();
+  document.getElementById('taxR').innerHTML=`
+    <strong>2024年个人所得税计算</strong><br>
+    年薪合计：${fmt(yearIncome+bonus)}<br>
+    专项附加扣除：${fmt(deduct*12)} · 社保公积金：${fmt(shebao*12)}<br>
+    <br>💼 工资薪金个税：<strong>${fmt(incomeTax)}</strong><br>
+    🎁 年终奖个税：<strong>${fmt(bonusTax)}</strong>（单独计税）<br>
+    <br>合计年纳税：<span class="hl">${fmt(totalTax)}</span><br>
+    <br>税后年收：<strong>${fmt(yearIncome+bonus-totalTax)}</strong><br>
+    月均到手：<span class="hl">${fmt(monthlyNet)}</span><br>
+    <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.03);border-radius:10px;font-size:0.75rem;color:var(--text3);line-height:1.7">
+      ※ 2024年个税税率表：≤3.6万 3% | ≤14.4万 10% | ≤30万 20% | ≤42万 25% | ≤66万 30% | ≤96万 35% | >96万 45%
+    </div>`;
 }
 
 // ═══ BMI ═══
@@ -976,73 +799,109 @@ function runBMI(){
   <div class="bmi-scale"><span>偏瘦&lt;18.5</span><span>正常 18.5-24</span><span>偏胖 24-28</span><span>肥胖&gt;28</span></div>`;
 }
 
-// ═══ 成语接龙 ═══
-const IDIOMS={
-  '成':['成功','成竹在胸','成人之美','成群结队','大器晚成'],
-  '功':['功成名就','功亏一篑','功德无量','功到自然成'],
-  '就':['就事论事','就地正法','就汤下面'],
-  '名':['名副其实','名落孙山','名正言顺','名列前茅','名利双收'],
-  '实':['实至名归','实事求是','实话实说'],
-  '归':['归心似箭','归根结底','归去来兮'],
-  '正':['正本清源','正大光明','正襟危坐'],
-  '光':['光明磊落','光彩夺目','光阴似箭','光宗耀祖'],
-  '明':['明辨是非','明明白白','明目张胆','明枪暗箭'],
-  '是':['是非分明','是非曲直'],
-  '非':['非同小可','非分之想'],
-  '小':['小题大做','小心翼翼','小巫见大巫'],
-  '大':['大江东去','大名鼎鼎','大吉大利','大智若愚','大公无私'],
-  '智':['智勇双全','智圆行方'],
-  '勇':['勇往直前','勇冠三军'],
-  '前':['前车之鉴','前功尽弃','前所未有','前仆后继'],
-  '继':['继往开来'],
-  '开':['开门见山','开诚布公','开源节流','开天辟地'],
-  '山':['山清水秀','山穷水尽','名山大川'],
-  '远':['远走高飞','远见卓识'],
-  '飞':['飞黄腾达','飞扬跋扈'],
-  '达':['达官贵人'],
-  '贵':['贵人多忘事'],
-  '人':['人山人海','人才济济','人杰地灵'],
-  '海':['海阔天空','海枯石烂','海誓山盟'],
-  '天':['天高云淡','天翻地覆','天经地义','天涯海角'],
-  '涯':['天涯海角'],
-};
-let iS=0,iB=0,iC='成';
-function idiomH(){return`<div class="idiom-game">
-  <div class="idiom-score"><span>本局 <strong id="iSN">0</strong> 分</span><span>最高 <strong id="iBN">0</strong> 分</span></div>
-  <div class="idiom-display" id="iDsp">成</div>
-  <div class="idiom-hint" id="iHint">请输入以「成」开头的成语</div>
-  <input class="idiom-input" id="iInp" placeholder="输入成语后按回车" autocomplete="off">
-  <button class="idiom-btn" onclick="chkIdi({key:'Enter'})">确认接龙</button>
-  <div class="idiom-hist" id="iHist"></div>
+// ═══ 日期计算器 ═══
+function dateH(){return`<div class="calc-wrap">
+  <div class="calc-grp"><div class="calc-lbl">目标日期</div><input class="date-input" id="dateTarget" type="date" style="color-scheme:dark"></div>
+  <div class="calc-grp"><div class="calc-lbl">对比日期（留空为今天）</div><input class="date-input" id="dateFrom" type="date" style="color-scheme:dark"></div>
+  <div class="calc-grp"><div class="calc-lbl">计算方式</div><select class="calc-input" id="dateMode">
+    <option value="countdown">倒计时（距离目标）</option>
+    <option value="since">正计时（从某天算起）</option>
+    <option value="diff">天数差</option>
+    <option value="workday">工作日（不含周末）</option>
+  </select></div>
+  <button class="calc-btn" onclick="runDateCalc()">计算</button>
+  <div class="countdown-display" id="dateResult" style="display:none">
+    <div class="cd-big" id="cdBig"></div>
+    <div class="cd-label" id="cdLabel"></div>
+    <div class="cd-detail" id="cdDetail"></div>
+  </div>
 </div>`;}
-function chkIdi(e){
-  if(e.key!=='Enter')return;
-  const inp=document.getElementById('iInp');
-  if(!inp)return;
-  const v=inp.value.trim();
-  if(!v||v.length<4)return;
-  if(!v.startsWith(iC)){
-    inp.style.animation='none';inp.offsetHeight;inp.style.animation='shk 0.4s ease';setTimeout(()=>inp.style.animation='',400);return;
-  }
-  const nc=v[v.length-1];
-  const hist=document.getElementById('iHist');
-  if(IDIOMS[nc]){
-    iS++;if(iS>iB)iB=iS;
-    iC=nc;
-    document.getElementById('iSN').textContent=iS;
-    document.getElementById('iBN').textContent=iB;
-    document.getElementById('iDsp').textContent=nc;
-    document.getElementById('iHint').textContent='请输入以「'+nc+'」开头的成语';
-    hist.innerHTML=`<div class="idiom-step"><strong>+1</strong><span>「${v}」→ 「${nc}」</span></div>`+hist.innerHTML;
-    inp.value='';
-  }else{
-    iS=0;
-    hist.innerHTML=`<div class="idiom-step" style="color:#ff6b6b"><strong style="color:#ff6b6b">×</strong><span>「${v}」无后续，当前：「${iC}」</span></div>`+hist.innerHTML;
-    document.getElementById('iSN').textContent='0';inp.value='';
+function runDateCalc(){
+  const target=document.getElementById('dateTarget').value;
+  if(!target){alert('请选择目标日期');return;}
+  const fromStr=document.getElementById('dateFrom').value;
+  const from=fromStr?new Date(fromStr):new Date();
+  const to=new Date(target);
+  const mode=document.getElementById('dateMode').value;
+  const diffMs=to-from;
+  const totalDays=Math.round(diffMs/86400000);
+  const absDays=Math.abs(totalDays);
+  const result=document.getElementById('dateResult');
+  const big=document.getElementById('cdBig');
+  const label=document.getElementById('cdLabel');
+  const detail=document.getElementById('cdDetail');
+  result.style.display='block';
+  if(mode==='countdown'){
+    if(totalDays<0){
+      big.textContent='已过';
+      label.textContent=`距离 ${target}（过去 ${absDays} 天）`;
+    }else{
+      big.textContent=totalDays;
+      label.textContent=`天`;
+    }
+    const d=Math.floor(totalDays/30.44),mo=Math.floor(d/12),yrs=Math.floor(d/12),rm=d%12;
+    const w=Math.floor(totalDays/7);
+    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${w}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${mo}</div><div class="cd-u-label">月</div></div><div class="cd-unit"><div class="cd-num">${yrs}</div><div class="cd-u-label">年</div></div>`;
+  }else if(mode==='since'){
+    big.textContent=absDays;
+    label.textContent=`天`;
+    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${Math.floor(absDays/7)}</div><div class="cd-u-label">周</div></div><div class="cd-unit"><div class="cd-num">${Math.floor(absDays/30.44)}</div><div class="cd-u-label">月</div></div>`;
+  }else if(mode==='diff'){
+    big.textContent=totalDays;
+    label.textContent=`天（正数=之后，负数=之前）`;
+    detail.innerHTML='';
+  }else if(mode==='workday'){
+    let workdays=0;
+    const cur=new Date(from);
+    const step=totalDays>=0?1:-1;
+    while((step>0?cur<=to:cur>=to)){const d=cur.getDay();if(d!==0&&d!==6)workdays++;cur.setDate(cur.getDate()+step);if(Math.abs(cur-from)/86400000>730)break;}
+    big.textContent=totalDays>=0?workdays:workdays;
+    label.textContent=`工作日（不含周末）`;
+    detail.innerHTML=`<div class="cd-unit"><div class="cd-num">${totalDays}</div><div class="cd-u-label">日历天</div></div><div class="cd-unit"><div class="cd-num">${totalDays-workdays}</div><div class="cd-u-label">周末</div></div>`;
   }
 }
 
-// ═══ 油价（模态框） ═══
+// ═══ 天气预报（模态框） ═══
+function weatherH(){
+  const cities=['北京','上海','广州','深圳','成都','重庆','杭州','武汉','西安','南京','天津','苏州','郑州','长沙','沈阳','青岛','大连','厦门','福州','济南'];
+  const opts=cities.map(c=>`<option value="${c}">${c}</option>`).join('');
+  return`<div class="calc-wrap">
+  <div class="calc-grp"><div class="calc-lbl">选择城市</div><select class="city-select" id="wCitySel" onchange="loadWeatherModal()">${opts}</select></div>
+  <div id="wResult"><div class="weather-loading">正在加载天气数据...</div></div>
+</div>`;
+}
+function loadWeatherModal(){
+  const city=document.getElementById('wCitySel')?.value||'成都';
+  const el=document.getElementById('wResult');
+  if(!el)return;
+  el.innerHTML='<div class="weather-loading">正在加载天气数据...</div>';
+  fetch(`https://tianqi-api.com/api/v1/?version=v9&appid=0&appsecret=0&city=${encodeURIComponent(city)}`)
+    .then(r=>r.json()).then(d=>{
+      if(!d||!d.data){
+        el.innerHTML='<div class="weather-error">无法获取天气数据，请检查网络后重试</div>';return;
+      }
+      const w=d.data;
+      el.innerHTML=`
+        <div class="weather-result">
+          <div class="weather-now">
+            <span class="weather-icon-big">${getWeatherEmoji(w.wea)}</span>
+            <div>
+              <div class="weather-temp-big">${w.tem}°C</div>
+              <div style="font-size:0.85rem;color:var(--text2)">${w.city} · ${w.wea} · ${w.win} ${w.win_speed}</div>
+            </div>
+          </div>
+          <div class="weather-meta">
+            <div>💧 湿度 ${w.humidity}</div>
+            <div>气压 ${w.pressure}</div>
+            <div>能见度 ${w.visibility}</div>
+            <div>日出 ${w.sunrise || '—'} · 日落 ${w.sunset || '—'}</div>
+          </div>
+          ${w.days&&w.days.length>1?`<div class="weather-forecast">${w.days.slice(1,6).map(day=>`<div class="weather-forecast-item"><div class="wf-day">${day.day||day.date||''}</div><div class="wf-icon">${getWeatherEmoji(day.wea)}</div><div class="wf-temp">${day.tem_night}~${day.tem_day}°</div></div>`).join('')}</div>`:''}
+        </div>`;
+    }).catch(()=>{el.innerHTML='<div class="weather-error">网络错误，请稍后重试</div>';});
+}
+
+// ═══ 油价 ═══
 function oilH(){return`<div class="oil-grid" id="oilM"></div><div class="oil-note">* 数据仅供参考，以当地加油站实际价格为准</div>`;}
 function loadOilM(){
   const d=[{c:'北京',p:7.85},{c:'上海',p:7.82},{c:'广州',p:7.90},{c:'深圳',p:7.95},{c:'成都',p:7.78},{c:'重庆',p:7.88},{c:'武汉',p:7.80},{c:'西安',p:7.75}];
@@ -1050,56 +909,38 @@ function loadOilM(){
   document.getElementById('oilM').innerHTML=r.map(x=>`<div class="oil-card"><div class="oil-c">${x.c}</div><div class="oil-p">¥${x.p.toFixed(2)}</div><div class="oil-u">元/升</div></div>`).join('');
 }
 
-// ═══ 节气（模态框） ═══
-function solarH(){return`<div class="solar-grid-full" id="solarM"></div>`;}
+// ═══ 节气 ═══
+function solarH(){return`<div class="solar-grid" id="solarM"></div>`;}
 function loadSolarM(){
   const terms=['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
   const n=new Date(),start=new Date(n.getFullYear(),0,1);
   const doy=Math.floor((n-start)/86400000)+1;
   const cur=Math.floor(doy/15.2)%24;
   const g=document.getElementById('solarM');
-  if(g)g.innerHTML=terms.map((t,i)=>`<div class="solar-item-full${i===cur?' on':''}">${t}</div>`).join('');
+  if(g)g.innerHTML=terms.map((t,i)=>`<div class="solar-item${i===cur?' on':''}">${t}</div>`).join('');
 }
 
-// ═══ 壁纸 ═══
-function wpH(){
-  const seeds=['mountains','ocean','forest','sunset','aurora','sky','lake'];
-  const seed=seeds[Math.floor(Math.random()*seeds.length)];
-  return`<div class="wp-full">
-  <img id="wpFullImg" class="wp-full-img" src="https://picsum.photos/seed/${seed}/800/1200">
-  <div class="wp-meta">点击图片可保存 · 每日自动更换主题</div>
-  <button class="wp-btn" onclick="refreshWp()">↻ 换一张</button>
-</div>`;
-}
-function refreshWp(){
-  const img=document.getElementById('wpFullImg');
-  if(!img)return;
-  img.style.opacity='0.5';
-  img.src=`https://picsum.photos/seed/${Math.random().toString(36).slice(2)}/800/1200?${Date.now()}`;
-  img.onload=()=>{img.style.opacity='1';img.style.transition='opacity 0.4s';};
-}
-
-// ═══ 历史（模态框） ═══
+// ═══ 历史 ═══
 function histH(){return`<div class="hist-modal" id="histM"></div>`;}
 function loadHistM(){
   const el=document.getElementById('histM');
   if(!el)return;
   if(window._allHist&&window._allHist.length){
-    el.innerHTML=window._allHist.map(item=>`<div class="hist-modal-item"><div class="hist-modal-y">${item.year||'?'}年</div><div class="hist-modal-t">${item.title||item.event||''}</div></div>`).join('');
+    el.innerHTML=window._allHist.map(item=>`<div class="hist-item"><div class="hist-y">${item.year||'?'}年</div><div class="hist-t">${item.title||item.event||''}</div></div>`).join('');
   }else{el.innerHTML='<div style="padding:30px;text-align:center;color:var(--text3)">暂无数据</div>';}
 }
 
-// ═══ 诗词（模态框） ═══
+// ═══ 诗词 ═══
 function poemH(){
   const p=pickPoem();
-  return`<div style="text-align:center;padding:10px 0">
-  <div style="font-size:1.4rem;color:var(--gold-pale);margin-bottom:10px;font-weight:600;letter-spacing:0.06em">「${p.t}」</div>
-  <div style="font-size:0.78rem;color:var(--text3);margin-bottom:24px">${p.a}</div>
-  <div style="font-size:1.1rem;line-height:2.4;letter-spacing:0.14em;color:var(--text);white-space:pre-line">${p.l}</div>
+  return`<div class="poem-full">
+  <div class="poem-full-title">「${p.t}」</div>
+  <div class="poem-full-author">— ${p.a}</div>
+  <div class="poem-full-content">${p.l}</div>
   <button class="wp-btn" style="margin-top:20px" onclick="refreshPoemM()">↻ 换一首</button>
 </div>`;
 }
-function refreshPoemM(){const p=pickPoem();document.getElementById('modalBody').innerHTML=poemH();}
+function refreshPoemM(){document.getElementById('modalBody').innerHTML=poemH();}
 
 // ═══ 抖动 ═══
 (function(){
