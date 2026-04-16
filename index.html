@@ -6,187 +6,1121 @@
 <title>问渠 - 生活中的智慧锦囊</title>
 <meta name="description" content="问渠——生活中的智慧锦囊。运势抽签、成语接龙、房贷计算、诗词壁纸，一个页面全搞定。">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1a1a2e">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+<meta name="theme-color" content="#0c0c18">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231a1a2e'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23e8c96a'>渠</text></svg>">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0f0f1a;
-  --card:#1a1a2e;
-  --border:#2a2a4a;
-  --gold:#e8c96a;
-  --gold2:#c9a84c;
-  --text:#e8e0d0;
-  --text2:#9a8a7a;
-  --blue:#4a9eff;
+/* ═══════════════════════════════════════════
+   字体 & 变量
+═══════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #08080f;
+  --bg2: #0d0d1a;
+  --card: rgba(20, 20, 38, 0.65);
+  --card-hover: rgba(28, 28, 52, 0.85);
+  --border: rgba(232, 201, 106, 0.15);
+  --border-hover: rgba(232, 201, 106, 0.45);
+  --gold: #e8c96a;
+  --gold2: #c9a84c;
+  --gold-pale: #f5e6b0;
+  --text: #ede8df;
+  --text2: #8a8070;
+  --text3: #5a5448;
+  --blue: #4a9eff;
+  --shadow: rgba(232, 201, 106, 0.08);
+  --glass-blur: blur(20px) saturate(180%);
 }
-body{background:var(--bg);color:var(--text);font-family:'PingFang SC','Microsoft YaHei',sans-serif;min-height:100vh;overflow-x:hidden}
 
-/* Header */
-.header{text-align:center;padding:40px 20px 30px;position:relative}
-.header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(232,201,106,.15) 0%,transparent 70%);pointer-events:none}
-.logo{font-size:3rem;font-weight:700;background:linear-gradient(135deg,#e8c96a,#f5e6b0,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.1em;margin-bottom:8px}
-.logo-sub{font-size:.85rem;color:var(--text2);letter-spacing:.3em}
-.quote{font-size:.78rem;color:var(--text2);margin-top:10px;font-style:italic;opacity:.7}
+/* ═══════════════════════════════════════════
+   全局重置 & 背景
+═══════════════════════════════════════════ */
+*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box }
 
-/* Nav */
-.nav{max-width:900px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 20px;cursor:pointer;transition:all .3s;text-decoration:none;color:inherit;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
-.card:hover{transform:translateY(-3px);border-color:var(--gold2);box-shadow:0 8px 30px rgba(232,201,106,.1)}
-.card:hover::before{opacity:1}
-.card-icon{font-size:2.2rem;margin-bottom:10px;display:block}
-.card-title{font-size:1.1rem;font-weight:600;margin-bottom:6px;color:var(--text)}
-.card-desc{font-size:.8rem;color:var(--text2);line-height:1.5}
-.card-badge{position:absolute;top:12px;right:14px;font-size:.65rem;padding:2px 8px;border-radius:20px;background:rgba(232,201,106,.15);color:var(--gold);border:1px solid rgba(232,201,106,.3)}
+html { scroll-behavior: smooth }
 
-/* Modal */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
-.modal-overlay.active{display:flex}
-.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative}
-.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.modal-title{font-size:1.2rem;font-weight:600}
-.modal-close{background:none;border:none;color:var(--text2);font-size:1.5rem;cursor:pointer;padding:4px 8px;line-height:1}
-.modal-close:hover{color:var(--gold)}
-.modal-body{padding:24px}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Fun page styles */
-.fun-page{padding:20px;text-align:center}
-.wheel-container{position:relative;width:300px;height:300px;margin:20px auto}
-.wheel{width:300px;height:300px;border-radius:50%;border:6px solid var(--gold);position:relative;overflow:hidden;transition:transform 4s cubic-bezier(.2,.8,.3,1)}
-.wheel-segment{position:absolute;width:50%;height:50%;left:50%;top:0;transform-origin:0 100%;display:flex;align-items:center;justify-content:flex-end;padding-right:15px;font-size:.7rem;color:#fff;text-align:right;line-height:1.3;word-break:break-all}
-.wheel-pointer{position:absolute;top:-5px;left:50%;transform:translateX(-50%);z-index:5;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:22px solid var(--gold);filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
-.wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:var(--gold);border-radius:50%;z-index:5;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 0 20px rgba(232,201,106,.4)}
-.wheel-center:active{transform:translate(-50%,-50%) scale(.95)}
-.btn-lucky{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1a2e;border:none;padding:14px 40px;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:20px;transition:all .3s}
-.btn-lucky:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(232,201,106,.4)}
-.btn-lucky:disabled{opacity:.5;cursor:not-allowed;transform:none}
+/* ── 动态背景 ── */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-/* Result display */
-.result-box{display:none;margin-top:20px;padding:24px;background:rgba(232,201,106,.05);border:1px solid rgba(232,201,106,.2);border-radius:16px;text-align:center}
-.result-box.show{display:block;animation:fadeIn .5s}
-.result-rank{font-size:2rem;margin-bottom:10px}
-.result-desc{font-size:.9rem;color:var(--text2);line-height:1.8}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 201, 106, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(74, 158, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 10% 60%, rgba(232, 168, 76, 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #08080f 0%, #0d0d1a 50%, #080810 100%);
+}
 
-/* Idiom game */
-.idiom-game{max-width:500px;margin:0 auto;text-align:center}
-.idiom-display{font-size:2.5rem;font-weight:700;color:var(--gold);margin:20px 0;letter-spacing:.2em}
-.idiom-hint{font-size:.85rem;color:var(--text2);margin-bottom:16px}
-.idiom-input{width:100%;padding:12px 16px;background:#0f0f1a;border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1.1rem;text-align:center;outline:none}
-.idiom-input:focus{border-color:var(--gold)}
-.idiom-input::placeholder{color:var(--text2)}
-.idiom-btn{background:var(--gold);color:#1a1a2e;border:none;padding:12px 30px;border-radius:25px;font-weight:600;cursor:pointer;margin-top:14px;font-size:.95rem}
-.idiom-history{margin-top:20px;text-align:left;max-height:200px;overflow-y:auto}
-.idiom-step{font-size:.8rem;color:var(--text2);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:10px}
-.idiom-step strong{color:var(--gold);font-family:monospace}
-.idiom-score{color:var(--gold);font-size:1.1rem;margin-bottom:10px}
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232, 201, 106, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 201, 106, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 0%, transparent 70%);
+}
 
-/* Calc */
-.calc{max-width:400px;margin:0 auto}
-.calc-group{margin-bottom:16px}
-.calc-label{font-size:.8rem;color:var(--text2);margin-bottom:6px;display:block}
-.calc-input{width:100%;padding:12px 14px;background:#0f0f1a;border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:1rem;outline:none}
-.calc-input:focus{border-color:var(--gold)}
-.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.calc-btn{width:100%;padding:14px;background:var(--gold);color:#1a1a2e;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;margin-top:10px}
-.calc-result{margin-top:20px;padding:16px;background:rgba(232,201,106,.08);border-radius:12px;font-size:.88rem;line-height:1.8}
-.calc-result strong{color:var(--gold)}
+.bg-float {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  animation: floatUp 20s ease-in-out infinite;
+}
+.bg-float:nth-child(1) {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(232, 201, 106, 0.12), transparent 70%);
+  top: 10%; left: -5%;
+  animation-duration: 25s;
+}
+.bg-float:nth-child(2) {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(74, 158, 255, 0.08), transparent 70%);
+  top: 50%; right: -5%;
+  animation-duration: 18s; animation-delay: -7s;
+}
+.bg-float:nth-child(3) {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(232, 168, 76, 0.1), transparent 70%);
+  bottom: 15%; left: 30%;
+  animation-duration: 22s; animation-delay: -12s;
+}
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0) scale(1); }
+  33% { transform: translateY(-30px) scale(1.05); }
+  66% { transform: translateY(15px) scale(0.95); }
+}
 
-/* History today */
-.history-list{max-height:500px;overflow-y:auto}
-.history-item{padding:16px 0;border-bottom:1px solid var(--border)}
-.history-year{font-size:.7rem;color:var(--gold);font-weight:700;margin-bottom:6px;letter-spacing:.1em}
-.history-title{font-size:.95rem;line-height:1.5;margin-bottom:4px}
-.history-source{font-size:.72rem;color:var(--text2)}
+/* 水滴漂浮动画 */
+.bg-drops { position: absolute; inset: 0; }
+.drop {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: rgba(232, 201, 106, 0.3);
+  border-radius: 50%;
+  animation: dropFall linear infinite;
+}
+@keyframes dropFall {
+  0% { transform: translateY(-20px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 0.5; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
 
-/* Poem */
-.poem-card{padding:20px 0;text-align:center}
-.poem-title{font-size:1.3rem;margin-bottom:10px;color:var(--gold)}
-.poem-author{font-size:.8rem;color:var(--text2);margin-bottom:16px}
-.poem-lines{font-size:1.1rem;line-height:2.2;letter-spacing:.15em;white-space:pre-line}
-.poem-refresh{background:none;border:1px solid var(--border);color:var(--text2);padding:8px 20px;border-radius:20px;cursor:pointer;margin-top:16px;font-size:.85rem}
-.poem-refresh:hover{border-color:var(--gold);color:var(--gold)}
+/* ═══════════════════════════════════════════
+   页面结构
+═══════════════════════════════════════════ */
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
 
-/* BMI */
-.bmi-result{margin-top:16px;padding:16px;border-radius:12px;font-size:.95rem;line-height:1.8}
-.bmi-bar{height:8px;border-radius:4px;background:#333;margin:12px 0;overflow:hidden}
-.bmi-bar-fill{height:100%;border-radius:4px;transition:all .5s}
+/* ── Header ── */
+.header {
+  text-align: center;
+  padding: 72px 20px 56px;
+  position: relative;
+}
 
-/* Oil price */
-.oil-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.oil-card{background:rgba(232,201,106,.05);border:1px solid rgba(232,201,106,.15);border-radius:12px;padding:16px;text-align:center}
-.oil-city{font-size:.75rem;color:var(--text2);margin-bottom:6px}
-.oil-price{font-size:1.5rem;font-weight:700;color:var(--gold)}
-.oil-unit{font-size:.7rem;color:var(--text2)}
+/* 装饰光圈 */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(232, 201, 106, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
 
-/* Solar term */
-.solar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
-.solar-item{text-align:center;padding:12px 8px;border-radius:10px;border:1px solid var(--border);font-size:.8rem}
-.solar-item.active{background:rgba(232,201,106,.1);border-color:var(--gold);color:var(--gold)}
+.logo {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 40%, var(--gold2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+  animation: logoFloat 6s ease-in-out infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(232, 201, 106, 0.3));
+}
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
 
-/* Footer */
-.footer{text-align:center;padding:30px 20px;font-size:.75rem;color:var(--text2);opacity:.5}
+.logo-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.55em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 20px;
+  opacity: 0.6;
+}
+
+.quote {
+  font-size: 0.88rem;
+  color: var(--text2);
+  font-style: italic;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.8;
+  opacity: 0.8;
+}
+
+/* ── 标签导航 ── */
+.section-label {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label span {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  white-space: nowrap;
+}
+.section-label::before, .section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ── 功能卡片网格 ── */
+.nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  position: relative;
+  background: var(--card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  animation: cardIn 0.6s ease-out both;
+}
+
+/* 入场动画，错开每张卡片 */
+.card:nth-child(1) { animation-delay: 0.05s }
+.card:nth-child(2) { animation-delay: 0.1s }
+.card:nth-child(3) { animation-delay: 0.15s }
+.card:nth-child(4) { animation-delay: 0.2s }
+.card:nth-child(5) { animation-delay: 0.25s }
+.card:nth-child(6) { animation-delay: 0.3s }
+.card:nth-child(7) { animation-delay: 0.35s }
+.card:nth-child(8) { animation-delay: 0.4s }
+.card:nth-child(9) { animation-delay: 0.45s }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 顶部光条 */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--card-gold, var(--gold)) 30%, var(--card-gold, var(--gold)) 70%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+/* 悬停光晕 */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(ellipse 60% 60% at 30% 30%, rgba(232, 201, 106, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: var(--card-hover);
+  border-color: var(--border-hover);
+  box-shadow:
+    0 20px 60px rgba(232, 201, 106, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(232, 201, 106, 0.1);
+}
+.card:hover::before { opacity: 0.8; }
+.card:hover::after { opacity: 1; }
+
+/* 卡片图标容器 */
+.card-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  position: relative;
+  background: rgba(232, 201, 106, 0.06);
+  border: 1px solid rgba(232, 201, 106, 0.1);
+  transition: all 0.3s;
+}
+.card:hover .card-icon-wrap {
+  transform: scale(1.08);
+  background: rgba(232, 201, 106, 0.1);
+  box-shadow: 0 0 24px rgba(232, 201, 106, 0.15);
+}
+
+/* 角标 */
+.card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 0.62rem;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(232, 201, 106, 0.12);
+  color: var(--gold);
+  border: 1px solid rgba(232, 201, 106, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+.card-desc {
+  font-size: 0.78rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+.card-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 0.8rem;
+  color: var(--text3);
+  transition: all 0.3s;
+  opacity: 0;
+  transform: translateX(-6px);
+}
+.card:hover .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--gold);
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.72rem;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+.footer::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 auto 20px;
+}
+
+/* ═══════════════════════════════════════════
+   模态框
+═══════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 4, 10, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+.modal-overlay.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: rgba(14, 14, 26, 0.95);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid rgba(232, 201, 106, 0.12);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(232, 201, 106, 0.05),
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(232, 201, 106, 0.04);
+  animation: slideUp 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal::-webkit-scrollbar { width: 4px; }
+.modal::-webkit-scrollbar-track { background: transparent; }
+.modal::-webkit-scrollbar-thumb { background: rgba(232, 201, 106, 0.2); border-radius: 2px; }
+
+.modal-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid rgba(232, 201, 106, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: rgba(14, 14, 26, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 10;
+  border-radius: 24px 24px 0 0;
+}
+
+.modal-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-title-icon { font-size: 1.3rem; }
+
+.modal-close {
+  background: rgba(232, 201, 106, 0.08);
+  border: 1px solid rgba(232, 201, 106, 0.12);
+  color: var(--text2);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 10px;
+  line-height: 1;
+  transition: all 0.2s;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover {
+  background: rgba(232, 201, 106, 0.15);
+  color: var(--gold);
+  border-color: rgba(232, 201, 106, 0.25);
+}
+
+.modal-body {
+  padding: 28px;
+  animation: contentIn 0.3s ease 0.1s both;
+}
+@keyframes contentIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   功能页样式
+═══════════════════════════════════════════ */
+
+/* 通用 */
+.body-center { text-align: center; padding: 10px 0; }
+.body-note { font-size: 0.78rem; color: var(--text2); margin-bottom: 6px; }
+
+/* ── 1. 轮盘抽签 ── */
+.wheel-section { display: flex; flex-direction: column; align-items: center; }
+
+.wheel-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 16px auto;
+  filter: drop-shadow(0 0 40px rgba(232, 201, 106, 0.15));
+}
+
+.wheel {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 4.5s cubic-bezier(0.2, 0.8, 0.3, 1);
+  box-shadow:
+    0 0 0 6px rgba(232, 201, 106, 0.2),
+    0 0 0 10px rgba(232, 201, 106, 0.05),
+    0 0 40px rgba(232, 201, 106, 0.1),
+    inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.wheel-seg {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 0;
+  transform-origin: 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 22px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: right;
+  line-height: 1.35;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.03em;
+}
+.wheel-seg span {
+  transform: rotate(36deg);
+  display: block;
+  max-width: 70px;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 28px solid var(--gold);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  transition: transform 0.1s;
+}
+.wheel-pointer::after {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: -16px;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 28px solid rgba(232, 201, 106, 0.4);
+  transform: translateY(6px);
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold2));
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 4px rgba(232, 201, 106, 0.2),
+    0 0 30px rgba(232, 201, 106, 0.5),
+    0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s;
+  user-select: none;
+}
+.wheel-center:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow:
+    0 0 0 6px rgba(232, 201, 106, 0.3),
+    0 0 40px rgba(232, 201, 106, 0.6),
+    0 6px 20px rgba(0, 0, 0, 0.4);
+}
+.wheel-center:active { transform: translate(-50%, -50%) scale(0.95); }
+
+/* 旋转时的动态光圈 */
+.wheel.spinning {
+  box-shadow:
+    0 0 0 6px rgba(232, 201, 106, 0.4),
+    0 0 0 10px rgba(232, 201, 106, 0.1),
+    0 0 80px rgba(232, 201, 106, 0.25),
+    inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.btn-lucky {
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold), var(--gold2));
+  color: #0c0c18;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(232, 201, 106, 0.3);
+}
+.btn-lucky:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232, 201, 106, 0.45);
+}
+.btn-lucky:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 结果展示 */
+.result-box {
+  display: none;
+  margin-top: 24px;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(232, 201, 106, 0.06), rgba(232, 168, 76, 0.04));
+  border: 1px solid rgba(232, 201, 106, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+.result-box.show {
+  display: block;
+  animation: resultShow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+@keyframes resultShow {
+  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.result-rank {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
+}
+.result-desc {
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.9;
+}
+
+/* ── 2. 成语接龙 ── */
+.idiom-game { max-width: 500px; margin: 0 auto; text-align: center; }
+.idiom-score {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding: 14px 24px;
+  background: rgba(232, 201, 106, 0.05);
+  border: 1px solid rgba(232, 201, 106, 0.1);
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
+.idiom-score strong { color: var(--gold); font-size: 1.2rem; }
+.idiom-display {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 20px 0;
+  letter-spacing: 0.3em;
+  text-shadow: 0 0 30px rgba(232, 201, 106, 0.3);
+  animation: charPulse 2s ease-in-out infinite;
+}
+@keyframes charPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(232, 201, 106, 0.2); }
+  50% { text-shadow: 0 0 40px rgba(232, 201, 106, 0.5); }
+}
+.idiom-hint {
+  font-size: 0.82rem;
+  color: var(--text2);
+  margin-bottom: 20px;
+}
+.idiom-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(8, 8, 15, 0.8);
+  border: 1px solid rgba(232, 201, 106, 0.15);
+  border-radius: 14px;
+  color: var(--text);
+  font-size: 1.05rem;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s;
+  letter-spacing: 0.1em;
+}
+.idiom-input:focus {
+  border-color: rgba(232, 201, 106, 0.5);
+  box-shadow: 0 0 20px rgba(232, 201, 106, 0.1);
+}
+.idiom-input::placeholder { color: var(--text3); letter-spacing: 0.05em; }
+.idiom-btn {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #0c0c18;
+  border: none;
+  padding: 13px 36px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.3s;
+  letter-spacing: 0.05em;
+}
+.idiom-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(232, 201, 106, 0.3); }
+.idiom-history {
+  margin-top: 24px;
+  text-align: left;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0 4px;
+}
+.idiom-history::-webkit-scrollbar { width: 3px; }
+.idiom-history::-webkit-scrollbar-thumb { background: rgba(232, 201, 106, 0.2); border-radius: 2px; }
+.idiom-step {
+  font-size: 0.8rem;
+  color: var(--text2);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  gap: 10px;
+  animation: stepIn 0.3s ease;
+}
+@keyframes stepIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.idiom-step strong { color: var(--gold); font-family: monospace; min-width: 50px; }
+
+/* ── 3. 房贷计算器 ── */
+.calc-wrap { max-width: 440px; margin: 0 auto; }
+.calc-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.calc-group { margin-bottom: 14px; }
+.calc-label {
+  font-size: 0.75rem;
+  color: var(--text2);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.05em;
+}
+.calc-input {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(8, 8, 15, 0.7);
+  border: 1px solid rgba(232, 201, 106, 0.12);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.calc-input:focus {
+  border-color: rgba(232, 201, 106, 0.4);
+  box-shadow: 0 0 16px rgba(232, 201, 106, 0.08);
+}
+.calc-input option { background: #0d0d1a; color: var(--text); }
+.calc-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #0c0c18;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(232, 201, 106, 0.2);
+}
+.calc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232, 201, 106, 0.35);
+}
+.calc-result {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(232, 201, 106, 0.05);
+  border: 1px solid rgba(232, 201, 106, 0.12);
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 2;
+  animation: resultShow 0.4s ease;
+}
+.calc-result strong { color: var(--gold); font-size: 1.1rem; }
+.calc-result .highlight { color: var(--gold); font-size: 1.4rem; font-weight: 700; }
+
+/* ── 4. BMI ── */
+.bmi-result { margin-top: 20px; text-align: center; animation: resultShow 0.4s ease; }
+.bmi-number { font-size: 3rem; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.05em; }
+.bmi-label { font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 0.1em; }
+.bmi-tip { font-size: 0.82rem; color: var(--text2); margin-bottom: 16px; line-height: 1.7; }
+.bmi-bar { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.08); margin: 16px 0; overflow: hidden; }
+.bmi-bar-fill { height: 100%; border-radius: 4px; transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.bmi-scale { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--text3); margin-top: 6px; }
+
+/* ── 5. 历史上的今天 ── */
+.history-list { max-height: 480px; overflow-y: auto; }
+.history-list::-webkit-scrollbar { width: 3px; }
+.history-list::-webkit-scrollbar-thumb { background: rgba(232, 201, 106, 0.15); border-radius: 2px; }
+.history-item {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(232, 201, 106, 0.06);
+  transition: all 0.2s;
+  animation: stepIn 0.4s ease both;
+}
+.history-item:hover { padding-left: 8px; }
+.history-item:last-child { border-bottom: none; }
+.history-year {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+.history-title { font-size: 0.9rem; line-height: 1.65; color: var(--text); }
+.history-loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text2);
+  font-size: 0.85rem;
+}
+.history-loading::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(232, 201, 106, 0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── 6. 古诗词 ── */
+.poem-card { padding: 20px 0; text-align: center; }
+.poem-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--gold-pale);
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+.poem-author { font-size: 0.78rem; color: var(--text3); margin-bottom: 24px; letter-spacing: 0.1em; }
+.poem-lines {
+  font-size: 1.15rem;
+  line-height: 2.4;
+  letter-spacing: 0.18em;
+  white-space: pre-line;
+  color: var(--text);
+}
+.poem-refresh {
+  background: none;
+  border: 1px solid rgba(232, 201, 106, 0.2);
+  color: var(--text2);
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 0.82rem;
+  transition: all 0.3s;
+  letter-spacing: 0.05em;
+}
+.poem-refresh:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 16px rgba(232, 201, 106, 0.1);
+}
+
+/* ── 7. 今日壁纸 ── */
+.wp-wrap { text-align: center; }
+.wp-img {
+  max-width: 100%;
+  max-height: 60vh;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.wp-img:hover { transform: scale(1.01); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6); }
+.wp-meta { font-size: 0.75rem; color: var(--text3); margin-bottom: 14px; }
+
+/* ── 8. 今日油价 ── */
+.oil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.oil-card {
+  background: rgba(232, 201, 106, 0.04);
+  border: 1px solid rgba(232, 201, 106, 0.1);
+  border-radius: 14px;
+  padding: 18px 12px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.oil-card:hover {
+  background: rgba(232, 201, 106, 0.08);
+  border-color: rgba(232, 201, 106, 0.2);
+  transform: translateY(-2px);
+}
+.oil-city { font-size: 0.72rem; color: var(--text3); margin-bottom: 8px; letter-spacing: 0.05em; }
+.oil-price { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+.oil-unit { font-size: 0.65rem; color: var(--text3); margin-top: 4px; }
+.oil-note { font-size: 0.72rem; color: var(--text3); text-align: center; margin-top: 16px; line-height: 1.6; }
+
+/* ── 9. 二十四节气 ── */
+.solar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+.solar-item {
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(232, 201, 106, 0.08);
+  font-size: 0.82rem;
+  color: var(--text2);
+  transition: all 0.3s;
+  letter-spacing: 0.05em;
+}
+.solar-item:hover { background: rgba(232, 201, 106, 0.04); border-color: rgba(232, 201, 106, 0.15); }
+.solar-item.active {
+  background: rgba(232, 201, 106, 0.12);
+  border-color: rgba(232, 201, 106, 0.4);
+  color: var(--gold);
+  font-weight: 600;
+  box-shadow: 0 0 16px rgba(232, 201, 106, 0.1);
+  transform: scale(1.05);
+}
+.solar-info { text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--text2); }
+.solar-info strong { color: var(--gold); font-size: 1.1rem; }
+
+/* ═══════════════════════════════════════════
+   响应式
+═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .header { padding: 52px 20px 40px; }
+  .nav { padding: 0 16px 60px; gap: 14px; }
+  .wheel-wrap { width: 280px; height: 280px; }
+  .wheel { width: 280px; height: 280px; }
+  .solar-grid { grid-template-columns: repeat(3, 1fr); }
+  .modal-body { padding: 20px 16px; }
+  .modal-header { padding: 18px 16px 16px; }
+  .oil-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-row-grid { grid-template-columns: 1fr; }
+}
+
+/* 选中文字颜色 */
+::selection { background: rgba(232, 201, 106, 0.2); color: var(--gold-pale); }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(232, 201, 106, 0.15); border-radius: 3px; }
 </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">问渠</div>
-  <div class="logo-sub">WENQU.CN</div>
-  <div class="quote">"问渠那得清如许，为有源头活水来" —— 朱熹</div>
-</header>
+<!-- 背景层 -->
+<div class="bg-layer">
+  <div class="bg-gradient"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-float"></div>
+  <div class="bg-float"></div>
+  <div class="bg-float"></div>
+  <div class="bg-drops" id="bgDrops"></div>
+</div>
 
-<nav class="nav" id="nav"></nav>
+<div class="page">
+  <header class="header">
+    <div class="logo">问渠</div>
+    <div class="logo-en">wenqu · life wisdom</div>
+    <div class="divider"></div>
+    <div class="quote">「问渠那得清如许，为有源头活水来」—— 朱熹《观书有感》</div>
+  </header>
 
-<footer class="footer">© 2026 问渠 · 生活中的智慧锦囊</footer>
+  <div class="section-label"><span>生活小工具</span></div>
 
-<!-- Modal -->
+  <nav class="nav" id="nav"></nav>
+
+  <footer class="footer">问渠 · 生活中的智慧锦囊 &nbsp;&middot;&nbsp; 2026</footer>
+</div>
+
+<!-- 模态框 -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-header">
       <span class="modal-title" id="modalTitle"></span>
-      <button class="modal-close" onclick="closeModal()">×</button>
+      <button class="modal-close" id="modalCloseBtn" aria-label="关闭">&#x2715;</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
 <script>
-// ─── App Registry ───────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 水滴背景动画
+// ═══════════════════════════════════════════
+(function initDrops() {
+  const container = document.getElementById('bgDrops');
+  if (!container) return;
+  const count = window.innerWidth < 640 ? 12 : 20;
+  for (let i = 0; i < count; i++) {
+    const drop = document.createElement('div');
+    drop.className = 'drop';
+    drop.style.left = Math.random() * 100 + '%';
+    drop.style.animationDuration = (12 + Math.random() * 15) + 's';
+    drop.style.animationDelay = (-Math.random() * 20) + 's';
+    drop.style.width = (2 + Math.random() * 2) + 'px';
+    drop.style.height = drop.style.width;
+    container.appendChild(drop);
+  }
+})();
+
+// ═══════════════════════════════════════════
+// App 注册表
+// ═══════════════════════════════════════════
 const APPS = [
-  { id:'fortune',   icon:'🎰', title:'今日运势',    desc:'转动轮盘，问问命运今日如何安排',       badge:'热门',   color:'#e8c96a' },
-  { id:'idiom',     icon:'🔗', title:'成语接龙',     desc:'一个字接龙，测测你的成语功底',         badge:'',       color:'#4a9eff' },
-  { id:'calc',      icon:'🏠', title:'房贷计算器',   desc:'公积金/商贷/组合贷，明明白白还月供',   badge:'实用',   color:'#6bcb77' },
-  { id:'bmi',       icon:'⚖️',  title:'BMI计算器',   desc:'身体质量指数，轻松掌握健康状态',       badge:'',       color:'#ff6b6b' },
-  { id:'history',   icon:'📅', title:'历史上的今天', desc:'看看今天发生过什么有趣的事',           badge:'每日',   color:'#a66cff' },
-  { id:'poem',      icon:'📜', title:'随机古诗词',  desc:'邂逅一首好诗，遇见千年的美',           badge:'文化',   color:'#f39c12' },
-  { id:'wallpaper', icon:'🖼️', title:'今日壁纸',    desc:'每天一张高清壁纸，换个心情',           badge:'',       color:'#1abc9c' },
-  { id:'oil',       icon:'⛽',  title:'今日油价',   desc:'全国主要城市油价参考',                 badge:'参考',   color:'#e74c3c' },
-  { id:'solarterm', icon:'🌿', title:'二十四节气',  desc:'顺应时节，感受千年农耕智慧',           badge:'',       color:'#27ae60' },
+  { id:'fortune',   icon:'🎰', title:'今日运势',    desc:'转动金色轮盘，探问命运今日如何安排',      badge:'热门',  color:'#e8c96a' },
+  { id:'idiom',     icon:'🔗', title:'成语接龙',     desc:'一字接龙，测测你的成语功底与词汇积累',    badge:'',      color:'#4a9eff' },
+  { id:'calc',      icon:'🏠', title:'房贷计算器',   desc:'公积金 · 商贷 · 组合贷，明明白白还月供',  badge:'实用',  color:'#6bcb77' },
+  { id:'bmi',       icon:'⚖️',  title:'BMI计算器',   desc:'身体质量指数，轻松掌握健康状态',          badge:'',      color:'#ff6b6b' },
+  { id:'history',   icon:'📅', title:'历史上的今天', desc:'今日曾发生过什么，穿越时光去看看',        badge:'每日',  color:'#a66cff' },
+  { id:'poem',      icon:'📜', title:'随机古诗词',   desc:'邂逅一首好诗，遇见千年的美与智慧',        badge:'文化',  color:'#f39c12' },
+  { id:'wallpaper', icon:'🖼️', title:'今日壁纸',    desc:'每日一张高清壁纸，给桌面换个好心情',      badge:'',      color:'#1abc9c' },
+  { id:'oil',       icon:'⛽',  title:'今日油价',   desc:'全国主要城市油价参考，出行心里有数',      badge:'参考',  color:'#e74c3c' },
+  { id:'solarterm', icon:'🌿', title:'二十四节气',  desc:'顺应时节，感受千年农耕文明的智慧',        badge:'',      color:'#27ae60' },
 ];
 
-// ─── Render Nav ─────────────────────────────────────────────────────────────
+// ─── 渲染导航 ───────────────────────────────────
 const nav = document.getElementById('nav');
-APPS.forEach(app => {
-  const badge = app.badge ? `<span class="card-badge">${app.badge}</span>` : '';
-  nav.innerHTML += `<a class="card" onclick="openApp('${app.id}')">${badge}<span class="card-icon">${app.icon}</span><div class="card-title">${app.title}</div><div class="card-desc">${app.desc}</div></a>`;
+APPS.forEach((app, i) => {
+  const badge = app.badge
+    ? `<span class="card-badge">${app.badge}</span>`
+    : '';
+  nav.innerHTML += `
+    <a class="card" onclick="openApp('${app.id}')"
+       style="--card-gold:${app.color}; animation-delay:${(i * 0.06).toFixed(2)}s">
+      ${badge}
+      <div class="card-icon-wrap" style="background:${app.color}18;border-color:${app.color}30">
+        <span>${app.icon}</span>
+      </div>
+      <div class="card-title">${app.title}</div>
+      <div class="card-desc">${app.desc}</div>
+      <div class="card-arrow">→</div>
+    </a>`;
 });
 
-// ─── Modal ──────────────────────────────────────────────────────────────────
+// ─── 模态框 ───────────────────────────────────
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+
 function openModal(title, body) {
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalBody').innerHTML = body;
-  document.getElementById('modal').classList.add('active');
+  modalTitle.textContent = title;
+  modalBody.innerHTML = body;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 function closeModal() {
-  document.getElementById('modal').classList.remove('active');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
 }
-document.getElementById('modal').addEventListener('click', e => {
-  if (e.target.id === 'modal') closeModal();
+modal.addEventListener('click', e => {
+  if (e.target === modal || e.target.id === 'modalCloseBtn') closeModal();
 });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ─── App Router ─────────────────────────────────────────────────────────────
+// ─── App 路由 ───────────────────────────────────
 function openApp(id) {
   const app = APPS.find(a => a.id === id);
   if (!app) return;
@@ -204,21 +1138,34 @@ function openApp(id) {
     case 'solarterm': body = solartermHTML(); break;
   }
   openModal(title, body);
+  // 打开后初始化各功能
+  if (id === 'fortune') setTimeout(initWheel, 150);
   if (id === 'history') loadHistory();
   if (id === 'poem') loadPoem();
   if (id === 'oil') loadOil();
   if (id === 'solarterm') loadSolarTerm();
 }
 
-// ─── 1. 今日运势 ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 1. 今日运势
+// ═══════════════════════════════════════════
+const FORTUNES = [
+  { rank:'🌟 大吉', color:'#e8c96a', desc:'今日诸事顺遂，宜大胆行动。机遇降临，把握时机将收获满满。保持开放心态，贵人相助，工作上突破有望。' },
+  { rank:'😊 吉', color:'#6bcb77', desc:'整体运势上扬，适合推进计划。人际关系和谐，有意外惊喜的可能。留意细节，小缺陷可能酿成大问题。' },
+  { rank:'😐 平', color:'#4a9eff', desc:'今日中规中矩，静心守成为上。避免激进决策，多倾听他人意见。晚间运势转好，可处理重要事务。' },
+  { rank:'😟 凶', color:'#a66cff', desc:'今日需谨慎行事，忌冒险冲动。遇事先冷静，退一步海阔天空。可做计划整理，不宜签订重要协议。' },
+  { rank:'💀 大凶', color:'#e74c3c', desc:'今日低谷，能量低沉，宜静不宜动。避免做重大决定，远离是非。多休息早睡眠，明日自会好转。' },
+];
+
 function fortuneHTML() {
-  return `<div class="fun-page">
-  <div style="font-size:.85rem;color:var(--text2);margin-bottom:6px">点击中间按钮开始抽签</div>
-  <div class="wheel-container" id="wheelContainer">
+  return `<div class="wheel-section">
+  <div class="body-note">点击中间金色按钮转动命运之轮</div>
+  <div class="wheel-wrap">
     <div class="wheel-pointer"></div>
     <div class="wheel" id="wheel"></div>
-    <div class="wheel-center" id="wheelCenter" onclick="spinWheel()">▶</div>
+    <div class="wheel-center" id="wheelCenter" onclick="spinWheel()" title="点击转动">▶</div>
   </div>
+  <button class="btn-lucky" id="btnLucky" onclick="spinWheel()">开始抽签</button>
   <div class="result-box" id="resultBox">
     <div class="result-rank" id="resultRank"></div>
     <div class="result-desc" id="resultDesc"></div>
@@ -226,31 +1173,22 @@ function fortuneHTML() {
 </div>`;
 }
 
-const FORTUNES = [
-  { rank:'🌟 大吉', desc:'今日诸事顺遂，宜大胆行动。机遇降临，把握时机将收获满满。保持开放心态，贵人相助，工作上突破有望。' },
-  { rank:'😊 吉', desc:'整体运势上扬，适合推进计划。人际关系和谐，有意外惊喜的可能。留意细节，小缺陷可能酿成大问题。' },
-  { rank:'😐 平', desc:'今日中规中矩，静心守成为上。避免激进决策，多倾听他人意见。晚间运势转好，可处理重要事务。' },
-  { rank:'😟 凶', desc:'今日需谨慎行事，忌冒险冲动。遇事先冷静，退一步海阔天空。可做计划整理，不宜签订重要协议。' },
-  { rank:'💀 大凶', desc:'今日低谷，能量低沉，宜静不宜动。避免做重大决定，远离是非。多休息早睡眠，明日自会好转。' },
-];
-
 function initWheel() {
   const wheel = document.getElementById('wheel');
   if (!wheel) return;
   wheel.innerHTML = '';
-  const segments = FORTUNES.length;
-  const angle = 360 / segments;
-  const colors = ['#e8c96a','#4a9eff','#6bcb77','#ff6b6b','#a66cff'];
+  const segs = FORTUNES.length;
+  const angle = 360 / segs;
   FORTUNES.forEach((f, i) => {
     const el = document.createElement('div');
+    el.className = 'wheel-seg';
+    // 用渐变色区分各扇区
+    const colors = ['#e8c96a','#4a9eff','#6bcb77','#a66cff','#e74c3c'];
     el.style.cssText = `
-      position:absolute;width:50%;height:50%;left:50%;top:0;
-      transform-origin:0 150px;transform:rotate(${i*angle}deg);
-      background:${colors[i]};display:flex;align-items:center;justify-content:flex-end;
-      padding-right:20px;font-size:.72rem;color:#fff;text-align:right;
-      line-height:1.3;word-break:break-all;
+      transform: rotate(${i * angle}deg);
+      background: conic-gradient(from ${i*angle}deg, ${colors[i]} 0%, ${colors[i]}88 100%);
     `;
-    el.innerHTML = `<span style="transform:rotate(${angle/2}deg);display:block;width:100%">${f.rank}</span>`;
+    el.innerHTML = `<span>${f.rank}</span>`;
     wheel.appendChild(el);
   });
 }
@@ -259,69 +1197,87 @@ let spinning = false;
 function spinWheel() {
   if (spinning) return;
   const wheel = document.getElementById('wheel');
+  const btn = document.getElementById('btnLucky');
   if (!wheel) return;
-  if (spinning) return;
   spinning = true;
-  const deg = Math.floor(1800 + Math.random() * 1800);
-  wheel.style.transition = 'transform 4s cubic-bezier(.2,.8,.3,1)';
+  if (btn) { btn.disabled = true; btn.textContent = '命运转盘中...'; }
+  const deg = 1800 + Math.floor(Math.random() * 1800);
+  wheel.style.transition = 'transform 4.5s cubic-bezier(.2,.8,.3,1)';
   wheel.style.transform = `rotate(${deg}deg)`;
-  const resultIdx = Math.floor((deg % 360) / (360 / FORTUNES.length)) % FORTUNES.length;
+  wheel.classList.add('spinning');
+  const segs = FORTUNES.length;
+  const segAngle = 360 / segs;
+  const normalized = ((deg % 360) + segAngle / 2) % 360;
+  const idx = Math.floor(normalized / segAngle);
+  const resultIdx = (segs - idx) % segs;
   setTimeout(() => {
-    const f = FORTUNES[(FORTUNES.length - resultIdx) % FORTUNES.length];
-    document.getElementById('resultRank').textContent = f.rank;
-    document.getElementById('resultDesc').textContent = f.desc;
+    const f = FORTUNES[resultIdx];
+    const rankEl = document.getElementById('resultRank');
+    const descEl = document.getElementById('resultDesc');
+    if (rankEl) {
+      rankEl.textContent = f.rank;
+      rankEl.style.color = f.color;
+      rankEl.style.textShadow = `0 0 30px ${f.color}66`;
+    }
+    if (descEl) descEl.textContent = f.desc;
     const box = document.getElementById('resultBox');
-    box.classList.add('show');
+    if (box) box.classList.add('show');
+    if (btn) { btn.disabled = false; btn.textContent = '再次抽签'; }
+    wheel.classList.remove('spinning');
     spinning = false;
-  }, 4100);
+  }, 4600);
 }
 window.initWheel = initWheel;
 
-// ─── 2. 成语接龙 ─────────────────────────────────────────────────────────────
-function idiomHTML() {
-  return `<div class="idiom-game">
-  <div class="idiom-score">得分: <strong id="idiomScore">0</strong> &nbsp;|&nbsp; 最高: <strong id="idiomBest">0</strong></div>
-  <div class="idiom-display" id="idiomDisplay">成</div>
-  <div class="idiom-hint" id="idiomHint">请输入以「成」开头的成语</div>
-  <input class="idiom-input" id="idiomInput" placeholder="输入成语后按回车" onkeydown="checkIdiom(event)">
-  <button class="idiom-btn" onclick="checkIdiom({key:'Enter'})">确认</button>
-  <div class="idiom-history" id="idiomHistory"></div>
-</div>`;
-}
-
+// ═══════════════════════════════════════════
+// 2. 成语接龙
+// ═══════════════════════════════════════════
 const IDIOMS = {
-  '成':['成功','成双成对','成年累月','成千上万','成竹在胸','成人之美','成事不足','成千成万','成群结队','成气候'],
-  '功':['功成名就','功亏一篑','功德无量','功到自然成','功名利禄','功勋卓著','功败垂成','功崇德钜'],
-  '就':['就事论事','就地正法','就虚避实','就汤下面','就职典礼','就坡下驴'],
-  '名':['名副其实','名落孙山','名正言顺','名存实亡','名列前茅','名山大川','名不符实','名利双收'],
-  '实':['实至名归','实事求是','实繁有徒','实获我心','实话实说'],
-  '归':['归心似箭','归真反璞','归之若水','归根结底','归去来兮'],
-  '正':['正本清源','正大光明','正襟危坐','正人君子','正气凛然','正心诚意'],
-  '光':['光明磊落','光彩夺目','光怪陆离','光阴似箭','光宗耀祖','光辉灿烂'],
-  '明':['明辨是非','明明白白','明火执仗','明镜止水','明目张胆','明枪暗箭','明修栈道'],
-  '是':['是非分明','是非曲直','是可忍孰不可忍','是非自有公论'],
-  '非':['非同小可','非分之想','非亲非故','非常之谋','非我族类'],
-  '小':['小题大做','小打小闹','小心翼翼','小巫见大巫','小时了了','小家碧玉'],
-  '大':['大江东去','大惊小怪','大名鼎鼎','大吉大利','大快人心','大智若愚','大器晚成','大公无私'],
-  '智':['智勇双全','智圆行方','智尽能索','智均力敌'],
-  '勇':['勇往直前','勇冠三军','勇挑重担','勇猛精进'],
-  '前':['前车之鉴','前功尽弃','前所未有','前仆后继','前因后果','前事不忘后事之师'],
-  '继':['继往开来','继世而起','继继承承'],
+  '成':['成功','成双成对','成年累月','成千上万','成竹在胸','成人之美','成群结队','大器晚成'],
+  '功':['功成名就','功亏一篑','功德无量','功到自然成','功名利禄','功败垂成'],
+  '就':['就事论事','就地正法','就汤下面','就职典礼'],
+  '名':['名副其实','名落孙山','名正言顺','名列前茅','名山大川','名利双收','名存实亡'],
+  '实':['实至名归','实事求是','实话实说','实繁有徒'],
+  '归':['归心似箭','归真反璞','归根结底','归去来兮'],
+  '正':['正本清源','正大光明','正襟危坐','正人君子','正气凛然'],
+  '光':['光明磊落','光彩夺目','光怪陆离','光阴似箭','光宗耀祖'],
+  '明':['明辨是非','明明白白','明目张胆','明枪暗箭','明修栈道','聪明伶俐'],
+  '是':['是非分明','是非曲直','是非自有公论'],
+  '非':['非同小可','非分之想','非亲非故'],
+  '小':['小题大做','小心翼翼','小巫见大巫','小时了了','小家碧玉','大同小异'],
+  '大':['大江东去','大惊小怪','大名鼎鼎','大吉大利','大快人心','大智若愚','大公无私','大器晚成'],
+  '智':['智勇双全','智圆行方'],
+  '勇':['勇往直前','勇冠三军','勇挑重担'],
+  '前':['前车之鉴','前功尽弃','前所未有','前仆后继','前因后果'],
+  '继':['继往开来','继继承承'],
   '开':['开门见山','开诚布公','开卷有益','开源节流','开天辟地'],
-  '山':['山清水秀','山高水长','山明水秀','山河壮美','山穷水尽','山高路远'],
-  '远':['远走高飞','远见卓识','远交近攻','远亲近邻'],
+  '山':['山清水秀','山明水秀','山穷水尽','山高路远','名山大川'],
+  '远':['远走高飞','远见卓识','远交近攻'],
   '飞':['飞黄腾达','飞扬跋扈','飞沙走石','飞檐走壁'],
-  '达':['达官贵人','达权知变','达人知命'],
-  '贵':['贵人多忘事','贵耳贱目','贵妃醉酒'],
-  '人':['人山人海','人才济济','人浮于事','人之常情','人杰地灵','人心所向'],
-  '海':['海阔天空','海枯石烂','海誓山盟','海晏河清'],
-  '天':['天高云淡','天翻地覆','天花乱坠','天经地义','天罗地网','天涯海角'],
+  '达':['达官贵人','达人知命'],
+  '贵':['贵人多忘事','贵妃醉酒'],
+  '人':['人山人海','人才济济','人浮于事','人杰地灵','人心所向'],
+  '海':['海阔天空','海枯石烂','海誓山盟'],
+  '天':['天高云淡','天翻地覆','天经地义','天罗地网','天涯海角','开天辟地'],
   '涯':['天涯海角'],
   '角':['角立杰出'],
 };
 
-let idiomScore = 0, idiomBest = 0, idiomCount = 0;
-let currentChar = '成';
+let idiomScore = 0, idiomBest = 0, currentChar = '成';
+
+function idiomHTML() {
+  return `<div class="idiom-game">
+  <div class="idiom-score">
+    <span>本局 <strong id="idiomScoreNum">0</strong> 分</span>
+    <span>最高 <strong id="idiomBestNum">0</strong> 分</span>
+  </div>
+  <div class="idiom-display" id="idiomDisplay">成</div>
+  <div class="idiom-hint" id="idiomHint">请输入以「成」开头的成语</div>
+  <input class="idiom-input" id="idiomInput" placeholder="输入成语后按回车" autocomplete="off">
+  <button class="idiom-btn" onclick="checkIdiom({key:'Enter'})">确认接龙</button>
+  <div class="idiom-history" id="idiomHistory"></div>
+</div>`;
+}
 
 function checkIdiom(e) {
   if (e.key !== 'Enter') return;
@@ -329,57 +1285,91 @@ function checkIdiom(e) {
   if (!input) return;
   const val = input.value.trim();
   if (!val) return;
-  if (val.length < 4) { alert('成语至少4个字'); return; }
+  if (val.length < 4) { shakeInput(); return; }
   if (!val.startsWith(currentChar)) {
-    alert('成语必须以「' + currentChar + '」开头！');
+    shakeInput();
     return;
   }
-  const found = IDIOMS[currentChar] && IDIOMS[currentChar].includes(val);
   const nextChar = val[val.length - 1];
   const hasNext = IDIOMS[nextChar];
   const history = document.getElementById('idiomHistory');
-  if (found && hasNext) {
-    idiomCount++;
+  if (hasNext) {
     idiomScore++;
     if (idiomScore > idiomBest) idiomBest = idiomScore;
-    history.innerHTML = `<div class="idiom-step"><strong>+1分</strong><span>「${val}」→ 接「${nextChar}」</span></div>` + history.innerHTML;
     currentChar = nextChar;
-    document.getElementById('idiomDisplay').textContent = nextChar;
-    document.getElementById('idiomHint').textContent = '请输入以「' + nextChar + '」开头的成语';
-    document.getElementById('idiomScore').textContent = idiomScore;
-    document.getElementById('idiomBest').textContent = idiomBest;
+    const scoreNum = document.getElementById('idiomScoreNum');
+    const bestNum = document.getElementById('idiomBestNum');
+    const display = document.getElementById('idiomDisplay');
+    const hint = document.getElementById('idiomHint');
+    if (scoreNum) scoreNum.textContent = idiomScore;
+    if (bestNum) bestNum.textContent = idiomBest;
+    if (display) display.textContent = nextChar;
+    if (hint) hint.textContent = '请输入以「' + nextChar + '」开头的成语';
+    history.innerHTML = `<div class="idiom-step"><strong>+1</strong><span>「${val}」→ 「${nextChar}」</span></div>` + history.innerHTML;
     input.value = '';
   } else {
     idiomScore = 0;
-    idiomCount++;
-    history.innerHTML = `<div class="idiom-step" style="color:#ff6b6b"><strong>×</strong><span>「${val}」答错了！当前接龙字：「${currentChar}」</span></div>` + history.innerHTML;
-    document.getElementById('idiomScore').textContent = idiomScore;
+    history.innerHTML = `<div class="idiom-step" style="color:#e74c3c"><strong style="color:#e74c3c">×</strong><span>「${val}」无法继续接龙，当前字：「${currentChar}」</span></div>` + history.innerHTML;
+    const scoreNum = document.getElementById('idiomScoreNum');
+    if (scoreNum) scoreNum.textContent = '0';
     input.value = '';
   }
 }
 
-// ─── 3. 房贷计算器 ──────────────────────────────────────────────────────────
+function shakeInput() {
+  const input = document.getElementById('idiomInput');
+  if (!input) return;
+  input.style.animation = 'none';
+  input.offsetHeight;
+  input.style.animation = 'shake 0.4s ease';
+  setTimeout(() => input.style.animation = '', 400);
+}
+
+// ═══════════════════════════════════════════
+// 3. 房贷计算器
+// ═══════════════════════════════════════════
 function calcHTML() {
-  return `<div class="calc">
-  <div class="calc-group"><label class="calc-label">贷款金额（万元）</label><input class="calc-input" id="calcAmount" type="number" value="100" min="1"></div>
-  <div class="calc-group"><label class="calc-label">贷款年限</label>
-    <select class="calc-input" id="calcYears">
-      <option value="5">5年</option><option value="10">10年</option><option value="15">15年</option><option value="20" selected>20年</option><option value="25">25年</option><option value="30">30年</option>
-    </select>
+  return `<div class="calc-wrap">
+  <div class="calc-row-grid">
+    <div class="calc-group">
+      <div class="calc-label">贷款金额（万元）</div>
+      <input class="calc-input" id="calcAmount" type="number" value="100" min="1">
+    </div>
+    <div class="calc-group">
+      <div class="calc-label">贷款年限</div>
+      <select class="calc-input" id="calcYears">
+        <option value="5">5年（60期）</option>
+        <option value="10">10年（120期）</option>
+        <option value="15">15年（180期）</option>
+        <option value="20" selected>20年（240期）</option>
+        <option value="25">25年（300期）</option>
+        <option value="30">30年（360期）</option>
+      </select>
+    </div>
   </div>
-  <div class="calc-group"><label class="calc-label">贷款类型</label>
-    <select class="calc-input" id="calcType" onchange="calcCalc()">
+  <div class="calc-group">
+    <div class="calc-label">贷款类型</div>
+    <select class="calc-input" id="calcType">
       <option value="gjj">公积金贷款（3.1%）</option>
-      <option value="sd" selected>商贷基准（4.3%）</option>
+      <option value="sd" selected>商业贷款（4.3%）</option>
       <option value="mix">组合贷（各50%）</option>
     </select>
   </div>
-  <div class="calc-group"><label class="calc-label">商贷利率（%）</label><input class="calc-input" id="calcRate" type="number" value="4.3" step="0.01"></div>
-  <div class="calc-group"><label class="calc-label">公积金利率（%）</label><input class="calc-input" id="calcRate2" type="number" value="3.1" step="0.01"></div>
+  <div class="calc-row-grid">
+    <div class="calc-group">
+      <div class="calc-label">商贷利率（%）</div>
+      <input class="calc-input" id="calcRate" type="number" value="4.3" step="0.01">
+    </div>
+    <div class="calc-group">
+      <div class="calc-label">公积金利率（%）</div>
+      <input class="calc-input" id="calcRate2" type="number" value="3.1" step="0.01">
+    </div>
+  </div>
   <button class="calc-btn" onclick="calcCalc()">计算月供</button>
-  <div class="calc-result" id="calcResult">点击按钮计算</div>
+  <div class="calc-result" id="calcResult">点击上方按钮计算月供详情</div>
 </div>`;
 }
+
 function calcCalc() {
   const amount = parseFloat(document.getElementById('calcAmount').value) * 10000;
   const years = parseInt(document.getElementById('calcYears').value);
@@ -387,137 +1377,217 @@ function calcCalc() {
   const rate = parseFloat(document.getElementById('calcRate').value) / 100;
   const rate2 = parseFloat(document.getElementById('calcRate2').value) / 100;
   const months = years * 12;
-  let monthly, total, interest, res = '';
+  let monthly, total, interest;
+  const fmt = n => '¥' + Math.round(n).toLocaleString();
+
   if (type === 'gjj') {
     monthly = amount * (rate2/12 * Math.pow(1+rate2/12, months)) / (Math.pow(1+rate2/12, months)-1);
     total = monthly * months; interest = total - amount;
-    res = `<strong>公积金贷款</strong><br>月供：<strong>¥${monthly.toFixed(0)}</strong>/月<br>总利息：¥${interest.toFixed(0)}<br>总还款：¥${total.toFixed(0)}`;
+    document.getElementById('calcResult').innerHTML =
+      `<strong>公积金贷款</strong><br>` +
+      `贷款本金：${fmt(amount)}<br>` +
+      `年利率：${(rate2*100).toFixed(2)}%<br>` +
+      `还款期数：${months}期<br><br>` +
+      `<span class="highlight">月供 ${fmt(monthly)}</span><br>` +
+      `累计利息：${fmt(interest)}<br>` +
+      `累计还款：<strong>${fmt(total)}</strong>`;
   } else if (type === 'sd') {
     monthly = amount * (rate/12 * Math.pow(1+rate/12, months)) / (Math.pow(1+rate/12, months)-1);
     total = monthly * months; interest = total - amount;
-    res = `<strong>商业贷款</strong><br>月供：<strong>¥${monthly.toFixed(0)}</strong>/月<br>总利息：¥${interest.toFixed(0)}<br>总还款：¥${total.toFixed(0)}`;
+    document.getElementById('calcResult').innerHTML =
+      `<strong>商业贷款</strong><br>` +
+      `贷款本金：${fmt(amount)}<br>` +
+      `年利率：${(rate*100).toFixed(2)}%<br>` +
+      `还款期数：${months}期<br><br>` +
+      `<span class="highlight">月供 ${fmt(monthly)}</span><br>` +
+      `累计利息：${fmt(interest)}<br>` +
+      `累计还款：<strong>${fmt(total)}</strong>`;
   } else {
     const half = amount / 2;
     const m1 = half * (rate2/12*Math.pow(1+rate2/12,months)) / (Math.pow(1+rate2/12,months)-1);
     const m2 = half * (rate/12*Math.pow(1+rate/12,months)) / (Math.pow(1+rate/12,months)-1);
     monthly = m1 + m2; total = monthly * months; interest = total - amount;
-    res = `<strong>组合贷款</strong>（各50%）<br>公积金月供：¥${m1.toFixed(0)}<br>商贷月供：¥${m2.toFixed(0)}<br>合计月供：<strong>¥${monthly.toFixed(0)}</strong>/月<br>总利息：¥${interest.toFixed(0)}`;
+    document.getElementById('calcResult').innerHTML =
+      `<strong>组合贷款</strong>（各50%）<br>` +
+      `贷款本金：${fmt(amount)}<br><br>` +
+      `公积金：${fmt(half)} × ${(rate2*100).toFixed(2)}% = ${fmt(m1)}/月<br>` +
+      `商　贷：${fmt(half)} × ${(rate*100).toFixed(2)}% = ${fmt(m2)}/月<br><br>` +
+      `<span class="highlight">合计月供 ${fmt(monthly)}</span><br>` +
+      `累计利息：${fmt(interest)}`;
   }
-  document.getElementById('calcResult').innerHTML = res;
 }
 
-// ─── 4. BMI计算器 ───────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 4. BMI计算器
+// ═══════════════════════════════════════════
 function bmiHTML() {
-  return `<div class="calc">
-  <div class="calc-row">
-    <div class="calc-group"><label class="calc-label">身高（cm）</label><input class="calc-input" id="bmiH" type="number" placeholder="170"></div>
-    <div class="calc-group"><label class="calc-label">体重（kg）</label><input class="calc-input" id="bmiW" type="number" placeholder="65"></div>
+  return `<div class="calc-wrap">
+  <div class="calc-row-grid">
+    <div class="calc-group">
+      <div class="calc-label">身高（cm）</div>
+      <input class="calc-input" id="bmiH" type="number" placeholder="170">
+    </div>
+    <div class="calc-group">
+      <div class="calc-label">体重（kg）</div>
+      <input class="calc-input" id="bmiW" type="number" placeholder="65">
+    </div>
   </div>
   <button class="calc-btn" onclick="calcBMI()">计算BMI</button>
-  <div class="bmi-result" id="bmiResult"></div>
+  <div class="bmi-result" id="bmiResult" style="display:none"></div>
 </div>`;
 }
+
 function calcBMI() {
   const h = parseFloat(document.getElementById('bmiH').value) / 100;
   const w = parseFloat(document.getElementById('bmiW').value);
-  if (!h || !w) return;
+  if (!h || !w || h <= 0 || w <= 0) {
+    alert('请输入有效的身高和体重');
+    return;
+  }
   const bmi = w / (h * h);
   let label, color, tip;
-  if (bmi < 18.5) { label='偏瘦'; color='#3498db'; tip='适当增重，保持营养均衡'; }
-  else if (bmi < 24) { label='正常'; color='#27ae60'; tip='继续保持！作息规律很重要'; }
-  else if (bmi < 28) { label='偏胖'; color='#f39c12'; tip='注意饮食，增加运动量'; }
-  else { label='肥胖'; color='#e74c3c'; tip='建议咨询医生，制定减重计划'; }
-  document.getElementById('bmiResult').innerHTML = `
-    <div style="text-align:center;font-size:2rem;font-weight:700;color:${color}">${bmi.toFixed(1)}</div>
-    <div style="text-align:center;color:${color};margin-bottom:10px">${label}</div>
-    <div style="color:var(--text2)">${tip}</div>
-    <div class="bmi-bar"><div class="bmi-bar-fill" style="width:100%;background:${color}"></div></div>
-    <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--text2)">
-      <span>偏瘦&lt;18.5</span><span>正常18.5-24</span><span>偏胖24-28</span><span>肥胖&gt;28</span>
-    </div>`;
+  if (bmi < 18.5) { label='偏瘦'; color='#3498db'; tip='适当增重，保持营养均衡，规律作息'; }
+  else if (bmi < 24) { label='正常'; color='#27ae60'; tip='继续保持！体型保持得很好，作息规律是秘诀'; }
+  else if (bmi < 28) { label='偏胖'; color='#f39c12'; tip='注意饮食结构，减少高热量食物，增加有氧运动'; }
+  else { label='肥胖'; color='#e74c3c'; tip='建议咨询专业医生，制定科学减重计划'; }
+  const pct = Math.min(Math.max((bmi - 15) / (30 - 15) * 100, 2), 98);
+  const box = document.getElementById('bmiResult');
+  box.style.display = 'block';
+  box.innerHTML = `
+    <div class="bmi-number" style="color:${color}">${bmi.toFixed(1)}</div>
+    <div class="bmi-label" style="color:${color}">${label}</div>
+    <div class="bmi-tip">${tip}</div>
+    <div class="bmi-bar"><div class="bmi-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="bmi-scale"><span>偏瘦&lt;18.5</span><span>正常 18.5-24</span><span>偏胖 24-28</span><span>肥胖&gt;28</span></div>`;
 }
 
-// ─── 5. 历史上的今天 ─────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 5. 历史上的今天
+// ═══════════════════════════════════════════
 function historyHTML() {
-  return `<div class="history-list" id="historyList"><div style="text-align:center;padding:40px;color:var(--text2)">加载中...</div></div>`;
+  return `<div class="history-list" id="historyList">
+    <div class="history-loading">正在穿越时光...</div>
+  </div>`;
 }
 function loadHistory() {
   const today = new Date();
-  const m = String(today.getMonth()+1).padStart(2,'0');
-  const d = String(today.getDate()).padStart(2,'0');
-  const url = `https://api.yiyouyun.com/api/history?month=${m}&day=${d}`;
-  fetch(url).then(r=>r.json()).then(data=>{
-    const list = document.getElementById('historyList');
-    if (!data || !data.length) { list.innerHTML='<div style="padding:30px;text-align:center;color:var(--text2)">今日暂无数据，明天再来看看~</div>'; return; }
-    list.innerHTML = data.slice(0,15).map(item=>`
-      <div class="history-item">
-        <div class="history-year">${item.year || ''}年</div>
-        <div class="history-title">${item.title || item.event || ''}</div>
-      </div>`).join('');
-  }).catch(()=>{
-    const list = document.getElementById('historyList');
-    list.innerHTML = `<div style="padding:30px;text-align:center;color:var(--text2)">数据加载失败，请检查网络后重试</div>`;
-  });
+  const m = String(today.getMonth() + 1).padStart(2, '0');
+  const d = String(today.getDate()).padStart(2, '0');
+  fetch(`https://api.yiyouyun.com/api/history?month=${m}&day=${d}`)
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById('historyList');
+      if (!data || !data.length) {
+        list.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text2)">今日暂无数据，明天再来看看~</div>';
+        return;
+      }
+      list.innerHTML = data.slice(0, 15).map((item, i) => `
+        <div class="history-item" style="animation-delay:${i * 0.05}s">
+          <div class="history-year">${item.year || ''}年</div>
+          <div class="history-title">${item.title || item.event || ''}</div>
+        </div>`).join('');
+    })
+    .catch(() => {
+      const list = document.getElementById('historyList');
+      list.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text2)">数据加载失败，请检查网络后重试</div>';
+    });
 }
 
-// ─── 6. 随机古诗词 ──────────────────────────────────────────────────────────
-function poemHTML() {
-  return `<div class="poem-card" id="poemCard">
-  <div style="padding:20px;text-align:center;color:var(--text2)">加载诗词中...</div>
-  </div>
-  <button class="poem-refresh" onclick="loadPoem()">换一首 ↻</button>`;
-}
+// ═══════════════════════════════════════════
+// 6. 随机古诗词
+// ═══════════════════════════════════════════
 const POEMS = [
   {t:'静夜思',a:'李白',l:['床前明月光，疑是地上霜。','举头望明月，低头思故乡。']},
   {t:'登鹳雀楼',a:'王之涣',l:['白日依山尽，黄河入海流。','欲穷千里目，更上一层楼。']},
   {t:'春晓',a:'孟浩然',l:['春眠不觉晓，处处闻啼鸟。','夜来风雨声，花落知多少。']},
   {t:'相思',a:'王维',l:['红豆生南国，春来发几枝。','愿君多采撷，此物最相思。']},
   {t:'乐游原',a:'李商隐',l:['向晚意不适，驱车登古原。','夕阳无限好，只是近黄昏。']},
-  {t:'登乐游原',a:'杜牧',l:['长空澒澒凝青色，','玉堂今夜映银河。']},
   {t:'出塞',a:'王昌龄',l:['秦时明月汉时关，万里长征人未还。','但使龙城飞将在，不教胡马度阴山。']},
   {t:'凉州词',a:'王翰',l:['葡萄美酒夜光杯，欲饮琵琶马上催。','醉卧沙场君莫笑，古来征战几人回。']},
   {t:'回乡偶书',a:'贺知章',l:['少小离家老大回，乡音无改鬓毛衰。','儿童相见不相识，笑问客从何处来。']},
   {t:'黄鹤楼送孟浩然之广陵',a:'李白',l:['故人西辞黄鹤楼，烟花三月下扬州。','孤帆远影碧空尽，唯见长江天际流。']},
   {t:'望庐山瀑布',a:'李白',l:['日照香炉生紫烟，遥看瀑布挂前川。','飞流直下三千尺，疑是银河落九天。']},
   {t:'枫桥夜泊',a:'张继',l:['月落乌啼霜满天，江枫渔火对愁眠。','姑苏城外寒山寺，夜半钟声到客船。']},
-  {t:'绝句',a:'杜甫',l:['两个黄鹂鸣翠柳，一行白鹭上青天。','窗含西岭千秋雪，门泊东吴万里船。']},
   {t:'山行',a:'杜牧',l:['远上寒山石径斜，白云生处有人家。','停车坐爱枫林晚，霜叶红于二月花。']},
   {t:'清明',a:'杜牧',l:['清明时节雨纷纷，路上行人欲断魂。','借问酒家何处有，牧童遥指杏花村。']},
+  {t:'绝句',a:'杜甫',l:['两个黄鹂鸣翠柳，一行白鹭上青天。','窗含西岭千秋雪，门泊东吴万里船。']},
+  {t:'题都城南庄',a:'崔护',l:['去年今日此门中，人面桃花相映红。','人面不知何处去，桃花依旧笑春风。']},
 ];
+
+function poemHTML() {
+  return `<div class="poem-card" id="poemCard"></div>
+  <button class="poem-refresh" onclick="loadPoem()">换一首 ↻</button>`;
+}
 function loadPoem() {
-  const p = POEMS[Math.floor(Math.random()*POEMS.length)];
-  document.getElementById('poemCard').innerHTML = `
-    <div class="poem-title">《${p.t}》</div>
-    <div class="poem-author">${p.a}</div>
-    <div class="poem-lines">${p.l.join('\n')}</div>`;
+  const p = POEMS[Math.floor(Math.random() * POEMS.length)];
+  const card = document.getElementById('poemCard');
+  if (!card) return;
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(8px)';
+  setTimeout(() => {
+    card.innerHTML = `
+      <div class="poem-title">「${p.t}」</div>
+      <div class="poem-author">${p.a}</div>
+      <div class="poem-lines">${p.l.join('\n')}</div>`;
+    card.style.transition = 'all 0.4s ease';
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
+  }, 200);
 }
 
-// ─── 7. 今日壁纸 ────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 7. 今日壁纸
+// ═══════════════════════════════════════════
 function wallpaperHTML() {
-  return `<div style="text-align:center">
-  <img id="wpImg" style="max-width:100%;border-radius:12px;margin-bottom:12px" src="https://picsum.photos/seed/wenqu/600/900" alt="今日壁纸">
-  <div style="font-size:.8rem;color:var(--text2);margin-bottom:12px">每日自动更新 · 点击保存</div>
-  <button class="poem-refresh" onclick="document.getElementById('wpImg').src='https://picsum.photos/seed/wenqu'+Date.now()+'/600/900'">换一张 ↻</button>
+  const seeds = ['nature','mountains','ocean','forest','sunset','aurora','citynight'];
+  const seed = seeds[Math.floor(Math.random() * seeds.length)];
+  const today = new Date().toDateString();
+  return `<div class="wp-wrap">
+  <img class="wp-img" id="wpImg"
+       src="https://picsum.photos/seed/${seed}/${Math.floor(Math.random()*200+400)}/${Math.floor(Math.random()*200+600)}"
+       alt="今日壁纸"
+       onclick="saveWallpaper()">
+  <div class="wp-meta">点击图片可保存 · 每日自动更换主题</div>
+  <button class="poem-refresh" onclick="refreshWallpaper()">换一张 ↻</button>
 </div>`;
 }
+function refreshWallpaper() {
+  const img = document.getElementById('wpImg');
+  if (!img) return;
+  img.style.opacity = '0.5';
+  const seed = Math.random().toString(36).slice(2);
+  img.src = `https://picsum.photos/seed/${seed}/800/1200?t=${Date.now()}`;
+  img.onload = () => { img.style.opacity = '1'; };
+}
+function saveWallpaper() {
+  const img = document.getElementById('wpImg');
+  if (!img) return;
+  const a = document.createElement('a');
+  a.href = img.src;
+  a.download = '问渠壁纸-' + new Date().toISOString().slice(0,10) + '.jpg';
+  a.target = '_blank';
+  a.click();
+}
 
-// ─── 8. 今日油价 ────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 8. 今日油价
+// ═══════════════════════════════════════════
 function oilHTML() {
   return `<div class="oil-grid" id="oilGrid"></div>
-  <div style="margin-top:16px;font-size:.75rem;color:var(--text2);text-align:center">* 数据仅供参考，以当地加油站实际价格为准</div>`;
+  <div class="oil-note">* 数据为参考价格，以当地加油站实际价格为准</div>`;
 }
 function loadOil() {
   const data = [
-    {c:'北京',p:(7.85+Math.random().toFixed(2))},
-    {c:'上海',p:(7.82+Math.random().toFixed(2))},
-    {c:'广州',p:(7.90+Math.random().toFixed(2))},
-    {c:'深圳',p:(7.95+Math.random().toFixed(2))},
-    {c:'成都',p:(7.78+Math.random().toFixed(2))},
-    {c:'重庆',p:(7.88+Math.random().toFixed(2))},
-    {c:'武汉',p:(7.80+Math.random().toFixed(2))},
-    {c:'西安',p:(7.75+Math.random().toFixed(2))},
+    {c:'北京',p:7.85},{c:'上海',p:7.82},{c:'广州',p:7.90},
+    {c:'深圳',p:7.95},{c:'成都',p:7.78},{c:'重庆',p:7.88},
+    {c:'武汉',p:7.80},{c:'西安',p:7.75},
   ];
-  document.getElementById('oilGrid').innerHTML = data.map(d=>`
+  // 随机小幅波动，模拟真实油价
+  const randomized = data.map(d => ({
+    ...d,
+    p: +(d.p + (Math.random() * 0.12 - 0.06)).toFixed(2)
+  }));
+  document.getElementById('oilGrid').innerHTML = randomized.map(d => `
     <div class="oil-card">
       <div class="oil-city">${d.c}</div>
       <div class="oil-price">¥${d.p.toFixed(2)}</div>
@@ -525,31 +1595,53 @@ function loadOil() {
     </div>`).join('');
 }
 
-// ─── 9. 二十四节气 ──────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════
+// 9. 二十四节气
+// ═══════════════════════════════════════════
 function solartermHTML() {
-  const terms = ['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
+  const terms = ['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨',
+                 '立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑',
+                 '白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
   const now = new Date();
-  const start = new Date(now.getFullYear(),0,1);
-  const dayOfYear = Math.floor((now-start)/86400000)+1;
-  const current = terms[Math.floor(dayOfYear/15.2) % 24];
+  const start = new Date(now.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((now - start) / 86400000) + 1;
+  const currentIdx = Math.floor(dayOfYear / 15.2) % 24;
   return `<div class="solar-grid" id="solarGrid"></div>
-  <div style="margin-top:16px;text-align:center;font-size:.85rem;color:var(--text2)">
-    当前节气：<strong style="color:var(--gold)">${current}</strong>（约${dayOfYear}日）
-  </div>`;
+  <div class="solar-info">当前节气：<strong>${terms[currentIdx]}</strong>（第${dayOfYear}天）</div>`;
 }
 function loadSolarTerm() {
-  const terms = ['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨','立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
+  const terms = ['小寒','大寒','立春','雨水','惊蛰','春分','清明','谷雨',
+                 '立夏','小满','芒种','夏至','小暑','大暑','立秋','处暑',
+                 '白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
   const now = new Date();
-  const start = new Date(now.getFullYear(),0,1);
-  const dayOfYear = Math.floor((now-start)/86400000)+1;
-  const currentIdx = Math.floor(dayOfYear/15.2) % 24;
-  document.getElementById('solarGrid').innerHTML = terms.map((t,i)=>
-    `<div class="solar-item ${i===currentIdx?'active':''}">${t}</div>`
+  const start = new Date(now.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((now - start) / 86400000) + 1;
+  const currentIdx = Math.floor(dayOfYear / 15.2) % 24;
+  document.getElementById('solarGrid').innerHTML = terms.map((t, i) =>
+    `<div class="solar-item ${i === currentIdx ? 'active' : ''}">${t}</div>`
   ).join('');
 }
 
-// ─── Init ───────────────────────────────────────────────────────────────────
-setTimeout(() => { if (typeof initWheel==='function') initWheel(); }, 100);
+// ═══════════════════════════════════════════
+// 抖动动画样式
+// ═══════════════════════════════════════════
+const styleEl = document.createElement('style');
+styleEl.textContent = `
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}`;
+document.head.appendChild(styleEl);
+
+// ═══════════════════════════════════════════
+// 初始化轮盘（如果直接打开页面）
+// ═══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // 预加载，不做额外操作
+});
 </script>
 </body>
 </html>
